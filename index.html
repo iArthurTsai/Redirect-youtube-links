@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube 轉換器</title>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: sans-serif; padding: 2em; }
+    input, button, textarea { width: 100%; font-size: 1rem; margin-top: 0.5em; }
+	.result-block { display: flex; align-items: center; flex-wrap: wrap; margin-top: 1em; }
+    .result-block label { font-weight: bold; display: inline; }
+	.result-block a { display: inline; color: blue; text-decoration: underline; }
+	.result-block textarea { flex-basis: 100%; margin-top: 0.2em; }
+  </style>
+</head>
+<body>
+  <h2>YouTube 轉換器</h2>
+  <div class="result-block">
+    <label style="display: inline;">請貼上 YouTube/YouTube Music 連結：</label>
+    <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw">
+    <button onclick="convert()">轉換</button>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">Invidious 分享網址：</label>
+	<a id="Invidiouslink" href="#" target="_blank" style="display:none;">點我前往影片</a>
+    <textarea id="Invidious" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">Piped 分享網址：</label>
+	<a id="Pipedlink" href="#" target="_blank" style="display:none;">點我前往影片</a>
+    <textarea id="Piped" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">ytify 分享網址：</label>
+    <a id="ytifylink" href="#" target="_blank" style="display:none;">點我前往音樂</a>
+	<textarea id="ytify" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">m.gjhyss.com 分享網址：</label>
+    <a id="link1" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="m.gjhyss.com" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">cinemaphile.com 分享網址：</label>
+    <a id="link2" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="cinemaphile.com" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">YMusic 分享網址：</label>
+    <a id="link3" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="YMusic" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">AstroTube 分享網址：</label>
+    <a id="link4" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="AstroTube" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">最短 YouTube 連結：</label>
+    <a id="link5" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="shorturl" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">YouTube Music 連結：</label>
+    <a id="link6" href="#" target="_blank" style="display:none;">點我前往音樂</a>
+	<textarea id="YTMusic" rows="1" readonly></textarea>
+  </div>
+
+  <script>
+    function convert() {
+    const input = document.getElementById("yt").value.trim();
+    const videoMatch = input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    const listMatch = input.match(/[?&]list=([0-9A-Za-z_-]+)/);
+
+    const vid = videoMatch ? videoMatch[1] : null;
+    const list = listMatch ? listMatch[1] : null;
+
+    const makeURL = (base, type) => {
+      if (vid && list) return `${base}${type}?v=${vid}&list=${list}`;
+      if (vid) return `${base}${type}?v=${vid}`;
+      if (list) return `${base}playlist?list=${list}`;
+      return null;
+    };
+
+    const services = [
+      { id: "Invidious", base: "https://inv.nadeko.net/", type: "watch", linkId: "Invidiouslink" },
+      { id: "Piped", base: "https://pol1.pi.ggtyler.dev/", type: "watch", linkId: "Pipedlink" },
+      { id: "ytify", base: "https://ytify.pp.ua/?s=", type: "", linkId: "ytifylink", onlyVid: true },
+      { id: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", type: "", linkId: "link1", onlyVid: true },
+      { id: "cinemaphile.com", base: "https://cinemaphile.com/watch?v=", type: "", linkId: "link2", onlyVid: true },
+      { id: "YMusic", base: "https://ymusicapp.com/watch?v=", type: "", linkId: "link3", onlyVid: true },
+      { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", type: "", linkId: "link4", onlyVid: true },
+      { id: "shorturl", base: "https://youtube.com/", type: "watch", linkId: "link5" },
+      { id: "YTMusic", base: "https://music.youtube.com/", type: "watch", linkId: "link6" },
+    ];
+
+    if (!vid && !list) {
+      services.forEach(s => {
+        document.getElementById(s.id).value = "⚠️ 無法辨識影片或播放清單 ID";
+        document.getElementById(s.linkId).style.display = "none";
+      });
+      return;
+    }
+
+    services.forEach(s => {
+      let url = null;
+      if (s.onlyVid) {
+        url = vid ? `${s.base}${vid}` : null;
+      } else {
+        url = makeURL(s.base, s.type);
+      }
+
+      const field = document.getElementById(s.id);
+      const link = document.getElementById(s.linkId);
+
+      if (url) {
+        field.value = url;
+        link.href = url;
+        link.textContent = url;
+        link.style.display = "inline";
+      } else {
+        field.value = "⚠️ 無法辨識";
+        link.style.display = "none";
+      }
+    });
+  }
+  </script>
+</body>
+</html>
