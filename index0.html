@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube 轉換器</title>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: sans-serif; padding: 2em; }
+    input, button, textarea { width: 100%; font-size: 1rem; margin-top: 0.5em; }
+	.result-block { display: flex; align-items: center; flex-wrap: wrap; margin-top: 1em; }
+    .result-block label { font-weight: bold; display: inline; }
+	.result-block a { display: inline; color: blue; text-decoration: underline; }
+	.result-block textarea { flex-basis: 100%; margin-top: 0.2em; }
+  </style>
+</head>
+<body>
+  <h2>YouTube 轉換器</h2>
+  <div class="result-block">
+    <label style="display: inline;">請貼上 YouTube/YouTube Music 連結：</label>
+    <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw">
+    <button onclick="convert()">轉換</button>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">Invidious 分享網址：</label>
+	<a id="Invidiouslink" href="#" target="_blank" style="display:none;">點我前往影片</a>
+    <textarea id="Invidious" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">Piped 分享網址：</label>
+	<a id="Pipedlink" href="#" target="_blank" style="display:none;">點我前往影片</a>
+    <textarea id="Piped" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">ytify 分享網址：</label>
+    <a id="ytifylink" href="#" target="_blank" style="display:none;">點我前往音樂</a>
+	<textarea id="ytify" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">m.gjhyss.com 分享網址：</label>
+    <a id="link1" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="m.gjhyss.com" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">cinemaphile.com 分享網址：</label>
+    <a id="link2" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="cinemaphile.com" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">YMusic 分享網址：</label>
+    <a id="link3" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="YMusic" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">AstroTube 分享網址：</label>
+    <a id="link4" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="AstroTube" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">最短 YouTube 連結：</label>
+    <a id="link5" href="#" target="_blank" style="display:none;">點我前往影片</a>
+	<textarea id="shorturl" rows="1" readonly></textarea>
+  </div>
+  
+  <div class="result-block">
+    <label style="display: inline;">YouTube Music 連結：</label>
+    <a id="link6" href="#" target="_blank" style="display:none;">點我前往音樂</a>
+	<textarea id="YTMusic" rows="1" readonly></textarea>
+  </div>
+
+  <script>
+    function convert() {
+      const input = document.getElementById("yt").value.trim();
+      const match = input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+	  
+	  if (!match) {
+        document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("Invidiouslink").style.display = "none";
+		
+		document.getElementById("Piped").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("Pipedlink").style.display = "none";
+		
+		document.getElementById("ytify").value = "⚠️ 無法辨識音樂 ID";
+		document.getElementById("ytifylink").style.display = "none";
+		
+		document.getElementById("m.gjhyss.com").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("link1").style.display = "none";
+		
+		document.getElementById("cinemaphile.com").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("link2").style.display = "none";
+		
+		document.getElementById("YMusic").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("link3").style.display = "none";
+		
+		document.getElementById("AstroTube").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("link4").style.display = "none";
+		
+        document.getElementById("shorturl").value = "⚠️ 無法辨識影片 ID";
+		document.getElementById("link5").style.display = "none";
+		
+		document.getElementById("YTMusic").value = "⚠️ 無法辨識音樂 ID";
+		document.getElementById("link6").style.display = "none";
+        return;
+      }
+      const vid = match[1];
+
+      const InvidiousUrl = `https://inv.nadeko.net/watch?v=${vid}`;
+	  const PipedUrl = `https://pol1.pi.ggtyler.dev/watch?v=${vid}`;
+	  const ytifyUrl = `https://ytify.pp.ua/?s=${vid}`;
+	  const gjhyssUrl = `https://m.gjhyss.com/share?v=${vid}`;
+	  const cinemaphileUrl = `https://cinemaphile.com/watch?v=${vid}`;
+	  const YMusicUrl = `https://ymusicapp.com/watch?v=${vid}`;
+	  const AstroTubeUrl = `https://at.ggtyler.dev/watch?v=${vid}`;
+      const shortUrl = `https://youtu.be/${vid}`;
+	  const YTMusicUrl = `https://music.youtube.com/watch?v=${vid}`;
+
+      document.getElementById("Invidious").value = InvidiousUrl;
+	  document.getElementById("Piped").value = PipedUrl;
+	  document.getElementById("ytify").value = ytifyUrl;
+	  document.getElementById("m.gjhyss.com").value = gjhyssUrl;
+	  document.getElementById("cinemaphile.com").value = cinemaphileUrl;
+	  document.getElementById("YMusic").value = YMusicUrl;
+	  document.getElementById("AstroTube").value = AstroTubeUrl;
+      document.getElementById("shorturl").value = shortUrl;
+	  document.getElementById("YTMusic").value = YTMusicUrl;
+
+      const lI = document.getElementById("Invidiouslink");
+      lI.href = InvidiousUrl;
+      lI.textContent = InvidiousUrl;
+      lI.style.display = "inline";
+	  
+	  const lP = document.getElementById("Pipedlink");
+      lP.href = PipedUrl;
+      lP.textContent = PipedUrl;
+      lP.style.display = "inline";
+	  
+	  const lify = document.getElementById("ytifylink");
+      lify.href = ytifyUrl;
+      lify.textContent = ytifyUrl;
+      lify.style.display = "inline";
+	  
+	  const l1 = document.getElementById("link1");
+      l1.href = gjhyssUrl;
+      l1.textContent = gjhyssUrl;
+      l1.style.display = "inline";
+	  
+	  const l2 = document.getElementById("link2");
+      l2.href = cinemaphileUrl;
+      l2.textContent = cinemaphileUrl;
+      l2.style.display = "inline";
+	  
+	  const l3 = document.getElementById("link3");
+      l3.href = YMusicUrl;
+      l3.textContent = YMusicUrl;
+      l3.style.display = "inline";
+	  
+	  const l4 = document.getElementById("link4");
+      l4.href = AstroTubeUrl;
+      l4.textContent = AstroTubeUrl;
+      l4.style.display = "inline";
+	  
+      const l5 = document.getElementById("link5");
+      l5.href = shortUrl;
+      l5.textContent = shortUrl;
+      l5.style.display = "inline";
+	  
+	  const l6 = document.getElementById("link6");
+      l6.href = YTMusicUrl;
+      l6.textContent = YTMusicUrl;
+      l6.style.display = "inline";
+    }
+  </script>
+</body>
+</html>
