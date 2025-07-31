@@ -94,13 +94,13 @@
 
     <div class="result-block">
       <label style="display: inline;">最短 YouTube 連結：</label>
-      <a id="link5" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="shortURLlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="shorturl" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline;">YouTube Music 連結：</label>
-      <a id="link6" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <a id="YTMusiclink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="YTMusic" rows="1" readonly></textarea>
     </div>
 
@@ -136,8 +136,8 @@
           { id: "cinemaphile.com", base: "https://cinemaphile.com/watch?v=", mode: "vid", linkId: "link2" },
           { id: "YMusic", base: "https://ymusicapp.com/", mode: "auto", type: "watch", linkId: "link3" },
           { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", linkId: "link4" },
-          { id: "shorturl", base: "https://youtu.be/", mode: "vid", linkId: "link5" },
-          { id: "YTMusic", base: "https://music.youtube.com/", mode: "auto", type: "watch", linkId: "link6" },
+          { id: "shorturl", base: "https://youtu.be/", mode: "vid", linkId: "shortURLlink" },
+          { id: "YTMusic", base: "https://music.youtube.com/", mode: "auto", type: "watch", linkId: "YTMusiclink" },
         ];
 
         if (!vid && !list) {
@@ -176,7 +176,12 @@
 
             case "auto":
               if (vid && list) {
-                url = `${s.base}${s.type}?v=${vid}&list=${list}`;
+                // 特別處理 Invidious 與 Hyperpipe：只要 playlist 連結
+                if (["Invidious", "Hyperpipe"].includes(s.id)) {
+                  url = `${s.base}playlist?list=${list}`;
+                } else {
+                  url = `${s.base}${s.type}?v=${vid}&list=${list}`;
+                }
               } else if (vid) {
                 url = `${s.base}${s.type}?v=${vid}`;
               } else if (list) {
