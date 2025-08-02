@@ -52,14 +52,38 @@
 
     <div class="result-block">
       <label style="display: inline;">Piped 分享網址：</label>
-      <a id="Pipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="Piped" rows="1" readonly></textarea>
+      <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="NYCPiped" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="CALPiped" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="POLPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="Hyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="Hyperpipe" rows="1" readonly></textarea>
+      <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="CALHyperpipe" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="POLHyperpipe" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
@@ -113,11 +137,23 @@
           document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("Invidiouslink").style.display = "none";
 
-          document.getElementById("Piped").value = "⚠️ 無法辨識影片 ID";
-          document.getElementById("Pipedlink").style.display = "none";
+          document.getElementById("NYCPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("NYCPipedlink").style.display = "none";
+		  
+		  document.getElementById("CALPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("CALPipedlink").style.display = "none";
+		  
+		  document.getElementById("POLPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("POLPipedlink").style.display = "none";
 
-          document.getElementById("Hyperpipe").value = "⚠️ 無法辨識音樂 ID";
-          document.getElementById("Hyperpipelink").style.display = "none";
+          document.getElementById("NYCHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("NYCHyperpipelink").style.display = "none";
+		  
+		  document.getElementById("CALHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("CALHyperpipelink").style.display = "none";
+		  
+		  document.getElementById("POLHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("POLHyperpipelink").style.display = "none";
 
           document.getElementById("ytify").value = "⚠️ 無法辨識音樂 ID";
           document.getElementById("ytifylink").style.display = "none";
@@ -144,8 +180,12 @@
         const vid = match[1];
 
         const InvidiousUrl = `https://inv.nadeko.net/watch?v=${vid}`;
-        const PipedUrl = `https://pol1.pi.ggtyler.dev/watch?v=${vid}`;
-        const HyperpipeUrl = `https://pol1.hp.ggtyler.dev/watch?v=${vid}`;
+        const NYCPipedUrl = `https://nyc1.pi.ggtyler.dev/watch?v=${vid}`;
+		const CALPipedUrl = `https://cal1.pi.ggtyler.dev/watch?v=${vid}`;
+		const POLPipedUrl = `https://pol1.pi.ggtyler.dev/watch?v=${vid}`;
+        const NYCHyperpipeUrl = `https://nyc1.hp.ggtyler.dev/watch?v=${vid}`;
+		const CALHyperpipeUrl = `https://cal1.hp.ggtyler.dev/watch?v=${vid}`;
+		const POLHyperpipeUrl = `https://pol1.hp.ggtyler.dev/watch?v=${vid}`;
         const ytifyUrl = `https://ytify.pp.ua/?s=${vid}`;
         const gjhyssUrl = `https://m.gjhyss.com/share?v=${vid}`;
         const cinemaphileUrl = `https://cinemaphile.com/watch?v=${vid}`;
@@ -155,8 +195,12 @@
         const YTMusicUrl = `https://music.youtube.com/watch?v=${vid}`;
 
         document.getElementById("Invidious").value = InvidiousUrl;
-        document.getElementById("Piped").value = PipedUrl;
-        document.getElementById("Hyperpipe").value = HyperpipeUrl;
+        document.getElementById("NYCPiped").value = NYCPipedUrl;
+		document.getElementById("CALPiped").value = CALPipedUrl;
+		document.getElementById("POLPiped").value = POLPipedUrl;
+        document.getElementById("NYCHyperpipe").value = NYCHyperpipeUrl;
+		document.getElementById("CALHyperpipe").value = CALHyperpipeUrl;
+		document.getElementById("POLHyperpipe").value = POLHyperpipeUrl;
         document.getElementById("ytify").value = ytifyUrl;
         document.getElementById("m.gjhyss.com").value = gjhyssUrl;
         document.getElementById("cinemaphile.com").value = cinemaphileUrl;
@@ -170,15 +214,35 @@
         lI.textContent = InvidiousUrl;
         lI.style.display = "inline";
 
-        const lP = document.getElementById("Pipedlink");
-        lP.href = PipedUrl;
-        lP.textContent = PipedUrl;
-        lP.style.display = "inline";
+        const lNYCP = document.getElementById("NYCPipedlink");
+        lNYCP.href = NYCPipedUrl;
+        lNYCP.textContent = NYCPipedUrl;
+        lNYCP.style.display = "inline";
+		
+		const lCALP = document.getElementById("CALPipedlink");
+        lCALP.href = CALPipedUrl;
+        lCALP.textContent = CALPipedUrl;
+        lCALP.style.display = "inline";
+		
+		const lPOLP = document.getElementById("POLPipedlink");
+        lPOLP.href = POLPipedUrl;
+        lPOLP.textContent = POLPipedUrl;
+        lPOLP.style.display = "inline";
 
-        const lHyper = document.getElementById("Hyperpipelink");
-        lHyper.href = HyperpipeUrl;
-        lHyper.textContent = HyperpipeUrl;
-        lHyper.style.display = "inline";
+        const lNYCHyper = document.getElementById("NYCHyperpipelink");
+        lNYCHyper.href = NYCHyperpipeUrl;
+        lNYCHyper.textContent = NYCHyperpipeUrl;
+        lNYCHyper.style.display = "inline";
+		
+		const lCALHyper = document.getElementById("CALHyperpipelink");
+        lCALHyper.href = CALHyperpipeUrl;
+        lCALHyper.textContent = CALHyperpipeUrl;
+        lCALHyper.style.display = "inline";
+		
+		const lPOLHyper = document.getElementById("POLHyperpipelink");
+        lPOLHyper.href = POLHyperpipeUrl;
+        lPOLHyper.textContent = POLHyperpipeUrl;
+        lPOLHyper.style.display = "inline";
 
         const lify = document.getElementById("ytifylink");
         lify.href = ytifyUrl;
