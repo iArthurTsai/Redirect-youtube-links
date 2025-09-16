@@ -3,6 +3,7 @@
   <head>
     <title>YouTube 轉換器</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         font-family: "Noto Sans TC", system-ui, sans-serif;
@@ -52,35 +53,65 @@
 
     <div class="result-block">
       <label style="display: inline;">Piped 分享網址：</label>
+      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Piped 分享網址：</label>
       <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="NYCPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="CALPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="POLPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="CALHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="POLHyperpipe" rows="1" readonly></textarea>
@@ -147,6 +178,12 @@
           document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("Invidiouslink").style.display = "none";
 
+          document.getElementById("PrivatecoffeePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("PrivatecoffeePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychPipedlink").style.display = "none";
+
           document.getElementById("NYCPiped").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("NYCPipedlink").style.display = "none";
 
@@ -155,6 +192,15 @@
 
           document.getElementById("POLPiped").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("POLPipedlink").style.display = "none";
+
+          document.getElementById("wirewaychRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychRePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychdevRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychdevRePipedlink").style.display = "none";
+
+          document.getElementById("duckspartyHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("duckspartyHyperpipelink").style.display = "none";
 
           document.getElementById("NYCHyperpipe").value = "⚠️ 無法辨識音樂 ID";
           document.getElementById("NYCHyperpipelink").style.display = "none";
@@ -190,9 +236,14 @@
         const vid = match[1];
 
         const InvidiousUrl = `https://inv.nadeko.net/watch?v=${vid}`;
+        const PrivatecoffeePipedUrl = `https://piped.private.coffee/watch?v=${vid}`;
+        const wirewaychPipedUrl = `https://piped.wireway.ch/watch?v=${vid}`;
         const NYCPipedUrl = `https://nyc1.pi.ggtyler.dev/watch?v=${vid}`;
         const CALPipedUrl = `https://cal1.pi.ggtyler.dev/watch?v=${vid}`;
         const POLPipedUrl = `https://pol1.pi.ggtyler.dev/watch?v=${vid}`;
+        const wirewaychRePipedUrl = `https://repiped.wireway.ch/video.html?v=${vid}`;
+        const wirewaychdevRePipedUrl = `https://repiped-development-c7df8a.onwireway.online/video.html?v=${vid}`;
+        const duckspartyHyperpipeUrl = `https://hyperpipe.ducks.party/watch?v=${vid}`;
         const NYCHyperpipeUrl = `https://nyc1.hp.ggtyler.dev/watch?v=${vid}`;
         const CALHyperpipeUrl = `https://cal1.hp.ggtyler.dev/watch?v=${vid}`;
         const POLHyperpipeUrl = `https://pol1.hp.ggtyler.dev/watch?v=${vid}`;
@@ -205,9 +256,14 @@
         const YTMusicUrl = `https://music.youtube.com/watch?v=${vid}`;
 
         document.getElementById("Invidious").value = InvidiousUrl;
+        document.getElementById("PrivatecoffeePiped").value = PrivatecoffeePipedUrl;
+        document.getElementById("wirewaychPiped").value = wirewaychPipedUrl;
         document.getElementById("NYCPiped").value = NYCPipedUrl;
         document.getElementById("CALPiped").value = CALPipedUrl;
         document.getElementById("POLPiped").value = POLPipedUrl;
+        document.getElementById("wirewaychRePiped").value = wirewaychRePipedUrl;
+        document.getElementById("wirewaychdevRePiped").value = wirewaychdevRePipedUrl;
+        document.getElementById("duckspartyHyperpipe").value = duckspartyHyperpipeUrl;
         document.getElementById("NYCHyperpipe").value = NYCHyperpipeUrl;
         document.getElementById("CALHyperpipe").value = CALHyperpipeUrl;
         document.getElementById("POLHyperpipe").value = POLHyperpipeUrl;
@@ -224,6 +280,16 @@
         lI.textContent = InvidiousUrl;
         lI.style.display = "inline";
 
+        const lPrivatecoffeeP = document.getElementById("PrivatecoffeePipedlink");
+        lPrivatecoffeeP.href = PrivatecoffeePipedUrl;
+        lPrivatecoffeeP.textContent = PrivatecoffeePipedUrl;
+        lPrivatecoffeeP.style.display = "inline";
+
+        const lwirewaychP = document.getElementById("wirewaychPipedlink");
+        lwirewaychP.href = wirewaychPipedUrl;
+        lwirewaychP.textContent = wirewaychPipedUrl;
+        lwirewaychP.style.display = "inline";
+
         const lNYCP = document.getElementById("NYCPipedlink");
         lNYCP.href = NYCPipedUrl;
         lNYCP.textContent = NYCPipedUrl;
@@ -238,6 +304,21 @@
         lPOLP.href = POLPipedUrl;
         lPOLP.textContent = POLPipedUrl;
         lPOLP.style.display = "inline";
+
+        const lwirewaychReP = document.getElementById("wirewaychRePipedlink");
+        lwirewaychReP.href = wirewaychRePipedUrl;
+        lwirewaychReP.textContent = wirewaychRePipedUrl;
+        lwirewaychReP.style.display = "inline";
+
+        const lwirewaychdevReP = document.getElementById("wirewaychdevRePipedlink");
+        lwirewaychdevReP.href = wirewaychdevRePipedUrl;
+        lwirewaychdevReP.textContent = wirewaychdevRePipedUrl;
+        lwirewaychdevReP.style.display = "inline";
+
+        const lduckspartyHyper = document.getElementById("duckspartyHyperpipelink");
+        lduckspartyHyper.href = duckspartyHyperpipeUrl;
+        lduckspartyHyper.textContent = duckspartyHyperpipeUrl;
+        lduckspartyHyper.style.display = "inline";
 
         const lNYCHyper = document.getElementById("NYCHyperpipelink");
         lNYCHyper.href = NYCHyperpipeUrl;
