@@ -3,6 +3,7 @@
   <head>
     <title>YouTube 轉換器</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         font-family: "Noto Sans TC", system-ui, sans-serif;
@@ -52,35 +53,65 @@
 
     <div class="result-block">
       <label style="display: inline;">Piped 分享網址：</label>
+      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Piped 分享網址：</label>
       <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="NYCPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="CALPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="POLPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="CALHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="POLHyperpipe" rows="1" readonly></textarea>
@@ -110,7 +141,7 @@
       <textarea id="YMusic" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">AstroTube 分享網址：</label>
       <a id="link4" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
@@ -163,9 +194,14 @@
 
         const services = [
           { id: "Invidious", base: "https://inv.nadeko.net/", mode: "auto", type: "watch", linkId: "Invidiouslink" },
+          { id: "PrivatecoffeePiped", base: "https://piped.private.coffee/", mode: "auto", type: "watch", linkId: "PrivatecoffeePipedlink" },
+          { id: "wirewaychPiped", base: "https://piped.wireway.ch/", mode: "auto", type: "watch", linkId: "wirewaychPipedlink" },
           { id: "NYCPiped", base: "https://nyc1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "NYCPipedlink" },
           { id: "CALPiped", base: "https://cal1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "CALPipedlink" },
           { id: "POLPiped", base: "https://pol1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLPipedlink" },
+          { id: "wirewaychRePiped", base: "https://repiped.wireway.ch/video.html?v=", mode: "vid", linkId: "wirewaychRePipedlink" },
+          { id: "wirewaychdevRePiped", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid", linkId: "wirewaychdevRePipedlink" },
+          { id: "duckspartyHyperpipe", base: "https://hyperpipe.ducks.party/", mode: "auto", type: "watch", linkId: "duckspartyHyperpipelink" },
           { id: "NYCHyperpipe", base: "https://nyc1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "NYCHyperpipelink" },
           { id: "CALHyperpipe", base: "https://cal1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "CALHyperpipelink" },
           { id: "POLHyperpipe", base: "https://pol1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLHyperpipelink" },
@@ -215,7 +251,7 @@
             case "auto":
               if (vid && list) {
                 // 特別處理 Invidious 與 Hyperpipe：只要 playlist 連結
-                if (["Invidious", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)) {
+                if (["Invidious", "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)) {
                   url = `${s.base}playlist?list=${list}`;
                 } else {
                   url = `${s.base}${s.type}?v=${vid}&list=${list}`;
@@ -245,4 +281,3 @@
     </script>
   </body>
 </html>
-
