@@ -52,6 +52,18 @@
       <textarea id="Invidious" rows="1" readonly></textarea>
     </div>
 
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychPiped" rows="1" readonly></textarea>
+    </div>
+
     <div class="result-block" style="display: none;">
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
@@ -68,6 +80,24 @@
       <label style="display: inline;">Piped 分享網址：</label>
       <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="POLPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
@@ -154,6 +184,12 @@
           document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("Invidiouslink").style.display = "none";
 
+          document.getElementById("PrivatecoffeePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("PrivatecoffeePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychPipedlink").style.display = "none";
+
           document.getElementById("NYCPiped").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("NYCPipedlink").style.display = "none";
 
@@ -162,6 +198,15 @@
 
           document.getElementById("POLPiped").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("POLPipedlink").style.display = "none";
+
+          document.getElementById("wirewaychRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychRePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychdevRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychdevRePipedlink").style.display = "none";
+
+          document.getElementById("duckspartyHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("duckspartyHyperpipelink").style.display = "none";
 
           document.getElementById("NYCHyperpipe").value = "⚠️ 無法辨識音樂 ID";
           document.getElementById("NYCHyperpipelink").style.display = "none";
@@ -198,6 +243,16 @@
           document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/watch?v=" + vid;
           document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/watch?v=" + vid;
           document.getElementById("Invidiouslink").style.display = "inline";
+
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
 
           document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
           document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
@@ -269,6 +324,16 @@
           document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").style.display = "inline";
 
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
+
           document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
           document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
           document.getElementById("NYCPipedlink").textContent = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
@@ -332,6 +397,16 @@
           document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").style.display = "inline";
+
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
 
           document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
           document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
