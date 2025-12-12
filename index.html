@@ -259,7 +259,7 @@
               if (vid && list) {
                 // 特別處理 Invidious 與 Hyperpipe：只要 playlist 連結
                 if (
-                  ["Invidious", "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)
+                  ["duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)
                 ) {
                   url = `${s.base}playlist?list=${list}`;
                 } else if (["cinemaphile.com"].includes(s.id)) {
