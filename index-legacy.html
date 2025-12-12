@@ -47,6 +47,12 @@
     </form>
 
     <div class="result-block">
+      <label style="display: inline;">youtube 分享網址：</label>
+      <a id="youtubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="youtube" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
       <label style="display: inline;">Invidious 分享網址：</label>
       <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="Invidious" rows="1" readonly></textarea>
@@ -181,7 +187,10 @@
 
         // 處理
         if (!vid && !list) {
-          document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("youtube").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("youtubelink").style.display = "none";
+		  
+		  document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("Invidiouslink").style.display = "none";
 
           document.getElementById("PrivatecoffeePiped").value = "⚠️ 無法辨識影片 ID";
@@ -239,7 +248,12 @@
           document.getElementById("YTMusiclink").style.display = "none";
           return;
         } else if (vid && !list) {
-          document.getElementById("Invidious").value = "https://inv.nadeko.net/watch?v=" + vid;
+          document.getElementById("youtube").value = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").href = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").textContent = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").style.display = "inline";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/watch?v=" + vid;
           document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/watch?v=" + vid;
           document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/watch?v=" + vid;
           document.getElementById("Invidiouslink").style.display = "inline";
@@ -334,7 +348,10 @@
           document.getElementById("YTMusiclink").textContent = "https://music.youtube.com/watch?v=" + vid;
           document.getElementById("YTMusiclink").style.display = "inline";
         } else if (!vid && list) {
-          document.getElementById("Invidious").value = "https://inv.nadeko.net/playlist?list=" + list;
+          document.getElementById("youtube").value = "⚠️ 無法產生連結";
+          document.getElementById("youtubelink").style.display = "none";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/playlist?list=" + list;
           document.getElementById("Invidiouslink").style.display = "inline";
@@ -419,9 +436,14 @@
           document.getElementById("YTMusiclink").textContent = "https://music.youtube.com/playlist?list=" + list;
           document.getElementById("YTMusiclink").style.display = "inline";
         } else if (vid && list) {
-          document.getElementById("Invidious").value = "https://inv.nadeko.net/playlist?list=" + list;
-          document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/playlist?list=" + list;
-          document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/playlist?list=" + list;
+          document.getElementById("youtube").value = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").href = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").textContent = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").style.display = "inline";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
+          document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
+          document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
           document.getElementById("Invidiouslink").style.display = "inline";
 
           document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
