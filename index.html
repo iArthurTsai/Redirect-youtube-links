@@ -46,6 +46,12 @@
     </div>
 
     <div class="result-block">
+      <label style="display: inline;">youtube 分享網址：</label>
+      <a id="youtubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="youtube" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
       <label style="display: inline;">Invidious 分享網址：</label>
       <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="Invidious" rows="1" readonly></textarea>
@@ -193,7 +199,8 @@
         }
 
         const services = [
-          { id: "Invidious", base: "https://inv.nadeko.net/", mode: "auto", type: "watch", linkId: "Invidiouslink" },
+          { id: "youtube", base: "https://yout-ube.com/", mode: "auto", type: "watch", linkId: "youtubelink" },
+		  { id: "Invidious", base: "https://inv.nadeko.net/", mode: "auto", type: "watch", linkId: "Invidiouslink" },
           { id: "PrivatecoffeePiped", base: "https://piped.private.coffee/", mode: "auto", type: "watch", linkId: "PrivatecoffeePipedlink" },
           { id: "wirewaychPiped", base: "https://piped.wireway.ch/", mode: "auto", type: "watch", linkId: "wirewaychPipedlink" },
           { id: "NYCPiped", base: "https://nyc1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "NYCPipedlink" },
@@ -207,7 +214,7 @@
           { id: "POLHyperpipe", base: "https://pol1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLHyperpipelink" },
           { id: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", linkId: "ytifylink" },
           { id: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid", linkId: "link1" },
-          { id: "cinemaphile.com", base: "https://cinemaphile.com/watch?v=", mode: "vid", linkId: "link2" },
+          { id: "cinemaphile.com", base: "https://cinemaphile.com/", mode: "auto", type: "watch", linkId: "link2" },
           { id: "YMusic", base: "https://ymusicapp.com/", mode: "auto", type: "watch", linkId: "link3" },
           { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", linkId: "link4" },
           { id: "shorturl", base: "https://youtu.be/", mode: "vid", linkId: "shortURLlink" },
@@ -251,15 +258,24 @@
             case "auto":
               if (vid && list) {
                 // 特別處理 Invidious 與 Hyperpipe：只要 playlist 連結
-                if (["Invidious", "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)) {
+                if (
+                  ["Invidious", "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)
+                ) {
                   url = `${s.base}playlist?list=${list}`;
+                } else if (["cinemaphile.com"].includes(s.id)) {
+                  url = `${s.base}${s.type}?v=${vid}`;
                 } else {
                   url = `${s.base}${s.type}?v=${vid}&list=${list}`;
                 }
               } else if (vid) {
                 url = `${s.base}${s.type}?v=${vid}`;
               } else if (list) {
-                url = `${s.base}playlist?list=${list}`;
+                // 在這裡排除 cinemaphile，因為它不支援
+                if (["youtube", "cinemaphile.com"].includes(s.id)) {
+                  url = null;
+                } else {
+                  url = `${s.base}playlist?list=${list}`;
+                }
               }
               break;
           }
