@@ -99,7 +99,7 @@
       <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
@@ -130,26 +130,26 @@
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
-      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
       <label style="display: inline;">cinemaphile.com 分享網址：</label>
-      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="cinemaphile.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline;">YMusic 分享網址：</label>
-      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="YMusic" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
+      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
       <label style="display: inline;">AstroTube 分享網址：</label>
-      <a id="link4" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
     </div>
 
@@ -213,10 +213,10 @@
           { id: "CALHyperpipe", base: "https://cal1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "CALHyperpipelink" },
           { id: "POLHyperpipe", base: "https://pol1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLHyperpipelink" },
           { id: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", linkId: "ytifylink" },
-          { id: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid", linkId: "link1" },
-          { id: "cinemaphile.com", base: "https://cinemaphile.com/", mode: "auto", type: "watch", linkId: "link2" },
-          { id: "YMusic", base: "https://ymusicapp.com/", mode: "auto", type: "watch", linkId: "link3" },
-          { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", linkId: "link4" },
+          { id: "cinemaphile.com", base: "https://cinemaphile.com/", mode: "auto", type: "watch", linkId: "link1" },
+          { id: "YMusic", base: "https://ymusicapp.com/", mode: "auto", type: "watch", linkId: "link2" },
+          { id: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid", linkId: "link3" },
+          { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", linkId: "AstroTubelink" },
           { id: "shorturl", base: "https://youtu.be/", mode: "vid", linkId: "shortURLlink" },
           { id: "YTMusic", base: "https://music.youtube.com/", mode: "auto", type: "watch", linkId: "YTMusiclink" },
         ];
@@ -257,7 +257,7 @@
 
             case "auto":
               if (vid && list) {
-                // 特別處理 Invidious 與 Hyperpipe：只要 playlist 連結
+                // 特別處理 Hyperpipe：只要 playlist 連結
                 if (
                   ["duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)
                 ) {
