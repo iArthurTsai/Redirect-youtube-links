@@ -99,7 +99,7 @@
       <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none">
       <label style="display: inline">Hyperpipe 分享網址：</label>
       <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
@@ -130,26 +130,26 @@
     </div>
 
     <div class="result-block">
-      <label style="display: inline">m.gjhyss.com 分享網址：</label>
-      <a id="link1" href="#" target="_blank" style="display: none">點我前往影片</a>
-      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
       <label style="display: inline">cinemaphile.com 分享網址：</label>
-      <a id="link2" href="#" target="_blank" style="display: none">點我前往影片</a>
+      <a id="link1" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="cinemaphile.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline">YMusic 分享網址：</label>
-      <a id="link3" href="#" target="_blank" style="display: none">點我前往影片</a>
+      <a id="link2" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="YMusic" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline">m.gjhyss.com 分享網址：</label>
+      <a id="link3" href="#" target="_blank" style="display: none">點我前往影片</a>
+      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none">
       <label style="display: inline">AstroTube 分享網址：</label>
-      <a id="link4" href="#" target="_blank" style="display: none">點我前往影片</a>
+      <a id="AstroTubelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
     </div>
 
@@ -193,8 +193,8 @@
              "youtube", "Invidious", "PrivatecoffeePiped", "wirewaychPiped",
              "NYCPiped", "CALPiped", "POLPiped", "wirewaychRePiped",
              "wirewaychdevRePiped", "duckspartyHyperpipe", "NYCHyperpipe",
-             "CALHyperpipe", "POLHyperpipe", "ytify", "m.gjhyss.com",
-             "cinemaphile.com", "YMusic", "AstroTube", "shorturl", "YTMusic"
+             "CALHyperpipe", "POLHyperpipe", "ytify", "cinemaphile.com",
+             "YMusic", "m.gjhyss.com", "AstroTube", "shorturl", "YTMusic"
            ];
            
            for (var i = 0; i < ids.length; i++) {
@@ -224,9 +224,9 @@
         var CALHyperpipeUrl = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
         var POLHyperpipeUrl = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
         var ytifyUrl = "https://ytify.pp.ua/?s=" + vid;
-        var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
         var cinemaphileUrl = "https://cinemaphile.com/watch?v=" + vid;
         var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
+		var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
         var AstroTubeUrl = "https://at.ggtyler.dev/watch?v=" + vid;
         var shortUrl = "https://youtu.be/" + vid;
         var YTMusicUrl = "https://music.youtube.com/watch?v=" + vid;
@@ -264,10 +264,10 @@
         setLink("CALHyperpipe", "CALHyperpipelink", CALHyperpipeUrl);
         setLink("POLHyperpipe", "POLHyperpipelink", POLHyperpipeUrl);
         setLink("ytify", "ytifylink", ytifyUrl);
-        setLink("m.gjhyss.com", "link1", gjhyssUrl);
-        setLink("cinemaphile.com", "link2", cinemaphileUrl);
-        setLink("YMusic", "link3", YMusicUrl);
-        setLink("AstroTube", "link4", AstroTubeUrl);
+        setLink("cinemaphile.com", "link1", cinemaphileUrl);
+        setLink("YMusic", "link2", YMusicUrl);
+		setLink("m.gjhyss.com", "link3", gjhyssUrl);
+        setLink("AstroTube", "AstroTubelink", AstroTubeUrl);
         setLink("shorturl", "shortURLlink", shortUrl);
         setLink("YTMusic", "YTMusiclink", YTMusicUrl);
       }
