@@ -101,7 +101,7 @@
       <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block">
+    <div class="result-block" style="display: none;">
       <label style="display: inline;">Hyperpipe 分享網址：</label>
       <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
@@ -132,26 +132,26 @@
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
-      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
       <label style="display: inline;">cinemaphile.com 分享網址：</label>
-      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="cinemaphile.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline;">YMusic 分享網址：</label>
-      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="YMusic" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
+      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
       <label style="display: inline;">AstroTube 分享網址：</label>
-      <a id="link4" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
     </div>
 
@@ -230,17 +230,17 @@
           document.getElementById("ytify").value = "⚠️ 無法辨識音樂 ID";
           document.getElementById("ytifylink").style.display = "none";
 
-          document.getElementById("m.gjhyss.com").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("cinemaphile.com").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("link1").style.display = "none";
 
-          document.getElementById("cinemaphile.com").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("YMusic").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("link2").style.display = "none";
 
-          document.getElementById("YMusic").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("m.gjhyss.com").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("link3").style.display = "none";
 
           document.getElementById("AstroTube").value = "⚠️ 無法辨識影片 ID";
-          document.getElementById("link4").style.display = "none";
+          document.getElementById("AstroTubelink").style.display = "none";
 
           document.getElementById("shorturl").value = "⚠️ 無法辨識影片 ID";
           document.getElementById("shortURLlink").style.display = "none";
@@ -319,25 +319,25 @@
           document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/?s=" + vid;
           document.getElementById("ytifylink").style.display = "inline";
 
-          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
-          document.getElementById("link1").href = "https://m.gjhyss.com/share?v=" + vid;
-          document.getElementById("link1").textContent = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").href = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").textContent = "https://cinemaphile.com/watch?v=" + vid;
           document.getElementById("link1").style.display = "inline";
 
-          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
-          document.getElementById("link2").href = "https://cinemaphile.com/watch?v=" + vid;
-          document.getElementById("link2").textContent = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("link2").href = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/watch?v=" + vid;
           document.getElementById("link2").style.display = "inline";
 
-          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid;
-          document.getElementById("link3").href = "https://ymusicapp.com/watch?v=" + vid;
-          document.getElementById("link3").textContent = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").href = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").textContent = "https://m.gjhyss.com/share?v=" + vid;
           document.getElementById("link3").style.display = "inline";
 
           document.getElementById("AstroTube").value = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").href = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").style.display = "inline";
+          document.getElementById("AstroTubelink").href = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").style.display = "inline";
 
           document.getElementById("shorturl").value = "https://youtu.be/" + vid;
           document.getElementById("shortURLlink").href = "https://youtu.be/" + vid;
@@ -413,19 +413,19 @@
           document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/list?playlists=" + list;
           document.getElementById("ytifylink").style.display = "inline";
 
-          document.getElementById("m.gjhyss.com").value = "⚠️ 無法產生連結";
+          document.getElementById("cinemaphile.com").value = "⚠️ 無法產生連結";
           document.getElementById("link1").style.display = "none";
 
-          document.getElementById("cinemaphile.com").value = "⚠️ 無法產生連結";
-          document.getElementById("link2").style.display = "none";
-
           document.getElementById("YMusic").value = "https://ymusicapp.com/playlist?list=" + list;
-          document.getElementById("link3").href = "https://ymusicapp.com/playlist?list=" + list;
-          document.getElementById("link3").textContent = "https://ymusicapp.com/playlist?list=" + list;
-          document.getElementById("link3").style.display = "inline";
+          document.getElementById("link2").href = "https://ymusicapp.com/playlist?list=" + list;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/playlist?list=" + list;
+          document.getElementById("link2").style.display = "inline";
+
+          document.getElementById("m.gjhyss.com").value = "⚠️ 無法產生連結";
+          document.getElementById("link3").style.display = "none";
 
           document.getElementById("AstroTube").value = "⚠️ 無法產生連結";
-          document.getElementById("link4").style.display = "none";
+          document.getElementById("AstroTubelink").style.display = "none";
 
           document.getElementById("shorturl").value = "https://youtube.com/playlist?list=" + list;
           document.getElementById("shortURLlink").href = "https://youtube.com/playlist?list=" + list;
@@ -507,25 +507,25 @@
           document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/list?playlists=" + list;
           document.getElementById("ytifylink").style.display = "inline";
 
-          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
-          document.getElementById("link1").href = "https://m.gjhyss.com/share?v=" + vid;
-          document.getElementById("link1").textContent = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").href = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").textContent = "https://cinemaphile.com/watch?v=" + vid;
           document.getElementById("link1").style.display = "inline";
 
-          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
-          document.getElementById("link2").href = "https://cinemaphile.com/watch?v=" + vid;
-          document.getElementById("link2").textContent = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("link2").href = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
           document.getElementById("link2").style.display = "inline";
 
-          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
-          document.getElementById("link3").href = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
-          document.getElementById("link3").textContent = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").href = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").textContent = "https://m.gjhyss.com/share?v=" + vid;
           document.getElementById("link3").style.display = "inline";
 
           document.getElementById("AstroTube").value = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").href = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
-          document.getElementById("link4").style.display = "inline";
+          document.getElementById("AstroTubelink").href = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").style.display = "inline";
 
           document.getElementById("shorturl").value = "https://youtu.be/" + vid + "?list=" + list;
           document.getElementById("shortURLlink").href = "https://youtu.be/" + vid + "?list=" + list;
