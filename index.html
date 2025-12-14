@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-TW">
   <head>
     <title>YouTube 轉換器</title>
     <meta charset="utf-8" />
@@ -22,278 +22,152 @@
         flex-wrap: wrap;
         margin-top: 1em;
       }
-      .result-block label {
+      label {
         font-weight: bold;
-        display: inline;
       }
-      .result-block a {
-        display: inline;
+      a {
         color: blue;
         text-decoration: underline;
       }
-      .result-block textarea {
+      textarea {
         flex-basis: 100%;
         margin-top: 0.2em;
+      }
+      .hidden {
+        display: none !important;
       }
     </style>
   </head>
   <body>
     <h2>YouTube 轉換器</h2>
     <div class="result-block">
-      <label style="display: inline;">請貼上 YouTube/YouTube Music 連結：</label>
+      <label>請貼上 YouTube/YouTube Music 連結：</label>
       <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
       <button onclick="convert()">轉換</button>
     </div>
 
-    <div class="result-block">
-      <label style="display: inline;">youtube 分享網址：</label>
-      <a id="youtubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="youtube" rows="1" readonly></textarea>
-    </div>
-	
-	<div class="result-block">
-      <label style="display: inline;">Invidious 分享網址：</label>
-      <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="Invidious" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="wirewaychPiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="NYCPiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="CALPiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="POLPiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">RePiped 分享網址：</label>
-      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">RePiped 分享網址：</label>
-      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="CALHyperpipe" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="POLHyperpipe" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">ytify 分享網址：</label>
-      <a id="ytifylink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="ytify" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">cinemaphile.com 分享網址：</label>
-      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="cinemaphile.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">YMusic 分享網址：</label>
-      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="YMusic" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
-      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">AstroTube 分享網址：</label>
-      <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="AstroTube" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">最短 YouTube 連結：</label>
-      <a id="shortURLlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="shorturl" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">YouTube Music 連結：</label>
-      <a id="YTMusiclink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
-      <textarea id="YTMusic" rows="1" readonly></textarea>
-    </div>
+    <div id="results"></div>
 
     <hr />
     <div class="result-block">
       <p><strong>切換其他版本：</strong></p>
       <ul>
-        <li><a href="index0.html">index0.html（只支援影片）</a></li>
-        <li><a href="index.html">index.html（功能完整但相容性較低）</a></li>
-        <li><a href="index-legacy.html">index-legacy.html（功能完整，相容舊瀏覽器）</a></li>
+        <li><a href="index0.html">index0.html</a></li>
+        <li><a href="index.html">index.html</a></li>
+        <li><a href="index-legacy.html">index-legacy.html</a></li>
       </ul>
     </div>
 
     <script>
-      function convert() {
+      // 定義服務列表 (簡化版設定)
+      const services = [
+        { id: "youtube", label: "youtube", base: "https://yout-ube.com/", type: "watch" },
+        { id: "Invidious", label: "Invidious", base: "https://inv.nadeko.net/", type: "watch" },
+        { id: "PrivatecoffeePiped", label: "Piped", base: "https://piped.private.coffee/", type: "watch" },
+        { id: "wirewaychPiped", label: "Piped", base: "https://piped.wireway.ch/", type: "watch" },
+        { id: "NYCPiped", label: "Piped (NYC)", base: "https://nyc1.pi.ggtyler.dev/", type: "watch", hidden: true },
+        { id: "CALPiped", label: "Piped (CAL)", base: "https://cal1.pi.ggtyler.dev/", type: "watch", hidden: true },
+        { id: "POLPiped", label: "Piped (POL)", base: "https://pol1.pi.ggtyler.dev/", type: "watch", hidden: true },
+        { id: "wirewaychRePiped", label: "RePiped", base: "https://repiped.wireway.ch/video.html?v=", mode: "vid" },
+        { id: "wirewaychdevRePiped", label: "RePiped (Dev)", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid" },
+        { id: "duckspartyHyperpipe", label: "Hyperpipe", base: "https://hyperpipe.ducks.party/", type: "watch", hidden: true, isMusic: true },
+        { id: "NYCHyperpipe", label: "Hyperpipe (NYC)", base: "https://nyc1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
+        { id: "CALHyperpipe", label: "Hyperpipe (CAL)", base: "https://cal1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
+        { id: "POLHyperpipe", label: "Hyperpipe (POL)", base: "https://pol1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
+        { id: "ytify", label: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", isMusic: true },
+        { id: "cinemaphile.com", label: "cinemaphile.com", base: "https://cinemaphile.com/", type: "watch", noList: true },
+        { id: "YMusic", label: "YMusic", base: "https://ymusicapp.com/", type: "watch" },
+        { id: "m.gjhyss.com", label: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid" },
+        { id: "AstroTube", label: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", hidden: true },
+        { id: "shorturl", label: "最短 YouTube", base: "https://youtu.be/", mode: "short" },
+        { id: "YTMusic", label: "YouTube Music", base: "https://music.youtube.com/", type: "watch", isMusic: true },
+      ];
+
+      // 初始化 HTML
+      document.getElementById("results").innerHTML = services
+        .map(
+          (s) => `
+      <div class="result-block ${s.hidden ? "hidden" : ""}">
+        <label>${s.label} 分享網址：</label>
+        <a id="link_${s.id}" href="#" target="_blank" class="hidden">點我前往${s.isMusic ? "音樂" : "影片"}</a>
+        <textarea id="val_${s.id}" rows="1" readonly></textarea>
+      </div>
+    `
+        )
+        .join("");
+
+      const convert = () => {
         const input = document.getElementById("yt").value.trim();
+        let vid, list;
 
-        // 改進影片 ID 和清單 ID 的擷取
-        const urlObj = new URL(input, "https://youtube.com");
-        let vid = null;
-        let list = null;
-
-        // 處理 youtu.be 短網址
-        if (urlObj.hostname === "youtu.be") {
-          const path = urlObj.pathname.replace("/", "");
-          if (path === "playlist") {
+        try {
+          const urlObj = new URL(input, "https://youtube.com");
+          if (urlObj.hostname === "youtu.be") {
+            vid = urlObj.pathname.slice(1);
             list = urlObj.searchParams.get("list");
           } else {
-            vid = path;
+            vid = urlObj.searchParams.get("v") || input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/)?.[1];
             list = urlObj.searchParams.get("list");
           }
-        } else {
-          vid = urlObj.searchParams.get("v") || input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/)?.[1];
-          list = urlObj.searchParams.get("list");
+          // 特殊修正：如果 vid 是 playlist 字眼，那是誤判
+          if (vid === "playlist") vid = null;
+        } catch {
+          /* 忽略 URL 解析錯誤 */
         }
-
-        const services = [
-          { id: "youtube", base: "https://yout-ube.com/", mode: "auto", type: "watch", linkId: "youtubelink" },
-		  { id: "Invidious", base: "https://inv.nadeko.net/", mode: "auto", type: "watch", linkId: "Invidiouslink" },
-          { id: "PrivatecoffeePiped", base: "https://piped.private.coffee/", mode: "auto", type: "watch", linkId: "PrivatecoffeePipedlink" },
-          { id: "wirewaychPiped", base: "https://piped.wireway.ch/", mode: "auto", type: "watch", linkId: "wirewaychPipedlink" },
-          { id: "NYCPiped", base: "https://nyc1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "NYCPipedlink" },
-          { id: "CALPiped", base: "https://cal1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "CALPipedlink" },
-          { id: "POLPiped", base: "https://pol1.pi.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLPipedlink" },
-          { id: "wirewaychRePiped", base: "https://repiped.wireway.ch/video.html?v=", mode: "vid", linkId: "wirewaychRePipedlink" },
-          { id: "wirewaychdevRePiped", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid", linkId: "wirewaychdevRePipedlink" },
-          { id: "duckspartyHyperpipe", base: "https://hyperpipe.ducks.party/", mode: "auto", type: "watch", linkId: "duckspartyHyperpipelink" },
-          { id: "NYCHyperpipe", base: "https://nyc1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "NYCHyperpipelink" },
-          { id: "CALHyperpipe", base: "https://cal1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "CALHyperpipelink" },
-          { id: "POLHyperpipe", base: "https://pol1.hp.ggtyler.dev/", mode: "auto", type: "watch", linkId: "POLHyperpipelink" },
-          { id: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", linkId: "ytifylink" },
-          { id: "cinemaphile.com", base: "https://cinemaphile.com/", mode: "auto", type: "watch", linkId: "link1" },
-          { id: "YMusic", base: "https://ymusicapp.com/", mode: "auto", type: "watch", linkId: "link2" },
-          { id: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid", linkId: "link3" },
-          { id: "AstroTube", base: "https://at.ggtyler.dev/watch?v=", mode: "vid", linkId: "AstroTubelink" },
-          { id: "shorturl", base: "https://youtu.be/", mode: "vid", linkId: "shortURLlink" },
-          { id: "YTMusic", base: "https://music.youtube.com/", mode: "auto", type: "watch", linkId: "YTMusiclink" },
-        ];
 
         if (!vid && !list) {
           services.forEach((s) => {
-            document.getElementById(s.id).value = "⚠️ 無法辨識影片或播放清單 ID";
-            document.getElementById(s.linkId).style.display = "none";
+            document.getElementById(`val_${s.id}`).value = "⚠️ 無法辨識";
+            document.getElementById(`link_${s.id}`).classList.add("hidden");
           });
           return;
         }
 
+        // 定義只支援 Playlist 的服務 (Hyperpipe 家族)
+        const playlistOnlyServices = ["duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"];
+
         services.forEach((s) => {
           let url = null;
+          const { base, type, mode, id, noList } = s;
 
-          switch (s.mode) {
-            case "vid":
-              if (s.id === "shorturl") {
-                if (vid && list) {
-                  url = `${s.base}${vid}?list=${list}`;
-                } else if (vid) {
-                  url = `${s.base}${vid}`;
-                } else if (list) {
-                  url = `https://youtube.com/playlist?list=${list}`;
-                }
-              } else {
-                url = vid ? `${s.base}${vid}` : null;
-              }
-              break;
-
-            case "ytify":
-              if (list) {
-                url = `${s.base}list?playlists=${list}`;
-              } else if (vid) {
-                url = `${s.base}?s=${vid}`;
-              }
-              break;
-
-            case "auto":
-              if (vid && list) {
-                // 特別處理 Hyperpipe：只要 playlist 連結
-                if (
-                  ["duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"].includes(s.id)
-                ) {
-                  url = `${s.base}playlist?list=${list}`;
-                } else if (["cinemaphile.com"].includes(s.id)) {
-                  url = `${s.base}${s.type}?v=${vid}`;
-                } else {
-                  url = `${s.base}${s.type}?v=${vid}&list=${list}`;
-                }
-              } else if (vid) {
-                url = `${s.base}${s.type}?v=${vid}`;
-              } else if (list) {
-                // 在這裡排除 cinemaphile，因為它不支援
-                if (["youtube", "cinemaphile.com"].includes(s.id)) {
-                  url = null;
-                } else {
-                  url = `${s.base}playlist?list=${list}`;
-                }
-              }
-              break;
+          if (mode === "short") {
+            if (vid && list) url = `${base}${vid}?list=${list}`;
+            else if (vid) url = `${base}${vid}`;
+            else if (list) url = `https://youtube.com/playlist?list=${list}`;
+          } else if (mode === "ytify") {
+            url = list ? `${base}list?playlists=${list}` : vid ? `${base}?s=${vid}` : null;
+          } else if (mode === "vid") {
+            url = vid ? `${base}${vid}` : null;
+          } else {
+            // mode: "auto" (default)
+            if (vid && list) {
+              if (playlistOnlyServices.includes(id)) url = `${base}playlist?list=${list}`;
+              else if (noList)
+                url = `${base}${type}?v=${vid}`; // cinemaphile
+              else url = `${base}${type}?v=${vid}&list=${list}`;
+            } else if (vid) {
+              url = `${base}${type}?v=${vid}`;
+            } else if (list) {
+              if (id === "youtube" || noList)
+                url = null; // 排除 youtube/cinemaphile
+              else url = `${base}playlist?list=${list}`;
+            }
           }
 
-          const field = document.getElementById(s.id);
-          const link = document.getElementById(s.linkId);
+          const inputEl = document.getElementById(`val_${id}`);
+          const linkEl = document.getElementById(`link_${id}`);
 
           if (url) {
-            field.value = url;
-            link.href = url;
-            link.textContent = url;
-            link.style.display = "inline";
+            inputEl.value = url;
+            linkEl.href = url;
+            linkEl.textContent = url;
+            linkEl.classList.remove("hidden");
           } else {
-            field.value = "⚠️ 無法產生連結";
-            link.style.display = "none";
+            inputEl.value = "⚠️ 無法產生";
+            linkEl.classList.add("hidden");
           }
         });
-      }
+      };
     </script>
   </body>
 </html>
