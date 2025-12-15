@@ -199,7 +199,7 @@
            
            for (var i = 0; i < ids.length; i++) {
              var el = document.getElementById(ids[i]);
-             if(el) el.value = "⚠️ 無法辨識 ID";
+             if(el) el.value = "⚠️ 無法辨識影片 ID";
              var linkEl = document.getElementById(ids[i] + (ids[i].indexOf("link") === -1 ? "link" : "")); // 簡單推算 link ID，你的命名規則有些有 link 有些是 link1/2... 建議手動處理或統一命名
              // 為了保險起見，這邊針對你的命名規則簡單處理錯誤顯示即可，若要完美隱藏需逐一列出
            }

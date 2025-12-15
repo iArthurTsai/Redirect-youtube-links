@@ -117,7 +117,7 @@
 
         if (!vid && !list) {
           services.forEach((s) => {
-            document.getElementById(`val_${s.id}`).value = "⚠️ 無法辨識";
+            document.getElementById(`val_${s.id}`).value = "⚠️ 無法辨識影片或播放清單 ID";
             document.getElementById(`link_${s.id}`).classList.add("hidden");
           });
           return;
