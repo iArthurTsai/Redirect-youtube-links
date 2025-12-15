@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+  <head>
+    <title>YouTube 轉換器</title>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Noto Sans TC", system-ui, sans-serif;
+        padding: 1em;
+      }
+      input,
+      button,
+      textarea {
+        width: 100%;
+        font-size: 1rem;
+        margin-top: 0.5em;
+      }
+      .result-block {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 1em;
+      }
+      .result-block label {
+        font-weight: bold;
+        display: inline;
+      }
+      .result-block a {
+        display: inline;
+        color: blue;
+        text-decoration: underline;
+      }
+      .result-block textarea {
+        flex-basis: 100%;
+        margin-top: 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>YouTube 轉換器</h2>
+    <form onsubmit="convert(); return false;">
+      <div class="result-block">
+        <label>請貼上 YouTube/YouTube Music 連結：</label><br />
+        <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
+        <input type="submit" value="轉換" />
+      </div>
+    </form>
+
+    <div class="result-block">
+      <label style="display: inline;">youtube 分享網址：</label>
+      <a id="youtubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="youtube" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Invidious 分享網址：</label>
+      <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="Invidious" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="NYCPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="CALPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Piped 分享網址：</label>
+      <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="POLPiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">RePiped 分享網址：</label>
+      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="CALHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="POLHyperpipe" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">ytify 分享網址：</label>
+      <a id="ytifylink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="ytify" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">cinemaphile.com 分享網址：</label>
+      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="cinemaphile.com" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">YMusic 分享網址：</label>
+      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="YMusic" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
+      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block" style="display: none;">
+      <label style="display: inline;">AstroTube 分享網址：</label>
+      <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="AstroTube" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">最短 YouTube 連結：</label>
+      <a id="shortURLlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="shorturl" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">YouTube Music 連結：</label>
+      <a id="YTMusiclink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="YTMusic" rows="1" readonly></textarea>
+    </div>
+
+    <hr />
+    <div class="result-block">
+      <p><strong>切換其他版本：</strong></p>
+      <ul>
+        <li><a href="index0.html">index0.html（只支援影片，相容舊瀏覽器）</a></li>
+        <li><a href="index.html">index.html（功能完整但相容性較低）</a></li>
+        <li><a href="index-legacy.html">index-legacy.html（功能完整，相容舊瀏覽器）</a></li>
+      </ul>
+    </div>
+
+    <script>
+      function convert() {
+        var input = document.getElementById("yt").value;
+        var vidMatch = input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+        var listMatch = input.match(/[?&]list=([0-9A-Za-z_-]+)/);
+
+        var vid = vidMatch ? vidMatch[1] : null;
+        var list = listMatch ? listMatch[1] : null;
+
+        // 處理
+        if (!vid && !list) {
+          document.getElementById("youtube").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("youtubelink").style.display = "none";
+		  
+		  document.getElementById("Invidious").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("Invidiouslink").style.display = "none";
+
+          document.getElementById("PrivatecoffeePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("PrivatecoffeePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychPipedlink").style.display = "none";
+
+          document.getElementById("NYCPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("NYCPipedlink").style.display = "none";
+
+          document.getElementById("CALPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("CALPipedlink").style.display = "none";
+
+          document.getElementById("POLPiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("POLPipedlink").style.display = "none";
+
+          document.getElementById("wirewaychRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychRePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychdevRePiped").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("wirewaychdevRePipedlink").style.display = "none";
+
+          document.getElementById("duckspartyHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("duckspartyHyperpipelink").style.display = "none";
+
+          document.getElementById("NYCHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("NYCHyperpipelink").style.display = "none";
+
+          document.getElementById("CALHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("CALHyperpipelink").style.display = "none";
+
+          document.getElementById("POLHyperpipe").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("POLHyperpipelink").style.display = "none";
+
+          document.getElementById("ytify").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("ytifylink").style.display = "none";
+
+          document.getElementById("cinemaphile.com").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("link1").style.display = "none";
+
+          document.getElementById("YMusic").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("link2").style.display = "none";
+
+          document.getElementById("m.gjhyss.com").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("link3").style.display = "none";
+
+          document.getElementById("AstroTube").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("AstroTubelink").style.display = "none";
+
+          document.getElementById("shorturl").value = "⚠️ 無法辨識影片 ID";
+          document.getElementById("shortURLlink").style.display = "none";
+
+          document.getElementById("YTMusic").value = "⚠️ 無法辨識音樂 ID";
+          document.getElementById("YTMusiclink").style.display = "none";
+          return;
+        } else if (vid && !list) {
+          document.getElementById("youtube").value = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").href = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").textContent = "https://yout-ube.com/watch?v=" + vid;
+          document.getElementById("youtubelink").style.display = "inline";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/watch?v=" + vid;
+          document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/watch?v=" + vid;
+          document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/watch?v=" + vid;
+          document.getElementById("Invidiouslink").style.display = "inline";
+
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/watch?v=" + vid;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/watch?v=" + vid;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
+
+          document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCPipedlink").textContent = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCPipedlink").style.display = "inline";
+
+          document.getElementById("CALPiped").value = "https://cal1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALPipedlink").href = "https://cal1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALPipedlink").textContent = "https://cal1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALPipedlink").style.display = "inline";
+
+          document.getElementById("POLPiped").value = "https://pol1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLPipedlink").href = "https://pol1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLPipedlink").textContent = "https://pol1.pi.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLPipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychRePiped").value = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").href = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").textContent = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").style.display = "inline";
+
+          document.getElementById("duckspartyHyperpipe").value = "https://hyperpipe.ducks.party/watch?v=" + vid;
+          document.getElementById("duckspartyHyperpipelink").href = "https://hyperpipe.ducks.party/watch?v=" + vid;
+          document.getElementById("duckspartyHyperpipelink").textContent = "https://hyperpipe.ducks.party/watch?v=" + vid;
+          document.getElementById("duckspartyHyperpipelink").style.display = "inline";
+
+          document.getElementById("wirewaychdevRePiped").value = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").href = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").textContent = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").style.display = "inline";
+
+          document.getElementById("NYCHyperpipe").value = "https://nyc1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCHyperpipelink").href = "https://nyc1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCHyperpipelink").textContent = "https://nyc1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("NYCHyperpipelink").style.display = "inline";
+
+          document.getElementById("CALHyperpipe").value = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALHyperpipelink").href = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALHyperpipelink").textContent = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("CALHyperpipelink").style.display = "inline";
+
+          document.getElementById("POLHyperpipe").value = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLHyperpipelink").href = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLHyperpipelink").textContent = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("POLHyperpipelink").style.display = "inline";
+
+          document.getElementById("ytify").value = "https://ytify.pp.ua/?s=" + vid;
+          document.getElementById("ytifylink").href = "https://ytify.pp.ua/?s=" + vid;
+          document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/?s=" + vid;
+          document.getElementById("ytifylink").style.display = "inline";
+
+          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").href = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").textContent = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").style.display = "inline";
+
+          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("link2").href = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/watch?v=" + vid;
+          document.getElementById("link2").style.display = "inline";
+
+          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").href = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").textContent = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").style.display = "inline";
+
+          document.getElementById("AstroTube").value = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").href = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").style.display = "inline";
+
+          document.getElementById("shorturl").value = "https://youtu.be/" + vid;
+          document.getElementById("shortURLlink").href = "https://youtu.be/" + vid;
+          document.getElementById("shortURLlink").textContent = "https://youtu.be/" + vid;
+          document.getElementById("shortURLlink").style.display = "inline";
+
+          document.getElementById("YTMusic").value = "https://music.youtube.com/watch?v=" + vid;
+          document.getElementById("YTMusiclink").href = "https://music.youtube.com/watch?v=" + vid;
+          document.getElementById("YTMusiclink").textContent = "https://music.youtube.com/watch?v=" + vid;
+          document.getElementById("YTMusiclink").style.display = "inline";
+        } else if (!vid && list) {
+          document.getElementById("youtube").value = "⚠️ 無法產生連結";
+          document.getElementById("youtubelink").style.display = "none";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/playlist?list=" + list;
+          document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/playlist?list=" + list;
+          document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/playlist?list=" + list;
+          document.getElementById("Invidiouslink").style.display = "inline";
+
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/playlist?list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/playlist?list=" + list;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
+
+          document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCPipedlink").textContent = "https://nyc1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCPipedlink").style.display = "inline";
+
+          document.getElementById("CALPiped").value = "https://cal1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALPipedlink").href = "https://cal1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALPipedlink").textContent = "https://cal1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALPipedlink").style.display = "inline";
+
+          document.getElementById("POLPiped").value = "https://pol1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLPipedlink").href = "https://pol1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLPipedlink").textContent = "https://pol1.pi.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLPipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychRePiped").value = "⚠️ 無法產生連結";
+          document.getElementById("wirewaychRePipedlink").style.display = "none";
+
+          document.getElementById("wirewaychdevRePiped").value = "⚠️ 無法產生連結";
+          document.getElementById("wirewaychdevRePipedlink").style.display = "none";
+
+          document.getElementById("duckspartyHyperpipe").value = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").href = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").textContent = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").style.display = "inline";
+
+          document.getElementById("NYCHyperpipe").value = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").href = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").textContent = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").style.display = "inline";
+
+          document.getElementById("CALHyperpipe").value = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").href = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").textContent = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").style.display = "inline";
+
+          document.getElementById("POLHyperpipe").value = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").href = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").textContent = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").style.display = "inline";
+
+          document.getElementById("ytify").value = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").href = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").style.display = "inline";
+
+          document.getElementById("cinemaphile.com").value = "⚠️ 無法產生連結";
+          document.getElementById("link1").style.display = "none";
+
+          document.getElementById("YMusic").value = "https://ymusicapp.com/playlist?list=" + list;
+          document.getElementById("link2").href = "https://ymusicapp.com/playlist?list=" + list;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/playlist?list=" + list;
+          document.getElementById("link2").style.display = "inline";
+
+          document.getElementById("m.gjhyss.com").value = "⚠️ 無法產生連結";
+          document.getElementById("link3").style.display = "none";
+
+          document.getElementById("AstroTube").value = "⚠️ 無法產生連結";
+          document.getElementById("AstroTubelink").style.display = "none";
+
+          document.getElementById("shorturl").value = "https://youtube.com/playlist?list=" + list;
+          document.getElementById("shortURLlink").href = "https://youtube.com/playlist?list=" + list;
+          document.getElementById("shortURLlink").textContent = "https://youtube.com/playlist?list=" + list;
+          document.getElementById("shortURLlink").style.display = "inline";
+
+          document.getElementById("YTMusic").value = "https://music.youtube.com/playlist?list=" + list;
+          document.getElementById("YTMusiclink").href = "https://music.youtube.com/playlist?list=" + list;
+          document.getElementById("YTMusiclink").textContent = "https://music.youtube.com/playlist?list=" + list;
+          document.getElementById("YTMusiclink").style.display = "inline";
+        } else if (vid && list) {
+          document.getElementById("youtube").value = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").href = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").textContent = "https://yout-ube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("youtubelink").style.display = "inline";
+		  
+		  document.getElementById("Invidious").value = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
+          document.getElementById("Invidiouslink").href = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
+          document.getElementById("Invidiouslink").textContent = "https://inv.nadeko.net/watch?v=" + vid + "&list=" + list;
+          document.getElementById("Invidiouslink").style.display = "inline";
+
+          document.getElementById("PrivatecoffeePiped").value = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").href = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").textContent = "https://piped.private.coffee/watch?v=" + vid + "&list=" + list;
+          document.getElementById("PrivatecoffeePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychPiped").value = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").href = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").textContent = "https://piped.wireway.ch/watch?v=" + vid + "&list=" + list;
+          document.getElementById("wirewaychPipedlink").style.display = "inline";
+
+          document.getElementById("NYCPiped").value = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("NYCPipedlink").href = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("NYCPipedlink").textContent = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("NYCPipedlink").style.display = "inline";
+
+          document.getElementById("CALPiped").value = "https://cal1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("CALPipedlink").href = "https://cal1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("CALPipedlink").textContent = "https://cal1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("CALPipedlink").style.display = "inline";
+
+          document.getElementById("POLPiped").value = "https://pol1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("POLPipedlink").href = "https://pol1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("POLPipedlink").textContent = "https://pol1.pi.ggtyler.dev/watch?v=" + vid + "&list=" + list;
+          document.getElementById("POLPipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychRePiped").value = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").href = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").textContent = "https://repiped.wireway.ch/video.html?v=" + vid;
+          document.getElementById("wirewaychRePipedlink").style.display = "inline";
+
+          document.getElementById("wirewaychdevRePiped").value = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").href = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").textContent = "https://repiped-development-c7df8a.onwireway.online/video.html?v=" + vid;
+          document.getElementById("wirewaychdevRePipedlink").style.display = "inline";
+
+          document.getElementById("duckspartyHyperpipe").value = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").href = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").textContent = "https://hyperpipe.ducks.party/playlist?list=" + list;
+          document.getElementById("duckspartyHyperpipelink").style.display = "inline";
+
+          document.getElementById("NYCHyperpipe").value = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").href = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").textContent = "https://nyc1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("NYCHyperpipelink").style.display = "inline";
+
+          document.getElementById("CALHyperpipe").value = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").href = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").textContent = "https://cal1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("CALHyperpipelink").style.display = "inline";
+
+          document.getElementById("POLHyperpipe").value = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").href = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").textContent = "https://pol1.hp.ggtyler.dev/playlist?list=" + list;
+          document.getElementById("POLHyperpipelink").style.display = "inline";
+
+          document.getElementById("ytify").value = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").href = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").textContent = "https://ytify.pp.ua/list?playlists=" + list;
+          document.getElementById("ytifylink").style.display = "inline";
+
+          document.getElementById("cinemaphile.com").value = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").href = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").textContent = "https://cinemaphile.com/watch?v=" + vid;
+          document.getElementById("link1").style.display = "inline";
+
+          document.getElementById("YMusic").value = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("link2").href = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("link2").textContent = "https://ymusicapp.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("link2").style.display = "inline";
+
+          document.getElementById("m.gjhyss.com").value = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").href = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").textContent = "https://m.gjhyss.com/share?v=" + vid;
+          document.getElementById("link3").style.display = "inline";
+
+          document.getElementById("AstroTube").value = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").href = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").textContent = "https://at.ggtyler.dev/watch?v=" + vid;
+          document.getElementById("AstroTubelink").style.display = "inline";
+
+          document.getElementById("shorturl").value = "https://youtu.be/" + vid + "?list=" + list;
+          document.getElementById("shortURLlink").href = "https://youtu.be/" + vid + "?list=" + list;
+          document.getElementById("shortURLlink").textContent = "https://youtu.be/" + vid + "?list=" + list;
+          document.getElementById("shortURLlink").style.display = "inline";
+
+          document.getElementById("YTMusic").value = "https://music.youtube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("YTMusiclink").href = "https://music.youtube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("YTMusiclink").textContent = "https://music.youtube.com/watch?v=" + vid + "&list=" + list;
+          document.getElementById("YTMusiclink").style.display = "inline";
+        }
+      }
+    </script>
+  </body>
+</html>
