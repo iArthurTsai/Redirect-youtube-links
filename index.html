@@ -30,8 +30,11 @@
         text-decoration: underline;
       }
       textarea {
-        flex-basis: 100%;
+        width: 100%;
+		flex-basis: 100%;
         margin-top: 0.2em;
+		resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
+		overflow: hidden; /* 防止出現滾動條影響視覺 */
       }
       .hidden {
         display: none !important;
