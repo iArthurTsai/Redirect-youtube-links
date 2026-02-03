@@ -24,16 +24,18 @@
       }
       .result-block label {
         font-weight: bold;
-        display: inline;
       }
       .result-block a {
-        display: inline;
         color: blue;
         text-decoration: underline;
       }
+	  /* 針對不支援 flex 的舊瀏覽器做簡單修正 */
       .result-block textarea {
         flex-basis: 100%;
+        display: block;
         margin-top: 0.2em;
+		width: 100%; /* 強制填滿 */
+		box-sizing: border-box; /* 防止 padding 撐破寬度 */
       }
     </style>
   </head>
