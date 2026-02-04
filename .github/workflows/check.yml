@@ -26,7 +26,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data.json index.html
+          git add data.json index-monitor.html
           # 加上 --allow-empty 防止沒有資料更新時報錯
           git commit -m "Update instance scores [skip ci]" || exit 0
           git push
