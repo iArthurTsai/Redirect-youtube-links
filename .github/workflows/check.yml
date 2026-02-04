@@ -4,6 +4,11 @@ on:
     - cron: '*/30 * * * *' # 每 30 分鐘跑一次，較不容易被 GitHub 阻擋
   workflow_dispatch:
 
+  # --- 加入這段核心設定 ---
+permissions:
+  contents: write
+# ----------------------
+
 jobs:
   check:
     runs-on: ubuntu-latest
