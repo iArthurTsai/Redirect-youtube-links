@@ -8,7 +8,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,8 +24,8 @@ jobs:
 
       - name: Commit Results
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add data.json index-monitor.html
           # 加上 --allow-empty 防止沒有資料更新時報錯
           git commit -m "Update instance scores [skip ci]" || exit 0
