@@ -26,7 +26,15 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data.json index-monitor.html
-          # 加上 --allow-empty 防止沒有資料更新時報錯
-          git commit -m "Update instance scores [skip ci]" || exit 0
-          git push
+          
+          # 只有在 data.json 確實存在時才進行 commit
+          if [ -f data.json ]; then
+            git add data.json
+            # 如果你有修改 index-monitor.html 的邏輯也可以加上，否則建議移除
+            # git add index-monitor.html 
+            git commit -m "Update instance scores [skip ci]" || echo "No changes to commit"
+            git push
+          else
+            echo "錯誤：data.json 未產生，跳過 Commit。"
+            exit 1 # 讓 Action 顯示失敗，以便我們知道沒成功
+          fi
