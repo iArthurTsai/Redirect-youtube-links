@@ -22,7 +22,11 @@ jobs:
           #cache: 'pip' # 自動快取 pip 依賴
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: |
+          # 強制升級 pip 並忽略升級提示
+          python -m pip install --upgrade pip
+          # 執行安裝
+          pip install -r requirements.txt
 
       - name: Run Monitor
         run: python monitor.py
