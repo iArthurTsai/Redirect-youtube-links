@@ -1,0 +1,32 @@
+name: Instance Monitor
+on:
+  schedule:
+    - cron: '*/30 * * * *' # 每 30 分鐘跑一次，較不容易被 GitHub 阻擋
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # 自動快取 pip 依賴
+
+      - name: Install Dependencies
+        run: pip install httpx pandas
+
+      - name: Run Monitor
+        run: python monitor.py
+
+      - name: Commit Results
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data.json index.html
+          # 加上 --allow-empty 防止沒有資料更新時報錯
+          git commit -m "Update instance scores [skip ci]" || exit 0
+          git push
