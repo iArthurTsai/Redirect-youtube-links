@@ -31,24 +31,38 @@
       }
       textarea {
         width: 100%;
-		flex-basis: 100%;
+        flex-basis: 100%;
         margin-top: 0.2em;
-		resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
-		overflow: hidden; /* 防止出現滾動條影響視覺 */
+        resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
+        overflow: hidden; /* 防止出現滾動條影響視覺 */
       }
       .hidden {
         display: none !important;
+      }
+      .loading {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      #status {
+        margin-top: 0.5em;
+        font-weight: bold;
+        color: #d32f2f;
+        /* min-height: 1.5em; */
       }
     </style>
   </head>
   <body>
     <h2>YouTube 轉換器</h2>
     <div class="result-block">
-      <label>請貼上 YouTube/YouTube Music 連結：</label>
-      <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
-      <button onclick="convert()">轉換</button>
+      <label>請貼上 YouTube/YouTube Music 連結、頻道ID 或 播放清單ID：</label>
+      <input
+        id="yt"
+        placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw"
+        onkeypress="if(event.key==='Enter')convert()"
+      />
+      <button id="btn" onclick="convert()">轉換</button>
     </div>
-
+    <div id="status"></div>
     <div id="results"></div>
 
     <hr />
@@ -62,19 +76,30 @@
     </div>
 
     <script>
-      // 定義服務列表 (簡化版設定)
+      // 備援 API 節點 (Piped & Invidious) 用於獲取清單第一部影片 ID
+      const API_NODES = [
+        "https://pipedapi.kavin.rocks",
+        "https://api.piped.private.coffee",
+        "https://pipedapi.wireway.ch",
+        "https://pipedapi.dedyn.io",
+        "https://inv.nadeko.net",
+        "https://inv.vern.cc",
+        "https://iv.melmac.space",
+      ];
+
+      // 定義服務清單
       const services = [
         { id: "youtube", label: "youtube", base: "https://yout-ube.com/", type: "watch" },
         { id: "Invidious", label: "Invidious", base: "https://inv.nadeko.net/", type: "watch" },
-		{ id: "InvidiousUA", label: "Invidious", base: "https://invidious.nerdvpn.de/", type: "watch" },
-		{ id: "InvidiousDE", label: "Invidious", base: "https://yewtu.be/", type: "watch" },
+        { id: "InvidiousUA", label: "Invidious (UA)", base: "https://invidious.nerdvpn.de/", type: "watch" },
+        { id: "InvidiousDE", label: "Invidious (DE)", base: "https://yewtu.be/", type: "watch" },
         { id: "PrivatecoffeePiped", label: "Piped", base: "https://piped.private.coffee/", type: "watch" },
         { id: "wirewaychPiped", label: "Piped", base: "https://piped.wireway.ch/", type: "watch" },
         { id: "NYCPiped", label: "Piped (NYC)", base: "https://nyc1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "CALPiped", label: "Piped (CAL)", base: "https://cal1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "POLPiped", label: "Piped (POL)", base: "https://pol1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "wirewaychRePiped", label: "RePiped", base: "https://repiped.wireway.ch/video.html?v=", mode: "vid" },
-        { id: "wirewaychdevRePiped", label: "RePiped", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid" },
+        { id: "wirewaychdevRePiped", label: "RePiped (Dev)", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid" },
         { id: "duckspartyHyperpipe", label: "Hyperpipe", base: "https://hyperpipe.ducks.party/", type: "watch", hidden: true, isMusic: true },
         { id: "NYCHyperpipe", label: "Hyperpipe (NYC)", base: "https://nyc1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
         { id: "CALHyperpipe", label: "Hyperpipe (CAL)", base: "https://cal1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
@@ -88,37 +113,107 @@
         { id: "YTMusic", label: "YouTube Music", base: "https://music.youtube.com/", type: "watch", isMusic: true },
       ];
 
-      // 初始化 HTML
-      document.getElementById("results").innerHTML = services
+      // 1. 初始化 HTML 介面
+      const resultsContainer = document.getElementById("results");
+      resultsContainer.innerHTML = services
         .map(
           (s) => `
-      <div class="result-block ${s.hidden ? "hidden" : ""}">
-        <label>${s.label} 分享網址：</label>
-        <a id="link_${s.id}" href="#" target="_blank" class="hidden">點我前往${s.isMusic ? "音樂" : "影片"}</a>
-        <textarea id="val_${s.id}" rows="1" readonly></textarea>
-      </div>
-    `
+        <div class="result-block ${s.hidden ? "hidden" : ""}">
+          <label>${s.label} 分享網址：</label>
+          <a id="link_${s.id}" href="#" target="_blank" class="hidden">點我前往${s.isMusic ? "音樂" : "影片"}</a>
+          <textarea id="val_${s.id}" rows="1" readonly></textarea>
+        </div>
+      `
         )
         .join("");
 
-      const convert = () => {
-        const input = document.getElementById("yt").value.trim();
-        let vid, list;
+      // 2. API 抓取邏輯 (當只有 Playlist ID 時，抓取第一個影片 ID)
+      const fetchFirstVid = async (listId, statusEl) => {
+        // RD 合輯可以直接從 ID 提取影片 ID (RD 開頭後接 11 碼影片 ID)
+        if (listId.startsWith("RD") && listId.length > 12) return listId.slice(2, 13);
+
+        for (const node of API_NODES) {
+          try {
+            const domain = new URL(node).hostname;
+            statusEl.textContent = `⏳ 正在透過 ${domain} 搜尋影片...`;
+
+            // 判斷是 Piped 還是 Invidious API 格式
+            const apiUrl = node.includes("piped")
+              ? `${node}/playlists/${listId}`
+              : `${node}/api/v1/playlists/${listId}?fields=videos`;
+
+            const res = await fetch(apiUrl, { signal: AbortSignal.timeout(5000) });
+            if (!res.ok) continue;
+
+            const data = await res.json();
+            // 支援 Piped (relatedStreams) 或 Invidious (videos)
+            const vid = data.relatedStreams?.[0]?.url.match(/(?:v=)([^&]+)/)?.[1] || data.videos?.[0]?.videoId;
+            if (vid) return vid;
+          } catch (e) {
+            console.warn(`節點 ${node} 失敗:`, e);
+          }
+        }
+        return null;
+      };
+
+      // 3. 主要轉換功能
+      const convert = async () => {
+        const inputEl = document.getElementById("yt"),
+          btnEl = document.getElementById("btn"),
+          statusEl = document.getElementById("status");
+
+        let input = decodeURIComponent(inputEl.value.trim()),
+          vid = null,
+          list = null;
+
+        statusEl.textContent = "";
+        btnEl.classList.add("loading");
 
         try {
-          const urlObj = new URL(input, "https://youtube.com");
-          if (urlObj.hostname === "youtu.be") {
-            vid = urlObj.pathname.slice(1);
-            list = urlObj.searchParams.get("list");
-          } else {
-            vid = urlObj.searchParams.get("v") || input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/)?.[1];
-            list = urlObj.searchParams.get("list");
+          // A. 處理純 ID 格式
+          if (!input.startsWith("http") && !input.includes(".")) {
+            if (input.startsWith("UC")) {
+              list = "UU" + input.slice(2);
+              statusEl.textContent = "✅ 頻道 ID 已轉為播放清單";
+            } else if (/^(UU|PL|OL|RD)/.test(input)) {
+              list = input;
+            } else if (input.length === 11) {
+              vid = input;
+            }
           }
-          // 特殊修正：如果 vid 是 playlist 字眼，那是誤判
-          if (vid === "playlist") vid = null;
-        } catch {
-          /* 忽略 URL 解析錯誤 */
+          // B. 處理網址格式
+          else {
+            const urlObj = new URL(input.startsWith("http") ? input : "https://" + input);
+            if (urlObj.hostname === "youtu.be") {
+              vid = urlObj.pathname.slice(1);
+              list = urlObj.searchParams.get("list");
+            } else if (urlObj.pathname.includes("/channel/UC")) {
+              list = "UU" + urlObj.pathname.split("/").pop().slice(2);
+              statusEl.textContent = "✅ 偵測到頻道網址，已轉為播放清單";
+            } else if (urlObj.pathname.includes("/channel/UU")) {
+              list = urlObj.pathname.split("/").pop();
+            } else {
+              vid =
+                urlObj.searchParams.get("v") ||
+                input.match(/(?:v=|\/v\/|\/shorts\/|\/live\/|\/)([0-9A-Za-z_-]{11})/)?.[1];
+              list = urlObj.searchParams.get("list") || input.match(/[?&]list=([A-Za-z0-9_-]+)/)?.[1];
+            }
+          }
+
+          // 排除誤判字眼
+          if (["playlist", "live", "shorts"].includes(vid)) vid = null;
+
+          // C. API 救援邏輯 (針對純清單)
+          if (!vid && list) {
+            vid = await fetchFirstVid(list, statusEl);
+            statusEl.textContent = vid ? "✅ 已取得影片 ID 並合併清單" : "⚠️ 無法取得影片 ID，僅顯示純清單連結";
+          }
+        } catch (e) {
+          statusEl.textContent = "❌ 解析出錯，請檢查網址格式";
+          console.error(e);
         }
+
+        btnEl.classList.remove("loading");
 
         if (!vid && !list) {
           services.forEach((s) => {
@@ -128,17 +223,15 @@
           return;
         }
 
-        // 定義只支援 Playlist 的服務 (Hyperpipe 家族)
+        // D. 渲染所有服務結果
         const playlistOnlyServices = ["duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe"];
 
         services.forEach((s) => {
-          let url = null;
           const { base, type, mode, id, noList } = s;
+          let url = null;
 
           if (mode === "short") {
-            if (vid && list) url = `${base}${vid}?list=${list}`;
-            else if (vid) url = `${base}${vid}`;
-            else if (list) url = `https://youtube.com/playlist?list=${list}`;
+            url = vid ? `${base}${vid}${list ? `?list=${list}` : ""}` : `https://youtube.com/playlist?list=${list}`;
           } else if (mode === "ytify") {
             url = list ? `${base}list?playlists=${list}` : vid ? `${base}?s=${vid}` : null;
           } else if (mode === "vid") {
@@ -146,29 +239,35 @@
           } else {
             // mode: "auto" (default)
             if (vid && list) {
-              if (playlistOnlyServices.includes(id)) url = `${base}playlist?list=${list}`;
-              else if (noList)
-                url = `${base}${type}?v=${vid}`; // cinemaphile
-              else url = `${base}${type}?v=${vid}&list=${list}`;
+              if (playlistOnlyServices.includes(id)) {
+                url = `${base}playlist?list=${list}`;
+              } else if (noList) {
+                url = `${base}${type}?v=${vid}`;
+              } else {
+                url = `${base}${type}?v=${vid}&list=${list}`;
+              }
             } else if (vid) {
               url = `${base}${type}?v=${vid}`;
             } else if (list) {
-              if (id === "youtube" || noList)
-                url = null; // 排除 youtube/cinemaphile
-              else url = `${base}playlist?list=${list}`;
+              // 純清單情況
+              if (id === "youtube" || noList) {
+                url = null;
+              } else {
+                url = `${base}playlist?list=${list}`;
+              }
             }
           }
 
-          const inputEl = document.getElementById(`val_${id}`);
-          const linkEl = document.getElementById(`link_${id}`);
+          const valEl = document.getElementById(`val_${id}`),
+            linkEl = document.getElementById(`link_${id}`);
 
           if (url) {
-            inputEl.value = url;
+            valEl.value = url;
             linkEl.href = url;
             linkEl.textContent = url;
             linkEl.classList.remove("hidden");
           } else {
-            inputEl.value = "⚠️ 無法產生連結";
+            valEl.value = !vid && !list ? "⚠️ 無法辨識影片或播放清單 ID" : "⚠️ 此服務不支援此格式";
             linkEl.classList.add("hidden");
           }
         });
