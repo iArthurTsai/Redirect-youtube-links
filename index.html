@@ -129,8 +129,11 @@
 
       // 2. API 抓取邏輯 (當只有 Playlist ID 時，抓取第一個影片 ID)
       const fetchFirstVid = async (listId, statusEl) => {
-        // RD 合輯可以直接從 ID 提取影片 ID (RD 開頭後接 11 碼影片 ID)
-        if (listId.startsWith("RD") && listId.length > 12) return listId.slice(2, 13);
+        const startTime = performance.now(); // 記錄開始時間
+		// RD 合輯可以直接從 ID 提取影片 ID (RD 開頭後接 11 碼影片 ID)
+        if (listId.startsWith("RD") && listId.length > 12) {
+		  return { vid: listId.slice(2, 13), source: "RD 邏輯還原", time: 0 };
+		}
 
         for (const node of API_NODES) {
           try {
@@ -147,8 +150,11 @@
 
             const data = await res.json();
             // 支援 Piped (relatedStreams) 或 Invidious (videos)
-            const vid = data.relatedStreams?.[0]?.url.match(/(?:v=)([^&]+)/)?.[1] || data.videos?.[0]?.videoId;
-            if (vid) return vid;
+            const vid = data.relatedStreams?.[0]?.url.match(/(?:v=|streams\/)([^&?/\s]+)/)?.[1] || data.videos?.[0]?.videoId;
+            if (vid) {
+              const time = (performance.now() - startTime).toFixed(0); // 計算總耗時
+              return { vid, source: domain, time }; // 改為回傳物件
+            }
           } catch (e) {
             console.warn(`節點 ${node} 失敗:`, e);
           }
@@ -205,8 +211,13 @@
 
           // C. API 救援邏輯 (針對純清單)
           if (!vid && list) {
-            vid = await fetchFirstVid(list, statusEl);
-            statusEl.textContent = vid ? "✅ 已取得影片 ID 並合併清單" : "⚠️ 無法取得影片 ID，僅顯示純清單連結";
+            const result = await fetchFirstVid(list, statusEl); // 這裡改接收物件
+            if (result) {
+              vid = result.vid;
+              statusEl.innerHTML = `✅ 成功取得影片 ID<br><small style="color:gray">來源：${result.source} | 耗時：${result.time}ms</small>`;
+            } else {
+              statusEl.textContent = "⚠️ 無法取得影片 ID，僅顯示純清單連結";
+            }
           }
         } catch (e) {
           statusEl.textContent = "❌ 解析出錯，請檢查網址格式";
