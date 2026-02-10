@@ -82,14 +82,14 @@
         },
 		{
           name: "InvidiousUA",
-          label: "Invidious 分享網址：",
+          label: "Invidious (UA) 分享網址：",
           base: "https://invidious.nerdvpn.de/",
           type: "watch",
           mode: "standard",
         },
 		{
           name: "InvidiousDE",
-          label: "Invidious 分享網址：",
+          label: "Invidious (DE) 分享網址：",
           base: "https://yewtu.be/",
           type: "watch",
           mode: "standard",
@@ -112,7 +112,7 @@
         // 隱藏的項目可以用 hidden: true 標記，或者直接註解掉
         {
           name: "NYCPiped",
-          label: "Piped 分享網址：",
+          label: "Piped (NYC) 分享網址：",
           base: "https://nyc1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
@@ -120,7 +120,7 @@
         },
         {
           name: "CALPiped",
-          label: "Piped 分享網址：",
+          label: "Piped (CAL) 分享網址：",
           base: "https://cal1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
@@ -128,7 +128,7 @@
         },
         {
           name: "POLPiped",
-          label: "Piped 分享網址：",
+          label: "Piped (POL) 分享網址：",
           base: "https://pol1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
@@ -144,7 +144,7 @@
         },
         {
           name: "wirewaychdevRePiped",
-          label: "RePiped 分享網址：",
+          label: "RePiped (dev) 分享網址：",
           base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=",
           mode: "vid_only",
         },
@@ -183,6 +183,10 @@
         },
 
         { name: "ytify", label: "ytify 分享網址：", base: "https://ytify.pp.ua/", mode: "ytify" },
+		
+		{ name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
+		
+		{ name: "ytifydev", label: "ytify (dev) 分享網址：", base: "https://dev--ytify.netlify.app/", mode: "ytify" },
 
         {
           name: "cinemaphile.com",
@@ -257,7 +261,7 @@
             if (vid) url = s.base + vid;
             else error = true; // 有 list 無 vid 也算錯誤
           } else if (s.mode === "ytify") {
-            if (list) url = s.base + "list?playlists=" + list;
+            if (list) url = s.base + "?playlist=" + list;
             else if (vid) url = s.base + "?s=" + vid;
             else error = true;
           } else if (s.mode === "short") {
