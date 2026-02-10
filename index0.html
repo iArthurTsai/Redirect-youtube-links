@@ -60,6 +60,18 @@
       <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="Invidious" rows="1" readonly></textarea>
     </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Invidious (UA) 分享網址：</label>
+      <a id="UAInvidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="UAInvidious" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">Invidious (DE) 分享網址：</label>
+      <a id="DEInvidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="DEInvidious" rows="1" readonly></textarea>
+    </div>
 
     <div class="result-block">
       <label style="display: inline;">Piped 分享網址：</label>
@@ -74,19 +86,19 @@
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
+      <label style="display: inline;">Piped (NYC) 分享網址：</label>
       <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="NYCPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
+      <label style="display: inline;">Piped (CAL) 分享網址：</label>
       <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="CALPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped 分享網址：</label>
+      <label style="display: inline;">Piped (POL) 分享網址：</label>
       <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="POLPiped" rows="1" readonly></textarea>
     </div>
@@ -98,7 +110,7 @@
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">RePiped 分享網址：</label>
+      <label style="display: inline;">RePiped (dev) 分享網址：</label>
       <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
     </div>
@@ -110,19 +122,19 @@
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <label style="display: inline;">Hyperpipe (NYC) 分享網址：</label>
       <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <label style="display: inline;">Hyperpipe (CAL) 分享網址：</label>
       <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="CALHyperpipe" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
+      <label style="display: inline;">Hyperpipe (POL) 分享網址：</label>
       <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="POLHyperpipe" rows="1" readonly></textarea>
     </div>
@@ -131,6 +143,18 @@
       <label style="display: inline;">ytify 分享網址：</label>
       <a id="ytifylink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
       <textarea id="ytify" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">ytify2 分享網址：</label>
+      <a id="ytify2link" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="ytify2" rows="1" readonly></textarea>
+    </div>
+	
+	<div class="result-block">
+      <label style="display: inline;">ytify (dev) 分享網址：</label>
+      <a id="ytifydevlink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <textarea id="ytifydev" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
@@ -194,11 +218,12 @@
         if (!match) {
            // 定義所有需要清空的欄位 ID
            var ids = [
-             "youtube", "Invidious", "PrivatecoffeePiped", "wirewaychPiped",
-             "NYCPiped", "CALPiped", "POLPiped", "wirewaychRePiped",
-             "wirewaychdevRePiped", "duckspartyHyperpipe", "NYCHyperpipe",
-             "CALHyperpipe", "POLHyperpipe", "ytify", "cinemaphile.com",
-             "YMusic", "m.gjhyss.com", "AstroTube", "shorturl", "YTMusic"
+             "youtube", "Invidious", "UAInvidious", "DEInvidious",
+			 "PrivatecoffeePiped", "wirewaychPiped", "NYCPiped", "CALPiped", "POLPiped",
+			 "wirewaychRePiped", "wirewaychdevRePiped",
+			 "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe",
+			 "ytify", "ytify2", "ytifydev",
+			 "cinemaphile.com", "YMusic", "m.gjhyss.com", "AstroTube", "shorturl", "YTMusic"
            ];
            
            for (var i = 0; i < ids.length; i++) {
@@ -216,6 +241,8 @@
         // 使用傳統字串串接 (相容 IE)
         var youtubeUrl = "https://yout-ube.com/watch?v=" + vid;
         var InvidiousUrl = "https://inv.nadeko.net/watch?v=" + vid;
+		var UAInvidiousUrl = "https://invidious.nerdvpn.de/watch?v=" + vid;
+		var DEInvidiousUrl = "https://yewtu.be/watch?v=" + vid;
         var PrivatecoffeePipedUrl = "https://piped.private.coffee/watch?v=" + vid;
         var wirewaychPipedUrl = "https://piped.wireway.ch/watch?v=" + vid;
         var NYCPipedUrl = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
@@ -228,6 +255,8 @@
         var CALHyperpipeUrl = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
         var POLHyperpipeUrl = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
         var ytifyUrl = "https://ytify.pp.ua/?s=" + vid;
+		var ytify2Url = "https://ytify-zeta.vercel.app/?s=" + vid;
+		var ytifydevUrl = "https://dev--ytify.netlify.app/?s=" + vid;
         var cinemaphileUrl = "https://cinemaphile.com/watch?v=" + vid;
         var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
 		var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
@@ -256,6 +285,8 @@
         // 執行填入
         setLink("youtube", "youtubelink", youtubeUrl);
         setLink("Invidious", "Invidiouslink", InvidiousUrl);
+		setLink("UAInvidious", "UAInvidiouslink", UAInvidiousUrl);
+		setLink("DEInvidious", "DEInvidiouslink", DEInvidiousUrl);
         setLink("PrivatecoffeePiped", "PrivatecoffeePipedlink", PrivatecoffeePipedUrl);
         setLink("wirewaychPiped", "wirewaychPipedlink", wirewaychPipedUrl);
         setLink("NYCPiped", "NYCPipedlink", NYCPipedUrl);
@@ -268,6 +299,8 @@
         setLink("CALHyperpipe", "CALHyperpipelink", CALHyperpipeUrl);
         setLink("POLHyperpipe", "POLHyperpipelink", POLHyperpipeUrl);
         setLink("ytify", "ytifylink", ytifyUrl);
+		setLink("ytify2", "ytify2link", ytify2Url);
+		setLink("ytifydev", "ytifydevlink", ytifydevUrl);
         setLink("cinemaphile.com", "link1", cinemaphileUrl);
         setLink("YMusic", "link2", YMusicUrl);
         setLink("m.gjhyss.com", "link3", gjhyssUrl);
