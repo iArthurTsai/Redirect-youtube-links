@@ -94,20 +94,22 @@
       const services = [
         { id: "youtube", label: "youtube", base: "https://yout-ube.com/", type: "watch" },
         { id: "Invidious", label: "Invidious", base: "https://inv.nadeko.net/", type: "watch" },
-        { id: "InvidiousUA", label: "Invidious (UA)", base: "https://invidious.nerdvpn.de/", type: "watch" },
-        { id: "InvidiousDE", label: "Invidious (DE)", base: "https://yewtu.be/", type: "watch" },
+        { id: "UAInvidious", label: "Invidious (UA)", base: "https://invidious.nerdvpn.de/", type: "watch" },
+        { id: "DEInvidious", label: "Invidious (DE)", base: "https://yewtu.be/", type: "watch" },
         { id: "PrivatecoffeePiped", label: "Piped", base: "https://piped.private.coffee/", type: "watch" },
         { id: "wirewaychPiped", label: "Piped", base: "https://piped.wireway.ch/", type: "watch" },
         { id: "NYCPiped", label: "Piped (NYC)", base: "https://nyc1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "CALPiped", label: "Piped (CAL)", base: "https://cal1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "POLPiped", label: "Piped (POL)", base: "https://pol1.pi.ggtyler.dev/", type: "watch", hidden: true },
         { id: "wirewaychRePiped", label: "RePiped", base: "https://repiped.wireway.ch/video.html?v=", mode: "vid" },
-        { id: "wirewaychdevRePiped", label: "RePiped (Dev)", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid" },
+        { id: "wirewaychdevRePiped", label: "RePiped (dev)", base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=", mode: "vid" },
         { id: "duckspartyHyperpipe", label: "Hyperpipe", base: "https://hyperpipe.ducks.party/", type: "watch", hidden: true, isMusic: true },
         { id: "NYCHyperpipe", label: "Hyperpipe (NYC)", base: "https://nyc1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
         { id: "CALHyperpipe", label: "Hyperpipe (CAL)", base: "https://cal1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
         { id: "POLHyperpipe", label: "Hyperpipe (POL)", base: "https://pol1.hp.ggtyler.dev/", type: "watch", hidden: true, isMusic: true },
         { id: "ytify", label: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", isMusic: true },
+		{ id: "ytify2", label: "ytify2", base: "https://ytify-zeta.vercel.app/", mode: "ytify", isMusic: true },
+		{ id: "ytifydev", label: "ytify (dev)", base: "https://dev--ytify.netlify.app/", mode: "ytify", isMusic: true },
         { id: "cinemaphile.com", label: "cinemaphile.com", base: "https://cinemaphile.com/", type: "watch", noList: true },
         { id: "YMusic", label: "YMusic", base: "https://ymusicapp.com/", type: "watch" },
         { id: "m.gjhyss.com", label: "m.gjhyss.com", base: "https://m.gjhyss.com/share?v=", mode: "vid" },
@@ -247,7 +249,7 @@
           if (mode === "short") {
             url = vid ? `${base}${vid}${list ? `?list=${list}` : ""}` : `https://youtube.com/playlist?list=${list}`;
           } else if (mode === "ytify") {
-            url = list ? `${base}list?playlists=${list}` : vid ? `${base}?s=${vid}` : null;
+            url = list ? `${base}?playlist=${list}` : vid ? `${base}?s=${vid}` : null;
           } else if (mode === "vid") {
             url = vid ? `${base}${vid}` : null;
           } else {
