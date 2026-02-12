@@ -272,7 +272,7 @@
           var linkEl = document.getElementById("link_" + s.name);
 
           if (error) {
-            textEl.value = !vid && !list ? "⚠️ 無法辨識 ID" : "⚠️ 無法產生連結";
+            textEl.value = !vid && !list ? "⚠️ 無法辨識影片或播放清單 ID" : "⚠️ 無法產生連結";
             linkEl.style.display = "none";
           } else {
             textEl.value = url;
