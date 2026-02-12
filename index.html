@@ -116,7 +116,7 @@
 		{ id: "NSFW YouTube 2", label: "NSFW YouTube", base: "https://www.nsfwyoutube.com/", type: "watchmore", noList: true },
 		{ id: "NSFW YouTube 3", label: "NSFW YouTube", base: "https://www.nsfwyoutube.com/video/", mode: "vid" },
 		{ id: "YouTubeOnLoop", label: "YouTubeOnLoop", base: "https://www.youtubeonloop.com/", type: "watch", noList: true },
-		{ id: "SafeShare", label: "SafeShare", base: "https://embed.safesha.re/?video_id=", mode: "vid" },
+		{ id: "SafeShare", label: "SafeShare", base: "https://embed.safesha.re/?video_id=", suffix: "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D", mode: "vid" },
         { id: "AstroTube", label: "AstroTube", base: "https://at.ggtyler.dev/", type: "watch", noList: true, hidden: true },
 		{ id: "YMusic", label: "YMusic", base: "https://ymusicapp.com/", type: "watch" },
         { id: "shorturl", label: "最短 YouTube", base: "https://youtu.be/", mode: "short" },
@@ -256,7 +256,10 @@
           } else if (mode === "ytify") {
             url = list ? `${base}?playlist=${list}` : vid ? `${base}?s=${vid}` : null;
           } else if (mode === "vid") {
-            url = vid ? `${base}${vid}` : null;
+            //url = vid ? `${base}${vid}` : null;
+			// 關鍵修改：先檢查有沒有 type (如 share)，再拼接 vid，最後補上 suffix (SafeShare 通行證)
+            const path = type ? type : ""; 
+            url = vid ? `${base}${path}${vid}${(s.suffix || "")}` : null;
           } else {
             // mode: "auto" (default)
             if (vid && list) {
