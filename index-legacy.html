@@ -81,14 +81,14 @@
           mode: "standard",
         },
 		{
-          name: "InvidiousUA",
+          name: "UAInvidious",
           label: "Invidious (UA) 分享網址：",
           base: "https://invidious.nerdvpn.de/",
           type: "watch",
           mode: "standard",
         },
 		{
-          name: "InvidiousDE",
+          name: "DEInvidious",
           label: "Invidious (DE) 分享網址：",
           base: "https://yewtu.be/",
           type: "watch",
@@ -108,7 +108,6 @@
           type: "watch",
           mode: "standard",
         },
-
         // 隱藏的項目可以用 hidden: true 標記，或者直接註解掉
         {
           name: "NYCPiped",
@@ -134,7 +133,6 @@
           mode: "standard",
           hidden: true,
         },
-
         // mode: "vid_only_allow_param" 表示強制只抓 v，忽略 list 參數但用標準格式
 		{
           name: "wirewaychRePiped",
@@ -148,7 +146,6 @@
           base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=",
           mode: "vid_only",
         },
-
         {
           name: "duckspartyHyperpipe",
           label: "Hyperpipe 分享網址：",
@@ -181,28 +178,28 @@
           mode: "standard",
           hidden: true,
         },
-
         { name: "ytify", label: "ytify 分享網址：", base: "https://ytify.pp.ua/", mode: "ytify" },
-		
 		{ name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
-		
 		{ name: "ytifydev", label: "ytify (dev) 分享網址：", base: "https://dev--ytify.netlify.app/", mode: "ytify" },
-
         {
           name: "cinemaphile.com",
           label: "cinemaphile.com 分享網址：",
           base: "https://cinemaphile.com/watch?v=",
-          mode: "vid_force",
+          mode: "vid_only",
         },
-
-        { name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
         {
           name: "m.gjhyss.com",
           label: "m.gjhyss.com 分享網址：",
           base: "https://m.gjhyss.com/share?v=",
           mode: "vid_only",
         },
+		{ name: "NSFW YouTube", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/watch?v=", mode: "vid_only" },
+		{ name: "NSFW YouTube 2", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/watchmore?v=", mode: "vid_only" },
+		{ name: "NSFW YouTube 3", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/video/", mode: "vid_only" },
+		{ name: "YouTubeOnLoop", label: "YouTubeOnLoop 分享網址：", base: "https://www.youtubeonloop.com/watch?v=", mode: "vid_only" },
+		{ name: "SafeShare", label: "SafeShare 分享網址：", base: "https://embed.safesha.re/?video_id=", mode: "SafeShare" },
         { name: "AstroTube", label: "AstroTube 分享網址：", base: "https://at.ggtyler.dev/watch?v=", mode: "vid_only", hidden: true },
+		{ name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
         { name: "shorturl", label: "最短 YouTube 連結：", base: "https://youtu.be/", mode: "short" },
         {
           name: "YTMusic",
@@ -256,9 +253,9 @@
             // 簡單接在後面，不支援 list
             if (vid) url = s.base + vid;
             else error = true;
-          } else if (s.mode === "vid_force") {
-            // 強制只用 v (像 cinemaphile)
-            if (vid) url = s.base + vid;
+          } else if (s.mode === "SafeShare") {
+            // 強制用 title (像 SafeShare)
+            if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
             else error = true; // 有 list 無 vid 也算錯誤
           } else if (s.mode === "ytify") {
             if (list) url = s.base + "?playlist=" + list;
