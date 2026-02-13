@@ -159,26 +159,56 @@
 
     <div class="result-block">
       <label style="display: inline;">cinemaphile.com 分享網址：</label>
-      <a id="link1" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="cinemaphile.com" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
-      <label style="display: inline;">YMusic 分享網址：</label>
-      <a id="link2" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="YMusic" rows="1" readonly></textarea>
+      <a id="cinemaphilelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="cinemaphile" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
       <label style="display: inline;">m.gjhyss.com 分享網址：</label>
-      <a id="link3" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="m.gjhyss.com" rows="1" readonly></textarea>
+      <a id="gjhysslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="gjhyss" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">NSFW YouTube 分享網址：</label>
+      <a id="NSFWYouTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="NSFWYouTube" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">NSFW YouTube 分享網址：</label>
+      <a id="NSFWYouTube2link" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="NSFWYouTube2" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">NSFW YouTube 分享網址：</label>
+      <a id="NSFWYouTube3link" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="NSFWYouTube3" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">YouTubeOnLoop 分享網址：</label>
+      <a id="YouTubeOnLooplink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="YouTubeOnLoop" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">SafeShare 分享網址：</label>
+      <a id="SafeSharelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="SafeShare" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block" style="display: none;">
       <label style="display: inline;">AstroTube 分享網址：</label>
       <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
+      <label style="display: inline;">YMusic 分享網址：</label>
+      <a id="YMusiclink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <textarea id="YMusic" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
@@ -223,7 +253,8 @@
 			 "wirewaychRePiped", "wirewaychdevRePiped",
 			 "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe",
 			 "ytify", "ytify2", "ytifydev",
-			 "cinemaphile.com", "YMusic", "m.gjhyss.com", "AstroTube", "shorturl", "YTMusic"
+			 "cinemaphile", "gjhyss", "NSFWYouTube", "NSFWYouTube2", "NSFWYouTube3", "YouTubeOnLoop", "SafeShare", "AstroTube", "YMusic",
+			 "shorturl", "YTMusic"
            ];
            
            for (var i = 0; i < ids.length; i++) {
@@ -258,9 +289,14 @@
 		var ytify2Url = "https://ytify-zeta.vercel.app/?s=" + vid;
 		var ytifydevUrl = "https://dev--ytify.netlify.app/?s=" + vid;
         var cinemaphileUrl = "https://cinemaphile.com/watch?v=" + vid;
-        var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
 		var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
+		var nsfwyoutubeUrl = "https://www.nsfwyoutube.com/watch?v=" + vid;
+		var nsfwyoutube2Url = "https://www.nsfwyoutube.com/watchmore?v=" + vid;
+		var nsfwyoutube3Url = "https://www.nsfwyoutube.com/video/" + vid;
+		var YouTubeOnLoopUrl = "https://www.youtubeonloop.com/watch?v=" + vid;
+		var SafeShareUrl = "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
         var AstroTubeUrl = "https://at.ggtyler.dev/watch?v=" + vid;
+		var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
         var shortUrl = "https://youtu.be/" + vid;
         var YTMusicUrl = "https://music.youtube.com/watch?v=" + vid;
 
@@ -301,10 +337,15 @@
         setLink("ytify", "ytifylink", ytifyUrl);
 		setLink("ytify2", "ytify2link", ytify2Url);
 		setLink("ytifydev", "ytifydevlink", ytifydevUrl);
-        setLink("cinemaphile.com", "link1", cinemaphileUrl);
-        setLink("YMusic", "link2", YMusicUrl);
-        setLink("m.gjhyss.com", "link3", gjhyssUrl);
+        setLink("cinemaphile", "cinemaphilelink", cinemaphileUrl);
+        setLink("gjhyss", "gjhysslink", gjhyssUrl);
+		setLink("NSFWYouTube", "NSFWYouTubelink", nsfwyoutubeUrl);
+		setLink("NSFWYouTube2", "NSFWYouTube2link", nsfwyoutube2Url);
+		setLink("NSFWYouTube3", "NSFWYouTube3link", nsfwyoutube3Url);
+		setLink("YouTubeOnLoop", "YouTubeOnLooplink", YouTubeOnLoopUrl);
+		setLink("SafeShare", "SafeSharelink", SafeShareUrl);
         setLink("AstroTube", "AstroTubelink", AstroTubeUrl);
+		setLink("YMusic", "YMusiclink", YMusicUrl);
         setLink("shorturl", "shortURLlink", shortUrl);
         setLink("YTMusic", "YTMusiclink", YTMusicUrl);
       }
