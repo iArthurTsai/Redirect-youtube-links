@@ -15,8 +15,8 @@
         width: 100%;
         font-size: 1rem;
         margin-top: 0.5em;
-		resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
-		overflow: hidden; /* 防止出現滾動條影響視覺 */
+        resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
+        overflow: hidden; /* 防止出現滾動條影響視覺 */
       }
       .result-block {
         display: flex;
@@ -36,8 +36,8 @@
         flex-basis: 100%;
         display: block;
         margin-top: 0.2em;
-		width: 100%; /* 強制填滿 */
-		box-sizing: border-box; /* 防止 padding 撐破寬度 */
+        width: 100%; /* 強制填滿 */
+        box-sizing: border-box; /* 防止 padding 撐破寬度 */
       }
     </style>
   </head>
@@ -80,14 +80,14 @@
           type: "watch",
           mode: "standard",
         },
-		{
+        {
           name: "UAInvidious",
           label: "Invidious (UA) 分享網址：",
           base: "https://invidious.nerdvpn.de/",
           type: "watch",
           mode: "standard",
         },
-		{
+        {
           name: "DEInvidious",
           label: "Invidious (DE) 分享網址：",
           base: "https://yewtu.be/",
@@ -134,16 +134,18 @@
           hidden: true,
         },
         // mode: "vid_only_allow_param" 表示強制只抓 v，忽略 list 參數但用標準格式
-		{
+        {
           name: "wirewaychRePiped",
           label: "RePiped 分享網址：",
-          base: "https://repiped.wireway.ch/video.html?v=",
+          base: "https://repiped.wireway.ch/",
+          type: "video.html",
           mode: "vid_only",
         },
         {
           name: "wirewaychdevRePiped",
           label: "RePiped (dev) 分享網址：",
-          base: "https://repiped-development-c7df8a.onwireway.online/video.html?v=",
+          base: "https://repiped-development-c7df8a.onwireway.online/",
+          type: "video.html",
           mode: "vid_only",
         },
         {
@@ -179,27 +181,58 @@
           hidden: true,
         },
         { name: "ytify", label: "ytify 分享網址：", base: "https://ytify.pp.ua/", mode: "ytify" },
-		{ name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
-		{ name: "ytifydev", label: "ytify (dev) 分享網址：", base: "https://dev--ytify.netlify.app/", mode: "ytify" },
+        { name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
+        { name: "ytifydev", label: "ytify (dev) 分享網址：", base: "https://dev--ytify.netlify.app/", mode: "ytify" },
         {
           name: "cinemaphile.com",
           label: "cinemaphile.com 分享網址：",
-          base: "https://cinemaphile.com/watch?v=",
+          base: "https://cinemaphile.com/",
+          type: "watch",
           mode: "vid_only",
         },
         {
           name: "m.gjhyss.com",
           label: "m.gjhyss.com 分享網址：",
-          base: "https://m.gjhyss.com/share?v=",
+          base: "https://m.gjhyss.com/",
+          type: "share",
           mode: "vid_only",
         },
-		{ name: "NSFW YouTube", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/watch?v=", mode: "vid_only" },
-		{ name: "NSFW YouTube 2", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/watchmore?v=", mode: "vid_only" },
-		{ name: "NSFW YouTube 3", label: "NSFW YouTube 分享網址：", base: "https://www.nsfwyoutube.com/video/", mode: "vid_only" },
-		{ name: "YouTubeOnLoop", label: "YouTubeOnLoop 分享網址：", base: "https://www.youtubeonloop.com/watch?v=", mode: "vid_only" },
-		{ name: "SafeShare", label: "SafeShare 分享網址：", base: "https://embed.safesha.re/?video_id=", mode: "SafeShare" },
-        { name: "AstroTube", label: "AstroTube 分享網址：", base: "https://at.ggtyler.dev/watch?v=", mode: "vid_only", hidden: true },
-		{ name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
+        {
+          name: "NSFW YouTube",
+          label: "NSFW YouTube 分享網址：",
+          base: "https://www.nsfwyoutube.com/",
+          type: "watch",
+          mode: "vid_only",
+        },
+        {
+          name: "NSFW YouTube 2",
+          label: "NSFW YouTube 分享網址：",
+          base: "https://www.nsfwyoutube.com/",
+          type: "watchmore",
+          mode: "vid_only",
+        },
+        {
+          name: "YouTubeOnLoop",
+          label: "YouTubeOnLoop 分享網址：",
+          base: "https://www.youtubeonloop.com/",
+          type: "watch",
+          mode: "vid_only",
+        },
+        {
+          name: "SafeShare",
+          label: "SafeShare 分享網址：",
+          base: "https://embed.safesha.re/?video_id=",
+          mode: "SafeShare",
+        },
+        {
+          name: "AstroTube",
+          label: "AstroTube 分享網址：",
+          base: "https://at.ggtyler.dev/",
+          type: "watch",
+          mode: "vid_only",
+          hidden: true,
+        },
+        { name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
         { name: "shorturl", label: "最短 YouTube 連結：", base: "https://youtu.be/", mode: "short" },
         {
           name: "YTMusic",
@@ -251,8 +284,14 @@
             else error = true;
           } else if (s.mode === "vid_only") {
             // 簡單接在後面，不支援 list
-            if (vid) url = s.base + vid;
-            else error = true;
+            if (vid) {
+              // 先檢查是否有設定 type，若無則設為空字串，避免出現 "undefined"
+              var path = s.type ? s.type : "";
+              // 直接拼接 base + path + vid，這樣最彈性
+              url = s.base + path + vid;
+            } else {
+              error = true;
+            }
           } else if (s.mode === "SafeShare") {
             // 強制用 title (像 SafeShare)
             if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";

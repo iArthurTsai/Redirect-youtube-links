@@ -182,12 +182,6 @@
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">NSFW YouTube 分享網址：</label>
-      <a id="NSFWYouTube3link" href="#" target="_blank" style="display: none;">點我前往影片</a>
-      <textarea id="NSFWYouTube3" rows="1" readonly></textarea>
-    </div>
-
-    <div class="result-block">
       <label style="display: inline;">YouTubeOnLoop 分享網址：</label>
       <a id="YouTubeOnLooplink" href="#" target="_blank" style="display: none;">點我前往影片</a>
       <textarea id="YouTubeOnLoop" rows="1" readonly></textarea>
@@ -253,7 +247,7 @@
 			 "wirewaychRePiped", "wirewaychdevRePiped",
 			 "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe",
 			 "ytify", "ytify2", "ytifydev",
-			 "cinemaphile", "gjhyss", "NSFWYouTube", "NSFWYouTube2", "NSFWYouTube3", "YouTubeOnLoop", "SafeShare", "AstroTube", "YMusic",
+			 "cinemaphile", "gjhyss", "NSFWYouTube", "NSFWYouTube2", "YouTubeOnLoop", "SafeShare", "AstroTube", "YMusic",
 			 "shorturl", "YTMusic"
            ];
            
@@ -292,7 +286,6 @@
 		var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
 		var nsfwyoutubeUrl = "https://www.nsfwyoutube.com/watch?v=" + vid;
 		var nsfwyoutube2Url = "https://www.nsfwyoutube.com/watchmore?v=" + vid;
-		var nsfwyoutube3Url = "https://www.nsfwyoutube.com/video/" + vid;
 		var YouTubeOnLoopUrl = "https://www.youtubeonloop.com/watch?v=" + vid;
 		var SafeShareUrl = "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
         var AstroTubeUrl = "https://at.ggtyler.dev/watch?v=" + vid;
@@ -341,7 +334,6 @@
         setLink("gjhyss", "gjhysslink", gjhyssUrl);
 		setLink("NSFWYouTube", "NSFWYouTubelink", nsfwyoutubeUrl);
 		setLink("NSFWYouTube2", "NSFWYouTube2link", nsfwyoutube2Url);
-		setLink("NSFWYouTube3", "NSFWYouTube3link", nsfwyoutube3Url);
 		setLink("YouTubeOnLoop", "YouTubeOnLooplink", YouTubeOnLoopUrl);
 		setLink("SafeShare", "SafeSharelink", SafeShareUrl);
         setLink("AstroTube", "AstroTubelink", AstroTubeUrl);
