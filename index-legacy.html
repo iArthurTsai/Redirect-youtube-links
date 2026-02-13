@@ -284,14 +284,8 @@
             else error = true;
           } else if (s.mode === "vid_only") {
             // 簡單接在後面，不支援 list
-            if (vid) {
-              // 先檢查是否有設定 type，若無則設為空字串，避免出現 "undefined"
-              var path = s.type ? s.type : "";
-              // 直接拼接 base + path + vid，這樣最彈性
-              url = s.base + path + vid;
-            } else {
-              error = true;
-            }
+			if (vid) url = s.base + s.type + "?v=" + vid;
+			else error = true;
           } else if (s.mode === "SafeShare") {
             // 強制用 title (像 SafeShare)
             if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
