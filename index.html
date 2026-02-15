@@ -140,7 +140,7 @@
       const fetchFirstVid = async (listId, statusEl) => {
         const startTime = performance.now(); // 記錄開始時間
 		// RD 合輯可以直接從 ID 提取影片 ID (RD 開頭後接 11 碼影片 ID)
-        if (listId.startsWith("RD") && listId.length > 12) {
+        if (listId.startsWith("RD") && listId.length === 13) {
 		  return { vid: listId.slice(2, 13), source: "RD 邏輯還原", time: 0 };
 		}
 
