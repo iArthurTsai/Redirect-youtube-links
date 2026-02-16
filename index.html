@@ -49,6 +49,24 @@
         color: #d32f2f;
         /* min-height: 1.5em; */
       }
+	  /* 優化開關樣式 */
+      .option-label {
+        margin-left: 10px;
+		margin-top: 0.5em;
+		font-size: 1rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        background: #f0f0f0;
+        padding: 1px 10px;
+        border-radius: 4px;
+		user-select: none; /* 防止頻繁點擊時選取到文字 */
+		white-space: nowrap; /* 防止文字換行 */
+      }
+      .option-label input {
+        width: auto;
+		vertical-align: middle;
+      }
     </style>
   </head>
   <body>
@@ -60,7 +78,12 @@
         placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw"
         onkeypress="if(event.key==='Enter')convert()"
       />
-      <button id="btn" onclick="convert()">轉換</button>
+      <div style="display: flex; width: 100%; align-items: center;">
+        <button id="btn" onclick="convert()" style="flex: 1;">轉換</button>
+        <label class="option-label">
+          <input type="checkbox" id="radioMode">啟動電台模式 (RD)
+        </label>
+      </div>
     </div>
     <div id="status"></div>
     <div id="results"></div>
