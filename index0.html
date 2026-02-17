@@ -15,8 +15,8 @@
         width: 100%;
         font-size: 1rem;
         margin-top: 0.5em;
-		resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
-		overflow: hidden; /* 防止出現滾動條影響視覺 */
+        resize: none; /* 隱藏右下角調整手柄，看起來更像 input */
+        overflow: hidden; /* 防止出現滾動條影響視覺 */
       }
       .result-block {
         display: flex;
@@ -31,189 +31,189 @@
         color: blue;
         text-decoration: underline;
       }
-	  /* 針對不支援 flex 的舊瀏覽器做簡單修正 */
+      /* 針對不支援 flex 的舊瀏覽器做簡單修正 */
       .result-block textarea {
         flex-basis: 100%;
         display: block;
         margin-top: 0.2em;
-		width: 100%; /* 強制填滿 */
-		box-sizing: border-box; /* 防止 padding 撐破寬度 */
+        width: 100%; /* 強制填滿 */
+        box-sizing: border-box; /* 防止 padding 撐破寬度 */
       }
     </style>
   </head>
   <body>
     <h2>YouTube 轉換器</h2>
     <div class="result-block">
-      <label style="display: inline;">請貼上 YouTube/YouTube Music 連結：</label>
+      <label style="display: inline">請貼上 YouTube/YouTube Music 連結：</label>
       <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
       <button onclick="convert()">轉換</button>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">youtube 分享網址：</label>
-      <a id="youtubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">youtube 分享網址：</label>
+      <a id="youtubelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="youtube" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">Invidious 分享網址：</label>
-      <a id="Invidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">Invidious 分享網址：</label>
+      <a id="Invidiouslink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="Invidious" rows="1" readonly></textarea>
     </div>
-	
-	<div class="result-block">
-      <label style="display: inline;">Invidious (UA) 分享網址：</label>
-      <a id="UAInvidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+
+    <div class="result-block">
+      <label style="display: inline">Invidious (UA) 分享網址：</label>
+      <a id="UAInvidiouslink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="UAInvidious" rows="1" readonly></textarea>
     </div>
-	
-	<div class="result-block">
-      <label style="display: inline;">Invidious (DE) 分享網址：</label>
-      <a id="DEInvidiouslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+
+    <div class="result-block">
+      <label style="display: inline">Invidious (DE) 分享網址：</label>
+      <a id="DEInvidiouslink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="DEInvidious" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">Piped 分享網址：</label>
+      <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">Piped 分享網址：</label>
-      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">Piped 分享網址：</label>
+      <a id="wirewaychPipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="wirewaychPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped (NYC) 分享網址：</label>
-      <a id="NYCPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Piped (NYC) 分享網址：</label>
+      <a id="NYCPipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="NYCPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped (CAL) 分享網址：</label>
-      <a id="CALPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Piped (CAL) 分享網址：</label>
+      <a id="CALPipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="CALPiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Piped (POL) 分享網址：</label>
-      <a id="POLPipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Piped (POL) 分享網址：</label>
+      <a id="POLPipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="POLPiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">RePiped 分享網址：</label>
-      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">RePiped 分享網址：</label>
+      <a id="wirewaychRePipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="wirewaychRePiped" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">RePiped (dev) 分享網址：</label>
-      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">RePiped (dev) 分享網址：</label>
+      <a id="wirewaychdevRePipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="wirewaychdevRePiped" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe 分享網址：</label>
-      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Hyperpipe 分享網址：</label>
+      <a id="duckspartyHyperpipelink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="duckspartyHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe (NYC) 分享網址：</label>
-      <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Hyperpipe (NYC) 分享網址：</label>
+      <a id="NYCHyperpipelink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="NYCHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe (CAL) 分享網址：</label>
-      <a id="CALHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Hyperpipe (CAL) 分享網址：</label>
+      <a id="CALHyperpipelink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="CALHyperpipe" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">Hyperpipe (POL) 分享網址：</label>
-      <a id="POLHyperpipelink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">Hyperpipe (POL) 分享網址：</label>
+      <a id="POLHyperpipelink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="POLHyperpipe" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">ytify 分享網址：</label>
-      <a id="ytifylink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <label style="display: inline">ytify 分享網址：</label>
+      <a id="ytifylink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="ytify" rows="1" readonly></textarea>
     </div>
-	
-	<div class="result-block">
-      <label style="display: inline;">ytify2 分享網址：</label>
-      <a id="ytify2link" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+
+    <div class="result-block">
+      <label style="display: inline">ytify2 分享網址：</label>
+      <a id="ytify2link" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="ytify2" rows="1" readonly></textarea>
     </div>
-	
-	<div class="result-block">
-      <label style="display: inline;">ytify (dev) 分享網址：</label>
-      <a id="ytifydevlink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+
+    <div class="result-block">
+      <label style="display: inline">ytify (dev) 分享網址：</label>
+      <a id="ytifydevlink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="ytifydev" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">cinemaphile.com 分享網址：</label>
-      <a id="cinemaphilelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">cinemaphile.com 分享網址：</label>
+      <a id="cinemaphilelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="cinemaphile" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">m.gjhyss.com 分享網址：</label>
-      <a id="gjhysslink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">m.gjhyss.com 分享網址：</label>
+      <a id="gjhysslink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="gjhyss" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">NSFW YouTube 分享網址：</label>
-      <a id="NSFWYouTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">NSFW YouTube 分享網址：</label>
+      <a id="NSFWYouTubelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="NSFWYouTube" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">NSFW YouTube 分享網址：</label>
-      <a id="NSFWYouTube2link" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">NSFW YouTube 分享網址：</label>
+      <a id="NSFWYouTube2link" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="NSFWYouTube2" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">YouTubeOnLoop 分享網址：</label>
-      <a id="YouTubeOnLooplink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">YouTubeOnLoop 分享網址：</label>
+      <a id="YouTubeOnLooplink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="YouTubeOnLoop" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">SafeShare 分享網址：</label>
-      <a id="SafeSharelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">SafeShare 分享網址：</label>
+      <a id="SafeSharelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="SafeShare" rows="1" readonly></textarea>
     </div>
 
-    <div class="result-block" style="display: none;">
-      <label style="display: inline;">AstroTube 分享網址：</label>
-      <a id="AstroTubelink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+    <div class="result-block" style="display: none">
+      <label style="display: inline">AstroTube 分享網址：</label>
+      <a id="AstroTubelink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="AstroTube" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">YMusic 分享網址：</label>
-      <a id="YMusiclink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">YMusic 分享網址：</label>
+      <a id="YMusiclink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="YMusic" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">最短 YouTube 連結：</label>
-      <a id="shortURLlink" href="#" target="_blank" style="display: none;">點我前往影片</a>
+      <label style="display: inline">最短 YouTube 連結：</label>
+      <a id="shortURLlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="shorturl" rows="1" readonly></textarea>
     </div>
 
     <div class="result-block">
-      <label style="display: inline;">YouTube Music 連結：</label>
-      <a id="YTMusiclink" href="#" target="_blank" style="display: none;">點我前往音樂</a>
+      <label style="display: inline">YouTube Music 連結：</label>
+      <a id="YTMusiclink" href="#" target="_blank" style="display: none">點我前往音樂</a>
       <textarea id="YTMusic" rows="1" readonly></textarea>
     </div>
 
@@ -232,33 +232,54 @@
         // 取得輸入值
         var inputObj = document.getElementById("yt");
         var val = inputObj.value;
-        
+
         // 支援 IE8 的 trim 寫法
-        var input = val.replace(/^\s+|\s+$/g, '');
-        
+        var input = val.replace(/^\s+|\s+$/g, "");
+
         // 正則表達式抓取 ID
         var match = input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
 
         if (!match) {
-           // 定義所有需要清空的欄位 ID
-           var ids = [
-             "youtube", "Invidious", "UAInvidious", "DEInvidious",
-			 "PrivatecoffeePiped", "wirewaychPiped", "NYCPiped", "CALPiped", "POLPiped",
-			 "wirewaychRePiped", "wirewaychdevRePiped",
-			 "duckspartyHyperpipe", "NYCHyperpipe", "CALHyperpipe", "POLHyperpipe",
-			 "ytify", "ytify2", "ytifydev",
-			 "cinemaphile", "gjhyss", "NSFWYouTube", "NSFWYouTube2", "YouTubeOnLoop", "SafeShare", "AstroTube", "YMusic",
-			 "shorturl", "YTMusic"
-           ];
-           
-           for (var i = 0; i < ids.length; i++) {
-             var el = document.getElementById(ids[i]);
-             if(el) el.value = "⚠️ 無法辨識影片 ID";
-             var linkEl = document.getElementById(ids[i] + (ids[i].indexOf("link") === -1 ? "link" : "")); // 簡單推算 link ID，你的命名規則有些有 link 有些是 link1/2... 建議手動處理或統一命名
-             // 為了保險起見，這邊針對你的命名規則簡單處理錯誤顯示即可，若要完美隱藏需逐一列出
-           }
-           alert("無法辨識影片 ID，請確認連結格式。");
-           return;
+          // 定義所有需要清空的欄位 ID
+          var ids = [
+            "youtube",
+            "Invidious",
+            "UAInvidious",
+            "DEInvidious",
+            "PrivatecoffeePiped",
+            "wirewaychPiped",
+            "NYCPiped",
+            "CALPiped",
+            "POLPiped",
+            "wirewaychRePiped",
+            "wirewaychdevRePiped",
+            "duckspartyHyperpipe",
+            "NYCHyperpipe",
+            "CALHyperpipe",
+            "POLHyperpipe",
+            "ytify",
+            "ytify2",
+            "ytifydev",
+            "cinemaphile",
+            "gjhyss",
+            "NSFWYouTube",
+            "NSFWYouTube2",
+            "YouTubeOnLoop",
+            "SafeShare",
+            "AstroTube",
+            "YMusic",
+            "shorturl",
+            "YTMusic",
+          ];
+
+          for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (el) el.value = "⚠️ 無法辨識影片 ID";
+            var linkEl = document.getElementById(ids[i] + (ids[i].indexOf("link") === -1 ? "link" : "")); // 簡單推算 link ID，你的命名規則有些有 link 有些是 link1/2... 建議手動處理或統一命名
+            // 為了保險起見，這邊針對你的命名規則簡單處理錯誤顯示即可，若要完美隱藏需逐一列出
+          }
+          alert("無法辨識影片 ID，請確認連結格式。");
+          return;
         }
 
         var vid = match[1];
@@ -266,8 +287,8 @@
         // 使用傳統字串串接 (相容 IE)
         var youtubeUrl = "https://yout-ube.com/watch?v=" + vid;
         var InvidiousUrl = "https://inv.nadeko.net/watch?v=" + vid;
-		var UAInvidiousUrl = "https://invidious.nerdvpn.de/watch?v=" + vid;
-		var DEInvidiousUrl = "https://yewtu.be/watch?v=" + vid;
+        var UAInvidiousUrl = "https://invidious.nerdvpn.de/watch?v=" + vid;
+        var DEInvidiousUrl = "https://yewtu.be/watch?v=" + vid;
         var PrivatecoffeePipedUrl = "https://piped.private.coffee/watch?v=" + vid;
         var wirewaychPipedUrl = "https://piped.wireway.ch/watch?v=" + vid;
         var NYCPipedUrl = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
@@ -280,16 +301,16 @@
         var CALHyperpipeUrl = "https://cal1.hp.ggtyler.dev/watch?v=" + vid;
         var POLHyperpipeUrl = "https://pol1.hp.ggtyler.dev/watch?v=" + vid;
         var ytifyUrl = "https://ytify.pp.ua/?s=" + vid;
-		var ytify2Url = "https://ytify-zeta.vercel.app/?s=" + vid;
-		var ytifydevUrl = "https://dev--ytify.netlify.app/?s=" + vid;
+        var ytify2Url = "https://ytify-zeta.vercel.app/?s=" + vid;
+        var ytifydevUrl = "https://dev--ytify.netlify.app/?s=" + vid;
         var cinemaphileUrl = "https://cinemaphile.com/watch?v=" + vid;
-		var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
-		var nsfwyoutubeUrl = "https://www.nsfwyoutube.com/watch?v=" + vid;
-		var nsfwyoutube2Url = "https://www.nsfwyoutube.com/watchmore?v=" + vid;
-		var YouTubeOnLoopUrl = "https://www.youtubeonloop.com/watch?v=" + vid;
-		var SafeShareUrl = "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
+        var gjhyssUrl = "https://m.gjhyss.com/share?v=" + vid;
+        var nsfwyoutubeUrl = "https://www.nsfwyoutube.com/watch?v=" + vid;
+        var nsfwyoutube2Url = "https://www.nsfwyoutube.com/watchmore?v=" + vid;
+        var YouTubeOnLoopUrl = "https://www.youtubeonloop.com/watch?v=" + vid;
+        var SafeShareUrl = "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
         var AstroTubeUrl = "https://at.ggtyler.dev/watch?v=" + vid;
-		var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
+        var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
         var shortUrl = "https://youtu.be/" + vid;
         var YTMusicUrl = "https://music.youtube.com/watch?v=" + vid;
 
@@ -297,12 +318,12 @@
         function setLink(textAreaId, linkId, url, isMusic) {
           var textArea = document.getElementById(textAreaId);
           var link = document.getElementById(linkId);
-          
+
           if (textArea) textArea.value = url;
           if (link) {
             link.href = url;
             // 處理 textContent vs innerText
-            if ('textContent' in link) {
+            if ("textContent" in link) {
               link.textContent = url;
             } else {
               link.innerText = url;
@@ -314,8 +335,8 @@
         // 執行填入
         setLink("youtube", "youtubelink", youtubeUrl);
         setLink("Invidious", "Invidiouslink", InvidiousUrl);
-		setLink("UAInvidious", "UAInvidiouslink", UAInvidiousUrl);
-		setLink("DEInvidious", "DEInvidiouslink", DEInvidiousUrl);
+        setLink("UAInvidious", "UAInvidiouslink", UAInvidiousUrl);
+        setLink("DEInvidious", "DEInvidiouslink", DEInvidiousUrl);
         setLink("PrivatecoffeePiped", "PrivatecoffeePipedlink", PrivatecoffeePipedUrl);
         setLink("wirewaychPiped", "wirewaychPipedlink", wirewaychPipedUrl);
         setLink("NYCPiped", "NYCPipedlink", NYCPipedUrl);
@@ -328,16 +349,16 @@
         setLink("CALHyperpipe", "CALHyperpipelink", CALHyperpipeUrl);
         setLink("POLHyperpipe", "POLHyperpipelink", POLHyperpipeUrl);
         setLink("ytify", "ytifylink", ytifyUrl);
-		setLink("ytify2", "ytify2link", ytify2Url);
-		setLink("ytifydev", "ytifydevlink", ytifydevUrl);
+        setLink("ytify2", "ytify2link", ytify2Url);
+        setLink("ytifydev", "ytifydevlink", ytifydevUrl);
         setLink("cinemaphile", "cinemaphilelink", cinemaphileUrl);
         setLink("gjhyss", "gjhysslink", gjhyssUrl);
-		setLink("NSFWYouTube", "NSFWYouTubelink", nsfwyoutubeUrl);
-		setLink("NSFWYouTube2", "NSFWYouTube2link", nsfwyoutube2Url);
-		setLink("YouTubeOnLoop", "YouTubeOnLooplink", YouTubeOnLoopUrl);
-		setLink("SafeShare", "SafeSharelink", SafeShareUrl);
+        setLink("NSFWYouTube", "NSFWYouTubelink", nsfwyoutubeUrl);
+        setLink("NSFWYouTube2", "NSFWYouTube2link", nsfwyoutube2Url);
+        setLink("YouTubeOnLoop", "YouTubeOnLooplink", YouTubeOnLoopUrl);
+        setLink("SafeShare", "SafeSharelink", SafeShareUrl);
         setLink("AstroTube", "AstroTubelink", AstroTubeUrl);
-		setLink("YMusic", "YMusiclink", YMusicUrl);
+        setLink("YMusic", "YMusiclink", YMusicUrl);
         setLink("shorturl", "shortURLlink", shortUrl);
         setLink("YTMusic", "YTMusiclink", YTMusicUrl);
       }
