@@ -287,34 +287,88 @@
         var vid = vidMatch ? vidMatch[1] : null;
         var list = listMatch ? listMatch[1] : null;
 
-        for (var i = 0; i < services.length; i++) {
-          var s = services[i];
+        var rawInput = document.getElementById("yt").value;
+        // 手動 Trim 兩端空白
+        var input = decodeURIComponent(rawInput.replace(/^\s+|\s+$/g, ""));
+        var radioMode = document.getElementById("radioMode").checked;
+        var statusEl = document.getElementById("status");
+
+        var vid = null;
+        var list = null;
+        statusEl.innerHTML = "";
+
+        // A. 智慧解析 (移植新版邏輯)
+        if (input.indexOf("http") !== 0 && input.indexOf(".") === -1) {
+          // 處理純 ID
+          if (input.indexOf("UC") === 0) {
+            list = "UU" + input.substring(2);
+            statusEl.innerHTML = "✅ 頻道 ID 已轉為播放清單";
+          } else if (/^(UU|PL|OL|RD)/.test(input)) {
+            list = input;
+          } else if (input.length === 11) {
+            vid = input;
+          }
+        } else {
+          // 處理網址
+          // 1. 短網址
+          var shortMatch = input.match(/youtu\.be\/([0-9A-Za-z_-]{11})/);
+          if (shortMatch) vid = shortMatch[1];
+          // 2. 頻道轉清單
+          var chanMatch = input.match(/\/channel\/(UC[0-9A-Za-z_-]+)/);
+          if (chanMatch) list = "UU" + chanMatch[1].substring(2);
+          // 3. 一般影片/Shorts/Live
+          var vMatch = input.match(/(?:v=|\/v\/|\/shorts\/|\/live\/|\/)([0-9A-Za-z_-]{11})/);
+          if (vMatch) vid = vMatch[1];
+          // 4. 播放清單 ID
+          var lMatch = input.match(/[?&]list=([A-Za-z0-9_-]+)/);
+          if (lMatch) list = lMatch[1];
+        }
+
+        // B. RD 邏輯還原 (關鍵：不需要 API 也能抓第一部片)
+        if (!vid && list && list.indexOf("RD") === 0 && list.length === 13) {
+          vid = list.substring(2);
+          statusEl.innerHTML = "✅ 已從合輯 ID 自動提取影片";
+        }
+
+        // C. 渲染結果
+        for (var j = 0; j < services.length; j++) {
+          var s = services[j];
           var url = "";
           var error = false;
 
-          if (s.mode === "standard") {
-            // 支援 v 和 list
-            if (vid && list) url = s.base + s.type + "?v=" + vid + "&list=" + list;
-            else if (vid) url = s.base + s.type + "?v=" + vid;
-            else if (list) url = s.base + "playlist?list=" + list;
-            else error = true;
-          } else if (s.mode === "vid_only") {
-            // 簡單接在後面，不支援 list
-            if (vid) url = s.base + s.type + "?v=" + vid;
-            else error = true;
-          } else if (s.mode === "SafeShare") {
-            // 強制用 title (像 SafeShare)
-            if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
-            else error = true; // 有 list 無 vid 也算錯誤
-          } else if (s.mode === "ytify") {
-            if (list) url = s.base + "?playlist=" + list;
-            else if (vid) url = s.base + "?s=" + vid;
-            else error = true;
-          } else if (s.mode === "short") {
-            if (vid && list) url = s.base + vid + "?list=" + list;
-            else if (vid) url = s.base + vid;
-            else if (list) url = "https://youtube.com/playlist?list=" + list;
-            else error = true;
+          // 優先判斷電台模式
+          if (radioMode && vid && s.mode !== "vid_only" && s.mode !== "SafeShare") {
+            if (s.mode === "short") url = s.base + vid + "?list=RD" + vid + "&start_radio=1";
+            else if (s.mode === "ytify")
+              url = s.base + "?playlist=RD" + vid; //url = s.base + "?s=" + vid;
+            else url = s.base + s.type + "?v=" + vid + "&list=RD" + vid;
+          }
+          // 否則走一般模式
+          else {
+            if (s.mode === "standard") {
+              // 支援 v 和 list
+              if (vid && list) url = s.base + s.type + "?v=" + vid + "&list=" + list;
+              else if (vid) url = s.base + s.type + "?v=" + vid;
+              else if (list) url = s.base + "playlist?list=" + list;
+              else error = true;
+            } else if (s.mode === "vid_only") {
+              // 簡單接在後面，不支援 list
+              if (vid) url = s.base + s.type + "?v=" + vid;
+              else error = true;
+            } else if (s.mode === "SafeShare") {
+              // 強制用 title (像 SafeShare)
+              if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
+              else error = true; // 有 list 無 vid 也算錯誤
+            } else if (s.mode === "ytify") {
+              if (list) url = s.base + "?playlist=" + list;
+              else if (vid) url = s.base + "?s=" + vid;
+              else error = true;
+            } else if (s.mode === "short") {
+              if (vid && list) url = s.base + vid + "?list=" + list;
+              else if (vid) url = s.base + vid;
+              else if (list) url = "https://youtube.com/playlist?list=" + list;
+              else error = true;
+            }
           }
 
           var textEl = document.getElementById("text_" + s.name);
