@@ -39,18 +39,34 @@
         width: 100%; /* 強制填滿 */
         box-sizing: border-box; /* 防止 padding 撐破寬度 */
       }
+      /* 電台模式開關樣式 */
+      .radio-option {
+        margin-top: 0.5em;
+        background: #f0f0f0;
+        padding: 5px;
+        border-radius: 4px;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .radio-option input {
+        width: auto;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
     <h2>YouTube 轉換器</h2>
     <form onsubmit="convert(); return false;">
       <div class="result-block">
-        <label>請貼上 YouTube/YouTube Music 連結：</label><br />
+        <label>請貼上 YouTube/YouTube Music 連結、頻道ID 或 播放清單ID：</label><br />
         <input id="yt" placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
+        <label class="radio-option"> <input type="checkbox" id="radioMode" />音樂合輯/電台 (RD)</label>
         <input type="submit" value="轉換" />
       </div>
     </form>
 
+    <div id="status" style="font-weight: bold; margin-top: 0.5em"></div>
     <div id="results-container"></div>
 
     <hr />
@@ -71,42 +87,42 @@
           label: "youtube 分享網址：",
           base: "https://yout-ube.com/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         {
           name: "Invidious",
           label: "Invidious 分享網址：",
           base: "https://inv.nadeko.net/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         {
           name: "UAInvidious",
           label: "Invidious (UA) 分享網址：",
           base: "https://invidious.nerdvpn.de/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         {
           name: "DEInvidious",
           label: "Invidious (DE) 分享網址：",
           base: "https://yewtu.be/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         {
           name: "PrivatecoffeePiped",
           label: "Piped 分享網址：",
           base: "https://piped.private.coffee/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         {
           name: "wirewaychPiped",
           label: "Piped 分享網址：",
           base: "https://piped.wireway.ch/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
         // 隱藏的項目可以用 hidden: true 標記，或者直接註解掉
         {
@@ -115,7 +131,7 @@
           base: "https://nyc1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         {
           name: "CALPiped",
@@ -123,7 +139,7 @@
           base: "https://cal1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         {
           name: "POLPiped",
@@ -131,7 +147,7 @@
           base: "https://pol1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         // mode: "vid_only_allow_param" 表示強制只抓 v，忽略 list 參數但用標準格式
         {
@@ -139,14 +155,14 @@
           label: "RePiped 分享網址：",
           base: "https://repiped.wireway.ch/",
           type: "video.html",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "wirewaychdevRePiped",
           label: "RePiped (dev) 分享網址：",
           base: "https://repiped-development-c7df8a.onwireway.online/",
           type: "video.html",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "duckspartyHyperpipe",
@@ -154,7 +170,7 @@
           base: "https://hyperpipe.ducks.party/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         {
           name: "NYCHyperpipe",
@@ -162,7 +178,7 @@
           base: "https://nyc1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         {
           name: "CALHyperpipe",
@@ -170,7 +186,7 @@
           base: "https://cal1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         {
           name: "POLHyperpipe",
@@ -178,7 +194,7 @@
           base: "https://pol1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
-          hidden: true
+          hidden: true,
         },
         { name: "ytify", label: "ytify 分享網址：", base: "https://ytify.pp.ua/", mode: "ytify" },
         { name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
@@ -188,41 +204,41 @@
           label: "cinemaphile.com 分享網址：",
           base: "https://cinemaphile.com/",
           type: "watch",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "m.gjhyss.com",
           label: "m.gjhyss.com 分享網址：",
           base: "https://m.gjhyss.com/",
           type: "share",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "NSFW YouTube",
           label: "NSFW YouTube 分享網址：",
           base: "https://www.nsfwyoutube.com/",
           type: "watch",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "NSFW YouTube 2",
           label: "NSFW YouTube 分享網址：",
           base: "https://www.nsfwyoutube.com/",
           type: "watchmore",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "YouTubeOnLoop",
           label: "YouTubeOnLoop 分享網址：",
           base: "https://www.youtubeonloop.com/",
           type: "watch",
-          mode: "vid_only"
+          mode: "vid_only",
         },
         {
           name: "SafeShare",
           label: "SafeShare 分享網址：",
           base: "https://embed.safesha.re/?video_id=",
-          mode: "SafeShare"
+          mode: "SafeShare",
         },
         {
           name: "AstroTube",
@@ -230,7 +246,7 @@
           base: "https://at.ggtyler.dev/",
           type: "watch",
           mode: "vid_only",
-          hidden: true
+          hidden: true,
         },
         { name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
         { name: "shorturl", label: "最短 YouTube 連結：", base: "https://youtu.be/", mode: "short" },
@@ -239,7 +255,7 @@
           label: "YouTube Music 連結：",
           base: "https://music.youtube.com/",
           type: "watch",
-          mode: "standard"
+          mode: "standard",
         },
       ];
 
