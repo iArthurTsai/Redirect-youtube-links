@@ -281,12 +281,6 @@
       }
 
       function convert() {
-        var input = document.getElementById("yt").value;
-        var vidMatch = input.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
-        var listMatch = input.match(/[?&]list=([0-9A-Za-z_-]+)/);
-        var vid = vidMatch ? vidMatch[1] : null;
-        var list = listMatch ? listMatch[1] : null;
-
         var rawInput = document.getElementById("yt").value;
         // 手動 Trim 兩端空白
         var input = decodeURIComponent(rawInput.replace(/^\s+|\s+$/g, ""));
@@ -320,14 +314,17 @@
           var vMatch = input.match(/(?:v=|\/v\/|\/shorts\/|\/live\/|\/)([0-9A-Za-z_-]{11})/);
           if (vMatch) vid = vMatch[1];
           // 4. 播放清單 ID
-          var lMatch = input.match(/[?&]list=([A-Za-z0-9_-]+)/);
+          var lMatch = input.match(/[?&]list=([0-9A-Za-z_-]+)/);
           if (lMatch) list = lMatch[1];
         }
+
+        // 防誤判：如果影片 ID 抓到的是頻道開頭，則清除它
+        if (vid && vid.indexOf("UC") === 0) vid = null;
 
         // B. RD 邏輯還原 (關鍵：不需要 API 也能抓第一部片)
         if (!vid && list && list.indexOf("RD") === 0 && list.length === 13) {
           vid = list.substring(2);
-          statusEl.innerHTML = "✅ 已從合輯 ID 自動提取影片";
+          statusEl.innerHTML = "✅ RD 邏輯還原";
         }
 
         // C. 渲染結果
