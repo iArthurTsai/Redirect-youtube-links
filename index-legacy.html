@@ -110,6 +110,7 @@
           type: "watch",
           mode: "standard",
         },
+        { name: "Poke", label: "Poke 分享網址：", base: "https://poketube.fun/", mode: "Poke" },
         {
           name: "PrivatecoffeePiped",
           label: "Piped 分享網址：",
@@ -338,6 +339,7 @@
             if (s.mode === "short") url = s.base + vid + "?list=RD" + vid + "&start_radio=1";
             else if (s.mode === "ytify")
               url = s.base + "?playlist=RD" + vid; //url = s.base + "?s=" + vid;
+            else if (s.mode === "Poke") url = s.base + "playlist?list=RD" + vid;
             else url = s.base + s.type + "?v=" + vid + "&list=RD" + vid;
           }
           // 否則走一般模式
@@ -359,6 +361,10 @@
             } else if (s.mode === "ytify") {
               if (list) url = s.base + "?playlist=" + list;
               else if (vid) url = s.base + "?s=" + vid;
+              else error = true;
+            } else if (s.mode === "Poke") {
+              if (list) url = s.base + "playlist?list=" + list;
+              else if (vid) url = s.base + "watch?v=" + vid;
               else error = true;
             } else if (s.mode === "short") {
               if (vid && list) url = s.base + vid + "?list=" + list;
