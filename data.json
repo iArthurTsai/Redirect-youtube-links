@@ -1,98 +1,106 @@
 [
     {
-        "url": "https://pipedapi.wireway.ch",
-        "type": "piped",
-        "score": 100,
-        "latency": "341ms",
-        "cors": true,
-        "last_updated": "2026-02-27 11:32:42"
-    },
-    {
         "url": "https://yt.omada.cafe",
         "type": "invidious",
         "score": 70,
-        "latency": "1578ms",
+        "latency": "3204ms",
         "cors": true,
-        "last_updated": "2026-02-27 11:32:31"
+        "last_updated": "2026-02-27 12:58:45"
     },
     {
         "url": "https://echostreamz.com",
         "type": "invidious",
         "score": 70,
-        "latency": "1991ms",
+        "latency": "2592ms",
         "cors": true,
-        "last_updated": "2026-02-27 11:32:36"
+        "last_updated": "2026-02-27 12:58:52"
     },
     {
-        "url": "https://inv.nadeko.net",
-        "type": "invidious",
-        "score": 30,
-        "latency": "386ms",
-        "cors": false,
-        "last_updated": "2026-02-27 11:32:06"
+        "url": "https://pipedapi.wireway.ch",
+        "type": "piped",
+        "score": 70,
+        "latency": "2327ms",
+        "cors": true,
+        "last_updated": "2026-02-27 12:58:56"
     },
     {
         "url": "https://invidious.reallyaweso.me",
         "type": "invidious",
         "score": 30,
-        "latency": "320ms",
+        "latency": "497ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:29"
+        "last_updated": "2026-02-27 12:58:42"
+    },
+    {
+        "url": "https://invidious.materialio.us",
+        "type": "invidious",
+        "score": 30,
+        "latency": "465ms",
+        "cors": false,
+        "last_updated": "2026-02-27 12:58:50"
     },
     {
         "url": "https://pipedapi.kavin.rocks",
         "type": "piped",
         "score": 30,
-        "latency": "378ms",
+        "latency": "155ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:36"
+        "last_updated": "2026-02-27 12:58:52"
     },
     {
-        "url": "https://pipedapi.dedyn.io",
-        "type": "piped",
-        "score": 30,
-        "latency": "483ms",
+        "url": "https://inv.nadeko.net",
+        "type": "invidious",
+        "score": 15,
+        "latency": "521ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:42"
+        "last_updated": "2026-02-27 12:58:13"
     },
     {
         "url": "https://invidious.tiekoetter.com",
         "type": "invidious",
         "score": 15,
-        "latency": "601ms",
+        "latency": "763ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:29"
+        "last_updated": "2026-02-27 12:58:42"
     },
     {
         "url": "https://invidious.nerdvpn.de",
         "type": "invidious",
         "score": 15,
-        "latency": "552ms",
+        "latency": "742ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:31"
+        "last_updated": "2026-02-27 12:58:46"
     },
     {
         "url": "https://yewtu.be",
         "type": "invidious",
         "score": 15,
-        "latency": "782ms",
+        "latency": "1403ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:32"
+        "last_updated": "2026-02-27 12:58:47"
     },
     {
         "url": "https://invidious.f5.si",
         "type": "invidious",
         "score": 15,
-        "latency": "804ms",
+        "latency": "933ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:34"
+        "last_updated": "2026-02-27 12:58:49"
     },
     {
-        "url": "https://invidious.materialio.us",
-        "type": "invidious",
+        "url": "https://api.piped.private.coffee",
+        "type": "piped",
         "score": 15,
-        "latency": "563ms",
+        "latency": "1233ms",
         "cors": false,
-        "last_updated": "2026-02-27 11:32:34"
+        "last_updated": "2026-02-27 12:58:54"
+    },
+    {
+        "url": "https://pipedapi.dedyn.io",
+        "type": "piped",
+        "score": 15,
+        "latency": "610ms",
+        "cors": false,
+        "last_updated": "2026-02-27 12:58:56"
     }
 ]
