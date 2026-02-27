@@ -117,6 +117,7 @@
         { id: "Invidious", label: "Invidious", base: "https://inv.nadeko.net/", type: "watch" },
         { id: "UAInvidious", label: "Invidious (UA)", base: "https://invidious.nerdvpn.de/", type: "watch" },
         { id: "DEInvidious", label: "Invidious (DE)", base: "https://yewtu.be/", type: "watch" },
+        { id: "Poke", label: "Poke", base: "https://poketube.fun/", mode: "Poke" },
         { id: "PrivatecoffeePiped", label: "Piped", base: "https://piped.private.coffee/", type: "watch" },
         { id: "wirewaychPiped", label: "Piped", base: "https://piped.wireway.ch/", type: "watch" },
         { id: "NYCPiped", label: "Piped (NYC)", base: "https://nyc1.pi.ggtyler.dev/", type: "watch", hidden: true },
@@ -352,7 +353,9 @@
               url = `${base}${vid}?list=RD${vid}&start_radio=1`;
             } else if (mode === "ytify") {
               //url = `${base}?s=${vid}`;
-			  url = `${base}?playlist=RD${vid}`;
+              url = `${base}?playlist=RD${vid}`;
+            } else if (mode === "Poke") {
+              url = `${base}playlist?list=RD${vid}`;
             } else if (mode === "vid") {
               // SafeShare 等純影片服務，電台參數通常無效，故維持原狀
               url = `${base}${type ? type : ""}${vid}${suffix || ""}`;
@@ -370,6 +373,8 @@
                   : null;
             } else if (mode === "ytify") {
               url = list ? `${base}?playlist=${list}` : vid ? `${base}?s=${vid}` : null;
+            } else if (mode === "Poke") {
+              url = list ? `${base}playlist?list=${list}` : vid ? `${base}watch?v=${vid}` : null;
             } else if (mode === "vid") {
               // 關鍵修改：先檢查有沒有 type (如 share)，再拼接 vid，最後補上 suffix (SafeShare 通行證)
               url = vid ? `${base}${type ? type : ""}${vid}${suffix || ""}` : null;
