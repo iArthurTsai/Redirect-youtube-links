@@ -74,6 +74,12 @@
     </div>
 
     <div class="result-block">
+      <label style="display: inline">Poke 分享網址：</label>
+      <a id="Pokelink" href="#" target="_blank" style="display: none">點我前往影片</a>
+      <textarea id="Poke" rows="1" readonly></textarea>
+    </div>
+
+    <div class="result-block">
       <label style="display: inline">Piped 分享網址：</label>
       <a id="PrivatecoffeePipedlink" href="#" target="_blank" style="display: none">點我前往影片</a>
       <textarea id="PrivatecoffeePiped" rows="1" readonly></textarea>
@@ -246,6 +252,7 @@
             "Invidious",
             "UAInvidious",
             "DEInvidious",
+            "Poke",
             "PrivatecoffeePiped",
             "wirewaychPiped",
             "NYCPiped",
@@ -289,6 +296,7 @@
         var InvidiousUrl = "https://inv.nadeko.net/watch?v=" + vid;
         var UAInvidiousUrl = "https://invidious.nerdvpn.de/watch?v=" + vid;
         var DEInvidiousUrl = "https://yewtu.be/watch?v=" + vid;
+        var PokeUrl = "https://poketube.fun/watch?v=" + vid;
         var PrivatecoffeePipedUrl = "https://piped.private.coffee/watch?v=" + vid;
         var wirewaychPipedUrl = "https://piped.wireway.ch/watch?v=" + vid;
         var NYCPipedUrl = "https://nyc1.pi.ggtyler.dev/watch?v=" + vid;
@@ -308,7 +316,8 @@
         var nsfwyoutubeUrl = "https://www.nsfwyoutube.com/watch?v=" + vid;
         var nsfwyoutube2Url = "https://www.nsfwyoutube.com/watchmore?v=" + vid;
         var YouTubeOnLoopUrl = "https://www.youtubeonloop.com/watch?v=" + vid;
-        var SafeShareUrl = "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
+        var SafeShareUrl =
+          "https://embed.safesha.re/?video_id=" + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
         var AstroTubeUrl = "https://at.ggtyler.dev/watch?v=" + vid;
         var YMusicUrl = "https://ymusicapp.com/watch?v=" + vid;
         var shortUrl = "https://youtu.be/" + vid;
@@ -337,6 +346,7 @@
         setLink("Invidious", "Invidiouslink", InvidiousUrl);
         setLink("UAInvidious", "UAInvidiouslink", UAInvidiousUrl);
         setLink("DEInvidious", "DEInvidiouslink", DEInvidiousUrl);
+        setLink("Poke", "Pokelink", PokeUrl);
         setLink("PrivatecoffeePiped", "PrivatecoffeePipedlink", PrivatecoffeePipedUrl);
         setLink("wirewaychPiped", "wirewaychPipedlink", wirewaychPipedUrl);
         setLink("NYCPiped", "NYCPipedlink", NYCPipedUrl);
