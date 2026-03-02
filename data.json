@@ -3,96 +3,112 @@
         "url": "https://yt.omada.cafe",
         "type": "invidious",
         "score": 70,
-        "latency": "1576ms",
+        "latency": "2057ms",
         "cors": true,
-        "last_updated": "2026-03-02 06:58:06"
+        "last_updated": "2026-03-02 07:51:56"
+    },
+    {
+        "url": "https://pipedapi.wireway.ch",
+        "type": "piped",
+        "score": 70,
+        "latency": "1960ms",
+        "cors": true,
+        "last_updated": "2026-03-02 07:52:02"
     },
     {
         "url": "https://inv.nadeko.net",
         "type": "invidious",
         "score": 30,
-        "latency": "430ms",
+        "latency": "405ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:57:39"
-    },
-    {
-        "url": "https://invidious.tiekoetter.com",
-        "type": "invidious",
-        "score": 30,
-        "latency": "383ms",
-        "cors": false,
-        "last_updated": "2026-03-02 06:58:04"
+        "last_updated": "2026-03-02 07:51:32"
     },
     {
         "url": "https://invidious.reallyaweso.me",
         "type": "invidious",
         "score": 30,
-        "latency": "331ms",
+        "latency": "314ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:05"
+        "last_updated": "2026-03-02 07:51:54"
     },
     {
         "url": "https://echostreamz.com",
         "type": "invidious",
         "score": 30,
-        "latency": "480ms",
+        "latency": "403ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:10"
+        "last_updated": "2026-03-02 07:51:59"
     },
     {
         "url": "https://pipedapi.kavin.rocks",
         "type": "piped",
         "score": 30,
-        "latency": "295ms",
+        "latency": "92ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:10"
+        "last_updated": "2026-03-02 07:51:59"
+    },
+    {
+        "url": "https://pipedapi.dedyn.io",
+        "type": "piped",
+        "score": 30,
+        "latency": "457ms",
+        "cors": false,
+        "last_updated": "2026-03-02 07:52:03"
     },
     {
         "url": "https://iv.melmac.space",
         "type": "invidious",
         "score": 15,
-        "latency": "636ms",
+        "latency": "594ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:57:50"
+        "last_updated": "2026-03-02 07:51:43"
+    },
+    {
+        "url": "https://invidious.tiekoetter.com",
+        "type": "invidious",
+        "score": 15,
+        "latency": "561ms",
+        "cors": false,
+        "last_updated": "2026-03-02 07:51:53"
+    },
+    {
+        "url": "https://invidious.nerdvpn.de",
+        "type": "invidious",
+        "score": 15,
+        "latency": "645ms",
+        "cors": false,
+        "last_updated": "2026-03-02 07:51:56"
     },
     {
         "url": "https://yewtu.be",
         "type": "invidious",
         "score": 15,
-        "latency": "792ms",
+        "latency": "786ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:08"
+        "last_updated": "2026-03-02 07:51:57"
     },
     {
         "url": "https://invidious.f5.si",
         "type": "invidious",
         "score": 15,
-        "latency": "1101ms",
+        "latency": "890ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:09"
+        "last_updated": "2026-03-02 07:51:58"
     },
     {
         "url": "https://invidious.materialio.us",
         "type": "invidious",
         "score": 15,
-        "latency": "569ms",
+        "latency": "579ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:10"
+        "last_updated": "2026-03-02 07:51:59"
     },
     {
         "url": "https://api.piped.private.coffee",
         "type": "piped",
         "score": 15,
-        "latency": "814ms",
+        "latency": "1030ms",
         "cors": false,
-        "last_updated": "2026-03-02 06:58:11"
-    },
-    {
-        "url": "https://pipedapi.dedyn.io",
-        "type": "piped",
-        "score": 15,
-        "latency": "755ms",
-        "cors": false,
-        "last_updated": "2026-03-02 06:58:22"
+        "last_updated": "2026-03-02 07:52:00"
     }
 ]
