@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <title>YouTube 轉換器</title>
     <meta charset="utf-8" />
+    <title>YouTube 轉換器</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
@@ -67,7 +67,7 @@
     </form>
 
     <div id="status" style="font-weight: bold; margin-top: 0.5em"></div>
-    <div id="results-container"></div>
+    <div id="results"></div>
 
     <hr />
     <div class="result-block">
@@ -80,71 +80,74 @@
     </div>
 
     <script>
+      // 1. 環境檢測：是否支援 Fetch (API 用)
+      var hasFetch = !!window.fetch;
+
       // 定義所有服務的設定
       var services = [
         {
-          name: "youtube",
-          label: "youtube 分享網址：",
+          id: "youtube",
+          label: "youtube",
           base: "https://yout-ube.com/",
           type: "watch",
           mode: "standard",
         },
         {
-          name: "Invidious",
-          label: "Invidious 分享網址：",
+          id: "Invidious",
+          label: "Invidious",
           base: "https://inv.nadeko.net/",
           type: "watch",
           mode: "standard",
         },
         {
-          name: "UAInvidious",
-          label: "Invidious (UA) 分享網址：",
+          id: "UAInvidious",
+          label: "Invidious (UA)",
           base: "https://invidious.nerdvpn.de/",
           type: "watch",
           mode: "standard",
         },
         {
-          name: "DEInvidious",
-          label: "Invidious (DE) 分享網址：",
+          id: "DEInvidious",
+          label: "Invidious (DE)",
           base: "https://yewtu.be/",
           type: "watch",
           mode: "standard",
         },
-        { name: "Poke", label: "Poke 分享網址：", base: "https://poketube.fun/", mode: "Poke" },
+        { id: "Poke", label: "Poke", base: "https://poketube.fun/", mode: "Poke" },
         {
-          name: "PrivatecoffeePiped",
-          label: "Piped 分享網址：",
+          id: "PrivatecoffeePiped",
+          label: "Piped",
           base: "https://piped.private.coffee/",
           type: "watch",
           mode: "standard",
         },
         {
-          name: "wirewaychPiped",
-          label: "Piped 分享網址：",
+          id: "wirewaychPiped",
+          label: "Piped",
           base: "https://piped.wireway.ch/",
           type: "watch",
           mode: "standard",
         },
         // 隱藏的項目可以用 hidden: true 標記，或者直接註解掉
         {
-          name: "NYCPiped",
-          label: "Piped (NYC) 分享網址：",
+          id: "NYCPiped",
+          label: "Piped (NYC)",
           base: "https://nyc1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
           hidden: true,
         },
         {
-          name: "CALPiped",
-          label: "Piped (CAL) 分享網址：",
+          id: "CALPiped",
+          label: "Piped (CAL)",
           base: "https://cal1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
           hidden: true,
         },
         {
-          name: "POLPiped",
-          label: "Piped (POL) 分享網址：",
+          id: "POLPiped",
+          label: "Piped (POL)",
           base: "https://pol1.pi.ggtyler.dev/",
           type: "watch",
           mode: "standard",
@@ -152,245 +155,318 @@
         },
         // mode: "vid_only_allow_param" 表示強制只抓 v，忽略 list 參數但用標準格式
         {
-          name: "wirewaychRePiped",
-          label: "RePiped 分享網址：",
+          id: "wirewaychRePiped",
+          label: "RePiped",
           base: "https://repiped.wireway.ch/",
           type: "video.html",
           mode: "vid_only",
         },
         {
-          name: "wirewaychdevRePiped",
-          label: "RePiped (dev) 分享網址：",
+          id: "wirewaychdevRePiped",
+          label: "RePiped (dev)",
           base: "https://repiped-development-c7df8a.onwireway.online/",
           type: "video.html",
           mode: "vid_only",
         },
         {
-          name: "duckspartyHyperpipe",
-          label: "Hyperpipe 分享網址：",
+          id: "duckspartyHyperpipe",
+          label: "Hyperpipe",
           base: "https://hyperpipe.ducks.party/",
           type: "watch",
           mode: "standard",
           hidden: true,
+          isMusic: true,
         },
         {
-          name: "NYCHyperpipe",
-          label: "Hyperpipe (NYC) 分享網址：",
+          id: "NYCHyperpipe",
+          label: "Hyperpipe (NYC)",
           base: "https://nyc1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
           hidden: true,
+          isMusic: true,
         },
         {
-          name: "CALHyperpipe",
-          label: "Hyperpipe (CAL) 分享網址：",
+          id: "CALHyperpipe",
+          label: "Hyperpipe (CAL)",
           base: "https://cal1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
           hidden: true,
+          isMusic: true,
         },
         {
-          name: "POLHyperpipe",
-          label: "Hyperpipe (POL) 分享網址：",
+          id: "POLHyperpipe",
+          label: "Hyperpipe (POL)",
           base: "https://pol1.hp.ggtyler.dev/",
           type: "watch",
           mode: "standard",
           hidden: true,
+          isMusic: true,
         },
-        { name: "ytify", label: "ytify 分享網址：", base: "https://ytify.pp.ua/", mode: "ytify" },
-        { name: "ytify2", label: "ytify2 分享網址：", base: "https://ytify-zeta.vercel.app/", mode: "ytify" },
-        { name: "ytifydev", label: "ytify (dev) 分享網址：", base: "https://dev--ytify.netlify.app/", mode: "ytify" },
+        { id: "ytify", label: "ytify", base: "https://ytify.pp.ua/", mode: "ytify", isMusic: true },
         {
-          name: "cinemaphile.com",
-          label: "cinemaphile.com 分享網址：",
+          id: "ytify2",
+          label: "ytify2",
+          base: "https://ytify-zeta.vercel.app/",
+          mode: "ytify",
+          isMusic: true,
+        },
+        {
+          id: "ytifydev",
+          label: "ytify (dev)",
+          base: "https://dev--ytify.netlify.app/",
+          mode: "ytify",
+          isMusic: true,
+        },
+        {
+          id: "cinemaphile.com",
+          label: "cinemaphile.com",
           base: "https://cinemaphile.com/",
           type: "watch",
           mode: "vid_only",
         },
         {
-          name: "m.gjhyss.com",
-          label: "m.gjhyss.com 分享網址：",
+          id: "m.gjhyss.com",
+          label: "m.gjhyss.com",
           base: "https://m.gjhyss.com/",
           type: "share",
           mode: "vid_only",
         },
         {
-          name: "NSFW YouTube",
-          label: "NSFW YouTube 分享網址：",
+          id: "NSFW YouTube",
+          label: "NSFW YouTube",
           base: "https://www.nsfwyoutube.com/",
           type: "watch",
           mode: "vid_only",
         },
         {
-          name: "NSFW YouTube 2",
-          label: "NSFW YouTube 分享網址：",
+          id: "NSFW YouTube 2",
+          label: "NSFW YouTube",
           base: "https://www.nsfwyoutube.com/",
           type: "watchmore",
           mode: "vid_only",
         },
         {
-          name: "YouTubeOnLoop",
-          label: "YouTubeOnLoop 分享網址：",
+          id: "YouTubeOnLoop",
+          label: "YouTubeOnLoop",
           base: "https://www.youtubeonloop.com/",
           type: "watch",
           mode: "vid_only",
         },
         {
-          name: "SafeShare",
-          label: "SafeShare 分享網址：",
+          id: "SafeShare",
+          label: "SafeShare",
           base: "https://embed.safesha.re/?video_id=",
           mode: "SafeShare",
         },
         {
-          name: "AstroTube",
-          label: "AstroTube 分享網址：",
+          id: "AstroTube",
+          label: "AstroTube",
           base: "https://at.ggtyler.dev/",
           type: "watch",
           mode: "vid_only",
           hidden: true,
         },
-        { name: "YMusic", label: "YMusic 分享網址：", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
-        { name: "shorturl", label: "最短 YouTube 連結：", base: "https://youtu.be/", mode: "short" },
+        { id: "YMusic", label: "YMusic", base: "https://ymusicapp.com/", type: "watch", mode: "standard" },
+        { id: "shorturl", label: "最短 YouTube 連結：", base: "https://youtu.be/", mode: "short" },
         {
-          name: "YTMusic",
-          label: "YouTube Music 連結：",
+          id: "YTMusic",
+          label: "YouTube Music",
           base: "https://music.youtube.com/",
           type: "watch",
           mode: "standard",
+          isMusic: true,
         },
       ];
 
       // 初始化 HTML 結構
-      var container = document.getElementById("results-container");
+      var resultsContainer = document.getElementById("results");
+      var resultsHtml = "";
+
       for (var i = 0; i < services.length; i++) {
         var s = services[i];
-        var div = document.createElement("div");
-        div.className = "result-block";
-        if (s.hidden) div.style.display = "none";
 
-        div.innerHTML =
-          '<label style="display: inline;">' +
+        resultsHtml +=
+          '<div class="result-block"' +
+          (s.hidden ? ' style="display:none"' : "") +
+          ">" +
+          "<label>" +
           s.label +
-          "</label>" +
+          " 分享網址：</label>" +
           '<a id="link_' +
-          s.name +
-          '" href="#" target="_blank" style="display: none;">點我前往</a>' +
-          '<textarea id="text_' +
-          s.name +
-          '" rows="1" readonly></textarea>';
-        container.appendChild(div);
+          s.id +
+          '" href="#" target="_blank" style="display: none;">點我前往' +
+          (s.isMusic ? "音樂" : "影片") +
+          "</a>" +
+          '<textarea id="val_' +
+          s.id +
+          '" rows="1" readonly></textarea>' +
+          "</div>";
+      }
+      resultsContainer.innerHTML = resultsHtml;
+
+      // 現代 API 救援 (僅在支援 fetch 的環境被呼叫)
+      function apiFetch(listId, statusEl, callback) {
+        var nodes = ["https://api.piped.private.coffee", "https://pipedapi.wireway.ch"];
+        var index = 0;
+        function tryNext() {
+          if (index >= nodes.length) {
+            callback(null);
+            return;
+          }
+          statusEl.innerHTML = "⏳ 正在嘗試遠端解析影片 ID...";
+          fetch(nodes[index] + "/playlists/" + listId)
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (d) {
+              var vid = d.relatedStreams && d.relatedStreams[0] ? d.relatedStreams[0].url.split("v=")[1] : null;
+              if (vid) callback(vid, nodes[index]);
+              else {
+                index++;
+                tryNext();
+              }
+            })
+            .catch(function () {
+              index++;
+              tryNext();
+            });
+        }
+        tryNext();
       }
 
       function convert() {
-        var rawInput = document.getElementById("yt").value;
-        // 手動 Trim 兩端空白
+        var inputEl = document.getElementById("yt"),
+          statusEl = document.getElementById("status");
+        var rawInput = inputEl.value;
         var input = decodeURIComponent(rawInput.replace(/^\s+|\s+$/g, ""));
         var radioMode = document.getElementById("radioMode").checked;
-        var statusEl = document.getElementById("status");
+        var vid = null,
+          list = null;
 
-        var vid = null;
-        var list = null;
         statusEl.innerHTML = "";
+        statusEl.style.color = "#d32f2f";
 
-        // A. 智慧解析 (移植新版邏輯)
+        // A. 本地解析 (所有瀏覽器通用)
         if (input.indexOf("http") !== 0 && input.indexOf(".") === -1) {
           // 處理純 ID
           if (input.indexOf("UC") === 0) {
             list = "UU" + input.substring(2);
             statusEl.innerHTML = "✅ 頻道 ID 已轉為播放清單";
-          } else if (/^(UU|PL|OL|RD)/.test(input)) {
-            list = input;
-          } else if (input.length === 11) {
-            vid = input;
-          }
+          } else if (/^(UU|PL|OL|RD)/.test(input)) list = input;
+          else if (input.length === 11) vid = input;
         } else {
-          // 處理網址
-          // 1. 短網址
-          var shortMatch = input.match(/youtu\.be\/([0-9A-Za-z_-]{11})/);
-          if (shortMatch) vid = shortMatch[1];
-          // 2. 頻道轉清單
-          var chanMatch = input.match(/\/channel\/(UC[0-9A-Za-z_-]+)/);
-          if (chanMatch) list = "UU" + chanMatch[1].substring(2);
-          // 3. 一般影片/Shorts/Live
-          var vMatch = input.match(/(?:v=|\/v\/|\/shorts\/|\/live\/|\/)([0-9A-Za-z_-]{11})/);
-          if (vMatch) vid = vMatch[1];
-          // 4. 播放清單 ID
-          var lMatch = input.match(/[?&]list=([0-9A-Za-z_-]+)/);
-          if (lMatch) list = lMatch[1];
+          // 1. 一般影片/Shorts/Live
+          var vM = input.match(/(?:v=|\/v\/|\/shorts\/|\/live\/|\/)([0-9A-Za-z_-]{11})/);
+          if (vM) vid = vM[1];
+          // 2. 播放清單 ID
+          var lM = input.match(/[?&]list=([A-Za-z0-9_-]+)/);
+          if (lM) list = lM[1];
+          // 3. 短網址
+          var sM = input.match(/youtu\.be\/([0-9A-Za-z_-]{11})/);
+          if (sM) vid = sM[1];
+          // 4. 頻道轉清單
+          var cM = input.match(/\/channel\/(UC[0-9A-Za-z_-]+)/);
+          if (cM) list = "UU" + cM[1].substring(2);
         }
 
         // 防誤判：如果影片 ID 抓到的是頻道開頭，則清除它
         if (vid && vid.indexOf("UC") === 0) vid = null;
 
-        // B. RD 邏輯還原 (關鍵：不需要 API 也能抓第一部片)
-        if (!vid && list && list.indexOf("RD") === 0 && list.length === 13) {
-          vid = list.substring(2);
-          statusEl.innerHTML = "✅ RD 邏輯還原";
+        // B. 救援與渲染結果
+        function render() {
+          for (var j = 0; j < services.length; j++) {
+            var s = services[j],
+              url = null,
+              error = false;
+            // 優先判斷電台模式
+            if (radioMode && vid && s.mode !== "vid_only" && s.mode !== "SafeShare") {
+              if (s.mode === "short") url = s.base + vid + "?list=RD" + vid + "&start_radio=1";
+              else if (s.mode === "ytify") url = s.base + "?playlist=RD" + vid;
+              else if (s.mode === "Poke") url = s.base + "playlist?list=RD" + vid;
+              else url = s.base + s.type + "?v=" + vid + "&list=RD" + vid;
+            } else {
+              if (s.mode === "standard") {
+                // 支援 v 和 list
+                if (vid && list) url = s.base + s.type + "?v=" + vid + "&list=" + list;
+                else if (vid) url = s.base + s.type + "?v=" + vid;
+                else if (list) url = s.base + "playlist?list=" + list;
+                else error = true;
+              } else if (s.mode === "vid_only") {
+                // 簡單接在後面，不支援 list
+                if (vid) url = s.base + s.type + "?v=" + vid;
+                else error = true;
+              } else if (s.mode === "SafeShare") {
+                // 強制用 title (像 SafeShare)
+                if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
+                else error = true; // 有 list 無 vid 也算錯誤
+              } else if (s.mode === "ytify") {
+                if (list) url = s.base + "?playlist=" + list;
+                else if (vid) url = s.base + "?s=" + vid;
+                else error = true;
+              } else if (s.mode === "Poke") {
+                if (list) url = s.base + "playlist?list=" + list;
+                else if (vid) url = s.base + "watch?v=" + vid;
+                else error = true;
+              } else if (s.mode === "short") {
+                if (vid) url = s.base + vid + (list ? "?list=" + list : "");
+                else if (list) url = "https://youtube.com/playlist?list=" + list;
+                else error = true;
+              }
+            }
+            var valEl = document.getElementById("val_" + s.id),
+              linkEl = document.getElementById("link_" + s.id);
+            if (url) {
+              valEl.value = url;
+              linkEl.href = url;
+              linkEl.style.display = "inline";
+              // 關鍵修正：將網址重新顯示在連結文字中，並處理 IE8 innerText 相容性
+              if ("textContent" in linkEl) {
+                linkEl.textContent = url;
+              } else {
+                linkEl.innerText = url;
+              }
+            } else {
+              valEl.value = !vid && !list ? "⚠️ 無法辨識影片或播放清單 ID" : "⚠️ 無法產生連結";
+              linkEl.style.display = "none";
+            }
+          }
         }
 
-        // C. 渲染結果
-        for (var j = 0; j < services.length; j++) {
-          var s = services[j];
-          var url = "";
-          var error = false;
-
-          // 優先判斷電台模式
-          if (radioMode && vid && s.mode !== "vid_only" && s.mode !== "SafeShare") {
-            if (s.mode === "short") url = s.base + vid + "?list=RD" + vid + "&start_radio=1";
-            else if (s.mode === "ytify")
-              url = s.base + "?playlist=RD" + vid; //url = s.base + "?s=" + vid;
-            else if (s.mode === "Poke") url = s.base + "playlist?list=RD" + vid;
-            else url = s.base + s.type + "?v=" + vid + "&list=RD" + vid;
+        // C. 決策路徑
+        if (!vid && list) {
+          // 1. RD 邏輯還原 (不限瀏覽器，不需要 API 也能抓第一部片)
+          if (list.indexOf("RD") === 0 && list.length === 13) {
+            vid = list.substring(2);
+            statusEl.innerHTML = "✅ RD 邏輯還原成功";
+            statusEl.style.color = "#2e7d32";
+            render();
           }
-          // 否則走一般模式
+          // 2. 現代 API 救援 (需支援 Fetch)
+          else if (hasFetch) {
+            apiFetch(list, statusEl, function (foundVid, node) {
+              if (foundVid) {
+                vid = foundVid;
+                statusEl.innerHTML = "✅ API 救援成功 (來源: " + node.split("//")[1] + ")";
+                statusEl.style.color = "#2e7d32";
+              } else {
+                statusEl.innerHTML = "⚠️ API 未能取得影片 ID，顯示純清單連結";
+              }
+              render();
+            });
+          }
+          // 3. 舊瀏覽器退路
           else {
-            if (s.mode === "standard") {
-              // 支援 v 和 list
-              if (vid && list) url = s.base + s.type + "?v=" + vid + "&list=" + list;
-              else if (vid) url = s.base + s.type + "?v=" + vid;
-              else if (list) url = s.base + "playlist?list=" + list;
-              else error = true;
-            } else if (s.mode === "vid_only") {
-              // 簡單接在後面，不支援 list
-              if (vid) url = s.base + s.type + "?v=" + vid;
-              else error = true;
-            } else if (s.mode === "SafeShare") {
-              // 強制用 title (像 SafeShare)
-              if (vid) url = s.base + vid + "&title=flNVp8Gw1gTmgTXpcnCGe%2B59%2Bumywx39TXa6068%3D";
-              else error = true; // 有 list 無 vid 也算錯誤
-            } else if (s.mode === "ytify") {
-              if (list) url = s.base + "?playlist=" + list;
-              else if (vid) url = s.base + "?s=" + vid;
-              else error = true;
-            } else if (s.mode === "Poke") {
-              if (list) url = s.base + "playlist?list=" + list;
-              else if (vid) url = s.base + "watch?v=" + vid;
-              else error = true;
-            } else if (s.mode === "short") {
-              if (vid && list) url = s.base + vid + "?list=" + list;
-              else if (vid) url = s.base + vid;
-              else if (list) url = "https://youtube.com/playlist?list=" + list;
-              else error = true;
-            }
+            statusEl.innerHTML = "ℹ️ 此瀏覽器不支援 API 救援，顯示純清單連結";
+            render();
           }
-
-          var textEl = document.getElementById("text_" + s.name);
-          var linkEl = document.getElementById("link_" + s.name);
-
-          if (error) {
-            textEl.value = !vid && !list ? "⚠️ 無法辨識影片或播放清單 ID" : "⚠️ 無法產生連結";
-            linkEl.style.display = "none";
-          } else {
-            textEl.value = url;
-            linkEl.href = url;
-            linkEl.style.display = "inline";
-            // 處理 IE8 innerText 相容性
-            if ("textContent" in linkEl) {
-              linkEl.textContent = url;
-            } else {
-              linkEl.innerText = url;
-            }
+        } else {
+          if (vid || list) {
+            statusEl.innerHTML = "✅ 轉換完成";
+            statusEl.style.color = "#2e7d32";
           }
+          render();
         }
       }
     </script>
