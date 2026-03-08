@@ -448,17 +448,17 @@
             apiFetch(list, statusEl, function (foundVid, node) {
               if (foundVid) {
                 vid = foundVid;
-                statusEl.innerHTML = "✅ API 救援成功 (來源: " + node.split("//")[1] + ")";
+                statusEl.innerHTML = "✅ 成功取得影片 ID (來源: " + node.split("//")[1] + ")";
                 statusEl.style.color = "#2e7d32";
               } else {
-                statusEl.innerHTML = "⚠️ API 未能取得影片 ID，顯示純清單連結";
+                statusEl.innerHTML = "⚠️ 無法取得影片 ID，僅顯示純清單連結";
               }
               render();
             });
           }
           // 3. 舊瀏覽器退路
           else {
-            statusEl.innerHTML = "ℹ️ 此瀏覽器不支援 API 救援，顯示純清單連結";
+            statusEl.innerHTML = "ℹ️ 此瀏覽器不支援 API，僅顯示純清單連結";
             render();
           }
         } else {

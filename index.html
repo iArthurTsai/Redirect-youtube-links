@@ -81,6 +81,7 @@
       <div style="display: flex; width: 100%; align-items: center">
         <button id="btn" onclick="convert()" style="flex: 1">轉換</button>
         <label class="option-label"> <input type="checkbox" id="radioMode" />音樂合輯/電台 (RD)</label>
+		<label class="option-label"> <input type="checkbox" id="uuMode" />頻道影片 (UU)</label>
       </div>
     </div>
     <div id="status"></div>
@@ -269,6 +270,31 @@
         }
         return null;
       };
+	  
+	  // 步驟 B：強制使用 Invidious 節點查詢影片的作者 (Channel ID)
+      const fetchChannelIdFromInvidious = async (vid, statusEl) => {
+        // 只過濾出 Invidious 節點來查 Metadata
+        const invidiousNodes = API_NODES.filter((n) => !n.includes("piped") && !n.includes("api."));
+
+        for (const node of invidiousNodes) {
+          try {
+            const domain = new URL(node).hostname;
+            statusEl.textContent = `⏳ 正在透過 Invidious (${domain}) 鎖定頻道...`;
+            const apiUrl = `${node}/api/v1/videos/${vid}`;
+
+            const res = await fetch(apiUrl, { signal: AbortSignal.timeout(3000) });
+            if (!res.ok) continue;
+            const data = await res.json();
+
+            if (data.authorId && data.authorId.startsWith("UC")) {
+              return { id: data.authorId, name: data.author };
+            }
+          } catch (e) {
+            console.warn("作者查詢失敗:", node);
+          }
+        }
+        return null;
+      };
 
       // 3. 主要轉換功能
       const convert = async () => {
@@ -276,6 +302,7 @@
           btnEl = document.getElementById("btn"),
           statusEl = document.getElementById("status");
         const radioMode = document.getElementById("radioMode").checked;
+		const uuMode = document.getElementById("uuMode").checked;
 
         let input = decodeURIComponent(inputEl.value.trim()),
           vid = null,
@@ -301,7 +328,7 @@
               list = urlObj.searchParams.get("list");
             } else if (urlObj.pathname.includes("/channel/UC")) {
               list = "UU" + urlObj.pathname.split("/").pop().slice(2);
-              statusEl.textContent = "✅ 偵測到頻道網址，已轉為播放清單";
+              statusEl.textContent = "✅ 頻道網址已轉為播放清單";
             } else if (urlObj.pathname.includes("/channel/UU")) {
               list = urlObj.pathname.split("/").pop();
             } else {
