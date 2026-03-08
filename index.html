@@ -290,7 +290,7 @@
             statusEl.textContent = `⏳ 正在透過 Invidious (${domain}) 鎖定頻道...`;
             const apiUrl = `${node}/api/v1/videos/${vid}`;
 
-            const res = await fetch(apiUrl, { signal: AbortSignal.timeout(3000) });
+            const res = await fetch(apiUrl, { signal: AbortSignal.timeout(5000) });
             if (!res.ok) continue;
             const data = await res.json();
 
@@ -395,19 +395,13 @@
 
           // 電台模式優先處理 (前提是必須有 vid，且該服務不是 noList)
           if (radioMode && vid && !noList) {
-            if (mode === "short") {
-              url = `${base}${vid}?list=RD${vid}&start_radio=1`;
-            } else if (mode === "ytify") {
-              //url = `${base}?s=${vid}`;
-              url = `${base}?playlist=RD${vid}`;
-            } else if (mode === "Poke") {
-              url = `${base}playlist?list=RD${vid}`;
-            } else if (mode === "vid") {
-              // SafeShare 等純影片服務，電台參數通常無效，故維持原狀
-              url = `${base}${type ? type : ""}${vid}${suffix || ""}`;
-            } else {
-              url = `${base}${type}?v=${vid}&list=RD${vid}`;
-            }
+            if (mode === "short") url = `${base}${vid}?list=RD${vid}&start_radio=1`;
+            else if (mode === "ytify")
+              url = `${base}?playlist=RD${vid}`; //url = `${base}?s=${vid}`;
+            else if (mode === "Poke") url = `${base}playlist?list=RD${vid}`;
+            else if (mode === "vid")
+              url = `${base}${type ? type : ""}${vid}${suffix || ""}`; // SafeShare 等純影片服務，電台參數通常無效，故維持原狀
+            else url = `${base}${type}?v=${vid}&list=RD${vid}`;
           }
           // 原始一般轉換邏輯
           else {
@@ -417,14 +411,12 @@
                 : list
                   ? `https://youtube.com/playlist?list=${list}`
                   : null;
-            } else if (mode === "ytify") {
-              url = list ? `${base}?playlist=${list}` : vid ? `${base}?s=${vid}` : null;
-            } else if (mode === "Poke") {
+            } else if (mode === "ytify") url = list ? `${base}?playlist=${list}` : vid ? `${base}?s=${vid}` : null;
+            else if (mode === "Poke")
               url = list ? `${base}playlist?list=${list}` : vid ? `${base}watch?v=${vid}` : null;
-            } else if (mode === "vid") {
-              // 關鍵修改：先檢查有沒有 type (如 share)，再拼接 vid，最後補上 suffix (SafeShare 通行證)
-              url = vid ? `${base}${type ? type : ""}${vid}${suffix || ""}` : null;
-            } else {
+            else if (mode === "vid") url = vid ? `${base}${type ? type : ""}${vid}${suffix || ""}` : null;
+            // 關鍵修改：先檢查有沒有 type (如 share)，再拼接 vid，最後補上 suffix (SafeShare 通行證)
+            else {
               // mode: "auto" (default)
               if (vid && list) {
                 url = playlistOnlyServices.includes(id)
@@ -432,12 +424,9 @@
                   : noList
                     ? `${base}${type}?v=${vid}`
                     : `${base}${type}?v=${vid}&list=${list}`;
-              } else if (vid) {
-                url = `${base}${type}?v=${vid}`;
-              } else if (list) {
-                // 純清單情況
-                url = id === "youtube" || noList ? null : `${base}playlist?list=${list}`;
-              }
+              } else if (vid) url = `${base}${type}?v=${vid}`;
+              else if (list) url = id === "youtube" || noList ? null : `${base}playlist?list=${list}`;
+              // 純清單情況
             }
           }
 
