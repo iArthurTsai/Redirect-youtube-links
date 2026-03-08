@@ -308,7 +308,7 @@
 
       // 現代 API 救援 (僅在支援 fetch 的環境被呼叫)
       function apiFetch(listId, statusEl, callback) {
-        var nodes = ["https://api.piped.private.coffee", "https://pipedapi.wireway.ch"];
+        var nodes = ["https://api.piped.private.coffee", "https://pipedapi.wireway.ch", "https://pipedapi.dedyn.io"];
         var index = 0;
         function tryNext() {
           if (index >= nodes.length) {

@@ -81,7 +81,7 @@
       <div style="display: flex; width: 100%; align-items: center">
         <button id="btn" onclick="convert()" style="flex: 1">轉換</button>
         <label class="option-label"> <input type="checkbox" id="radioMode" />音樂合輯/電台 (RD)</label>
-		<label class="option-label"> <input type="checkbox" id="uuMode" />頻道影片 (UU)</label>
+        <label class="option-label"> <input type="checkbox" id="uuMode" />頻道影片 (UU)</label>
       </div>
     </div>
     <div id="status"></div>
@@ -101,15 +101,23 @@
       // 備援 API 節點 (Piped & Invidious) 用於獲取清單第一部影片 ID
       const API_NODES = [
         "https://api.piped.private.coffee",
-        "https://pipedapi.wireway.ch",
         "https://pipedapi.dedyn.io",
-        "https://inv.nadeko.net",
-        "https://inv.vern.cc",
-        "https://iv.melmac.space",
-        "https://yt.vern.cc",
-        "https://invidious.tiekoetter.com",
-        "https://invidious.reallyaweso.me",
+        "https://pipedapi.kavin.rocks",
+        "https://pipedapi.wireway.ch",
         "https://yt.omada.cafe",
+        "https://inv.nadeko.net",
+        "https://invidious.tiekoetter.com",
+        "https://iv.melmac.space",
+        "https://echostreamz.com",
+        "https://inv.vern.cc",
+        "https://inv.zzls.xyz",
+        "https://invidious.darkness.services",
+        "https://invidious.f5.si",
+        "https://invidious.materialio.us",
+        "https://invidious.nerdvpn.de",
+        "https://invidious.reallyaweso.me",
+        "https://yewtu.be",
+        "https://yt.vern.cc",
       ];
 
       // 定義服務清單
@@ -270,8 +278,8 @@
         }
         return null;
       };
-	  
-	  // 步驟 B：強制使用 Invidious 節點查詢影片的作者 (Channel ID)
+
+      // 步驟 B：強制使用 Invidious 節點查詢影片的作者 (Channel ID)
       const fetchChannelIdFromInvidious = async (vid, statusEl) => {
         // 只過濾出 Invidious 節點來查 Metadata
         const invidiousNodes = API_NODES.filter((n) => !n.includes("piped") && !n.includes("api."));
@@ -302,7 +310,7 @@
           btnEl = document.getElementById("btn"),
           statusEl = document.getElementById("status");
         const radioMode = document.getElementById("radioMode").checked;
-		const uuMode = document.getElementById("uuMode").checked;
+        const uuMode = document.getElementById("uuMode").checked;
 
         let input = decodeURIComponent(inputEl.value.trim()),
           vid = null,
