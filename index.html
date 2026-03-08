@@ -360,6 +360,17 @@
               statusEl.textContent = "⚠️ 無法取得影片 ID，僅顯示純清單連結";
             }
           }
+
+          // 3. UU 模式二次處理 (拿找到的 vid 去 Invidious 換 uploaderId)
+          if (uuMode && vid) {
+            const authorData = await fetchChannelIdFromInvidious(vid, statusEl);
+            if (authorData) {
+              list = "UU" + authorData.id.slice(2);
+              statusEl.innerHTML = `✅ 頻道鎖定：<span style="color:blue">${authorData.name}</span>`;
+            } else {
+              statusEl.textContent = "⚠️ 無法取得頻道 ID，維持原樣";
+            }
+          }
         } catch (e) {
           statusEl.textContent = "❌ 解析出錯，請檢查網址格式";
           console.error(e);
