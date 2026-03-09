@@ -98,12 +98,23 @@
     </div>
 
     <script>
+      // 新增：互斥切換邏輯
+      const radioBox = document.getElementById("radioMode");
+      const uuBox = document.getElementById("uuMode");
+      radioBox.onclick = function () {
+        if (this.checked) uuBox.checked = false;
+      };
+      uuBox.onclick = function () {
+        if (this.checked) radioBox.checked = false;
+      };
+
       // 備援 API 節點 (Piped & Invidious) 用於獲取清單第一部影片 ID
       const API_NODES = [
         "https://api.piped.private.coffee",
         "https://pipedapi.dedyn.io",
         "https://pipedapi.kavin.rocks",
         "https://pipedapi.wireway.ch",
+        "https://invidious.darkness.services",
         "https://yt.omada.cafe",
         "https://inv.nadeko.net",
         "https://invidious.tiekoetter.com",
@@ -111,7 +122,6 @@
         "https://echostreamz.com",
         "https://inv.vern.cc",
         "https://inv.zzls.xyz",
-        "https://invidious.darkness.services",
         "https://invidious.f5.si",
         "https://invidious.materialio.us",
         "https://invidious.nerdvpn.de",
@@ -257,17 +267,24 @@
             statusEl.textContent = `⏳ 正在透過 ${domain} 搜尋影片...`;
 
             // 判斷是 Piped 還是 Invidious API 格式
-            const apiUrl = node.includes("piped")
+            /*const apiUrl = node.includes("piped")
               ? `${node}/playlists/${listId}`
-              : `${node}/api/v1/playlists/${listId}?fields=videos`;
+              : `${node}/api/v1/playlists/${listId}?fields=videos`;*/
+            const isPiped = node.includes("piped") || node.includes("api.");
+            const apiUrl = isPiped ? `${node}/playlists/${listId}` : `${node}/api/v1/playlists/${listId}?fields=videos`;
 
             const res = await fetch(apiUrl, { signal: AbortSignal.timeout(5000) });
             if (!res.ok) continue;
 
             const data = await res.json();
             // 支援 Piped (relatedStreams) 或 Invidious (videos)
-            const vid =
-              data.relatedStreams?.[0]?.url.match(/(?:v=|streams\/)([^&?/\s]+)/)?.[1] || data.videos?.[0]?.videoId;
+            /*const vid =
+              data.relatedStreams?.[0]?.url.match(/(?:v=|streams\/)([^&?/\s]+)/)?.[1] || data.videos?.[0]?.videoId;*/
+            const vid = isPiped
+              ? data.relatedStreams?.[0]?.url
+                ? data.relatedStreams[0].url.split("v=")[1]
+                : null
+              : data.videos?.[0]?.videoId;
             if (vid) {
               const time = (performance.now() - startTime).toFixed(0); // 計算總耗時
               return { vid, source: domain, time }; // 改為回傳物件
