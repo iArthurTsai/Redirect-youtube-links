@@ -3,104 +3,112 @@
         "url": "https://yt.omada.cafe",
         "type": "invidious",
         "score": 70,
-        "latency": "1899ms",
+        "latency": "1999ms",
         "cors": true,
-        "last_updated": "2026-03-18 04:35:04"
+        "last_updated": "2026-03-18 06:02:48"
+    },
+    {
+        "url": "https://invidious.f5.si",
+        "type": "invidious",
+        "score": 70,
+        "latency": "2395ms",
+        "cors": true,
+        "last_updated": "2026-03-18 06:02:53"
     },
     {
         "url": "https://echostreamz.com",
         "type": "invidious",
         "score": 70,
-        "latency": "1808ms",
+        "latency": "2007ms",
         "cors": true,
-        "last_updated": "2026-03-18 04:35:11"
+        "last_updated": "2026-03-18 06:02:55"
+    },
+    {
+        "url": "https://inv.nadeko.net",
+        "type": "invidious",
+        "score": 30,
+        "latency": "483ms",
+        "cors": false,
+        "last_updated": "2026-03-18 06:02:20"
     },
     {
         "url": "https://invidious.reallyaweso.me",
         "type": "invidious",
         "score": 30,
-        "latency": "458ms",
+        "latency": "412ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:02"
+        "last_updated": "2026-03-18 06:02:46"
     },
     {
         "url": "https://invidious.darkness.services",
         "type": "invidious",
         "score": 30,
-        "latency": "248ms",
+        "latency": "276ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:06"
+        "last_updated": "2026-03-18 06:02:50"
     },
     {
         "url": "https://pipedapi.kavin.rocks",
         "type": "piped",
         "score": 30,
-        "latency": "139ms",
+        "latency": "134ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:11"
-    },
-    {
-        "url": "https://inv.nadeko.net",
-        "type": "invidious",
-        "score": 15,
-        "latency": "523ms",
-        "cors": false,
-        "last_updated": "2026-03-18 04:34:36"
+        "last_updated": "2026-03-18 06:02:55"
     },
     {
         "url": "https://iv.melmac.space",
         "type": "invidious",
         "score": 15,
-        "latency": "741ms",
+        "latency": "668ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:34:47"
+        "last_updated": "2026-03-18 06:02:35"
     },
     {
         "url": "https://invidious.tiekoetter.com",
         "type": "invidious",
         "score": 15,
-        "latency": "752ms",
+        "latency": "810ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:02"
+        "last_updated": "2026-03-18 06:02:46"
     },
     {
         "url": "https://invidious.nerdvpn.de",
         "type": "invidious",
         "score": 15,
-        "latency": "643ms",
+        "latency": "675ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:05"
+        "last_updated": "2026-03-18 06:02:49"
     },
     {
         "url": "https://yewtu.be",
         "type": "invidious",
         "score": 15,
-        "latency": "819ms",
+        "latency": "853ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:05"
+        "last_updated": "2026-03-18 06:02:50"
     },
     {
         "url": "https://invidious.materialio.us",
         "type": "invidious",
         "score": 15,
-        "latency": "518ms",
+        "latency": "520ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:09"
+        "last_updated": "2026-03-18 06:02:53"
     },
     {
         "url": "https://api.piped.private.coffee",
         "type": "piped",
         "score": 15,
-        "latency": "1171ms",
+        "latency": "1100ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:13"
+        "last_updated": "2026-03-18 06:02:56"
     },
     {
         "url": "https://pipedapi.dedyn.io",
         "type": "piped",
         "score": 15,
-        "latency": "539ms",
+        "latency": "508ms",
         "cors": false,
-        "last_updated": "2026-03-18 04:35:23"
+        "last_updated": "2026-03-18 06:03:07"
     }
 ]
