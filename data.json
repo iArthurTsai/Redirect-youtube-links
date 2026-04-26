@@ -2,121 +2,129 @@
     {
         "url": "https://yt.omada.cafe",
         "type": "invidious",
-        "score": 85,
-        "latency": "1336ms",
+        "score": 100,
+        "latency": "460ms",
         "cors": true,
-        "last_updated": "2026-04-26 04:02:00"
+        "last_updated": "2026-04-26 06:22:51"
     },
     {
         "url": "https://invidious.darkness.services",
         "type": "invidious",
         "score": 85,
-        "latency": "915ms",
+        "latency": "590ms",
         "cors": true,
-        "last_updated": "2026-04-26 04:02:12"
+        "last_updated": "2026-04-26 06:22:53"
     },
     {
         "url": "https://invidious.f5.si",
         "type": "invidious",
         "score": 85,
-        "latency": "828ms",
+        "latency": "787ms",
         "cors": true,
-        "last_updated": "2026-04-26 04:02:13"
+        "last_updated": "2026-04-26 06:22:54"
     },
     {
         "url": "https://api.piped.private.coffee",
         "type": "piped",
         "score": 85,
-        "latency": "1401ms",
+        "latency": "1094ms",
         "cors": true,
-        "last_updated": "2026-04-26 04:02:16"
+        "last_updated": "2026-04-26 06:22:57"
+    },
+    {
+        "url": "https://pipedapi.dedyn.io",
+        "type": "piped",
+        "score": 85,
+        "latency": "1428ms",
+        "cors": true,
+        "last_updated": "2026-04-26 06:23:00"
     },
     {
         "url": "https://pipedapi.wireway.ch",
         "type": "piped",
         "score": 70,
-        "latency": "1881ms",
+        "latency": "1983ms",
         "cors": true,
-        "last_updated": "2026-04-26 04:02:18"
+        "last_updated": "2026-04-26 06:22:59"
     },
     {
-        "url": "https://pipedapi.dedyn.io",
-        "type": "piped",
-        "score": 70,
-        "latency": "1679ms",
-        "cors": true,
-        "last_updated": "2026-04-26 04:02:20"
+        "url": "https://inv.nadeko.net",
+        "type": "invidious",
+        "score": 30,
+        "latency": "486ms",
+        "cors": false,
+        "last_updated": "2026-04-26 06:22:48"
     },
     {
         "url": "https://invidious.reallyaweso.me",
         "type": "invidious",
         "score": 30,
-        "latency": "491ms",
+        "latency": "384ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:01:59"
-    },
-    {
-        "url": "https://invidious.materialio.us",
-        "type": "invidious",
-        "score": 30,
-        "latency": "485ms",
-        "cors": false,
-        "last_updated": "2026-04-26 04:02:14"
+        "last_updated": "2026-04-26 06:22:51"
     },
     {
         "url": "https://pipedapi.kavin.rocks",
         "type": "piped",
         "score": 30,
-        "latency": "393ms",
+        "latency": "249ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:02:15"
-    },
-    {
-        "url": "https://inv.nadeko.net",
-        "type": "invidious",
-        "score": 15,
-        "latency": "557ms",
-        "cors": false,
-        "last_updated": "2026-04-26 04:01:55"
+        "last_updated": "2026-04-26 06:22:56"
     },
     {
         "url": "https://inv.vern.cc",
         "type": "invidious",
         "score": 15,
-        "latency": "1130ms",
+        "latency": "728ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:01:56"
+        "last_updated": "2026-04-26 06:22:48"
     },
     {
         "url": "https://yt.vern.cc",
         "type": "invidious",
         "score": 15,
-        "latency": "1151ms",
+        "latency": "775ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:01:58"
+        "last_updated": "2026-04-26 06:22:50"
     },
     {
         "url": "https://invidious.tiekoetter.com",
         "type": "invidious",
         "score": 15,
-        "latency": "822ms",
+        "latency": "864ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:01:58"
+        "last_updated": "2026-04-26 06:22:51"
+    },
+    {
+        "url": "https://invidious.nerdvpn.de",
+        "type": "invidious",
+        "score": 15,
+        "latency": "541ms",
+        "cors": false,
+        "last_updated": "2026-04-26 06:22:52"
     },
     {
         "url": "https://yewtu.be",
         "type": "invidious",
         "score": 15,
-        "latency": "1132ms",
+        "latency": "845ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:02:11"
+        "last_updated": "2026-04-26 06:22:53"
+    },
+    {
+        "url": "https://invidious.materialio.us",
+        "type": "invidious",
+        "score": 15,
+        "latency": "550ms",
+        "cors": false,
+        "last_updated": "2026-04-26 06:22:55"
     },
     {
         "url": "https://echostreamz.com",
         "type": "invidious",
         "score": 15,
-        "latency": "724ms",
+        "latency": "667ms",
         "cors": false,
-        "last_updated": "2026-04-26 04:02:14"
+        "last_updated": "2026-04-26 06:22:55"
     }
 ]
