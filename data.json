@@ -1,98 +1,114 @@
 [
     {
+        "url": "https://yt.omada.cafe",
+        "type": "invidious",
+        "score": 85,
+        "latency": "1483ms",
+        "cors": true,
+        "last_updated": "2026-06-17 19:24:48"
+    },
+    {
         "url": "https://api.piped.private.coffee",
         "type": "piped",
         "score": 85,
-        "latency": "970ms",
+        "latency": "1187ms",
         "cors": true,
-        "last_updated": "2026-06-17 16:45:58"
+        "last_updated": "2026-06-17 19:24:56"
     },
     {
         "url": "https://pipedapi.wireway.ch",
         "type": "piped",
         "score": 70,
-        "latency": "2011ms",
+        "latency": "2172ms",
         "cors": true,
-        "last_updated": "2026-06-17 16:46:00"
+        "last_updated": "2026-06-17 19:24:58"
     },
     {
         "url": "https://pipedapi.dedyn.io",
         "type": "piped",
         "score": 70,
-        "latency": "1695ms",
+        "latency": "1659ms",
         "cors": true,
-        "last_updated": "2026-06-17 16:46:02"
+        "last_updated": "2026-06-17 19:25:00"
     },
     {
         "url": "https://inv.nadeko.net",
         "type": "invidious",
         "score": 30,
-        "latency": "414ms",
+        "latency": "492ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:26"
+        "last_updated": "2026-06-17 19:24:40"
+    },
+    {
+        "url": "https://yt.vern.cc",
+        "type": "invidious",
+        "score": 30,
+        "latency": "322ms",
+        "cors": false,
+        "last_updated": "2026-06-17 19:24:45"
     },
     {
         "url": "https://invidious.reallyaweso.me",
         "type": "invidious",
         "score": 30,
-        "latency": "320ms",
+        "latency": "472ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:33"
+        "last_updated": "2026-06-17 19:24:47"
     },
     {
-        "url": "https://invidious.darkness.services",
+        "url": "https://invidious.materialio.us",
         "type": "invidious",
         "score": 30,
-        "latency": "450ms",
+        "latency": "426ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:46"
+        "last_updated": "2026-06-17 19:24:52"
     },
     {
         "url": "https://pipedapi.kavin.rocks",
         "type": "piped",
         "score": 30,
-        "latency": "192ms",
+        "latency": "312ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:57"
+        "last_updated": "2026-06-17 19:24:55"
     },
     {
         "url": "https://invidious.tiekoetter.com",
         "type": "invidious",
         "score": 15,
-        "latency": "604ms",
+        "latency": "1073ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:33"
+        "last_updated": "2026-06-17 19:24:46"
     },
     {
         "url": "https://invidious.nerdvpn.de",
         "type": "invidious",
         "score": 15,
-        "latency": "538ms",
+        "latency": "947ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:44"
+        "last_updated": "2026-06-17 19:24:49"
     },
     {
         "url": "https://yewtu.be",
         "type": "invidious",
         "score": 15,
-        "latency": "1072ms",
+        "latency": "1091ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:45"
+        "last_updated": "2026-06-17 19:24:50"
+    },
+    {
+        "url": "https://invidious.darkness.services",
+        "type": "invidious",
+        "score": 15,
+        "latency": "662ms",
+        "cors": false,
+        "last_updated": "2026-06-17 19:24:51"
     },
     {
         "url": "https://invidious.f5.si",
         "type": "invidious",
         "score": 15,
-        "latency": "571ms",
+        "latency": "783ms",
         "cors": false,
-        "last_updated": "2026-06-17 16:45:46"
-    },
-    {
-        "url": "https://invidious.materialio.us",
-        "type": "invidious",
-        "score": 15,
-        "latency": "555ms",
-        "cors": false,
-        "last_updated": "2026-06-17 16:45:47"
+        "last_updated": "2026-06-17 19:24:52"
     }
 ]
